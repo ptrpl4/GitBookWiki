@@ -272,6 +272,18 @@ VOLUME: - Creates a mount point with the specified path and marks it as holding 
 	  `VOLUME ["/path/to/dir"]`
 	  `VOLUME ["/data"]`
 
+#### commands
+
+```shell
+docker volume create sharedvol
+
+# Start a MySQL and mount the shared volume for data persistence
+docker run -d --name mysql-container -v sharedvol:/var/lib/mysql mysql
+
+# Start WordPress and mount the same volume to access the MySQL data
+docker run -d --name wordpress-container -v sharedvol:/var/www/html wordpress
+```
+
 ### USER
 
 default user - root

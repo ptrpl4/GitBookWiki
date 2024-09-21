@@ -222,6 +222,29 @@ docker pull docker.io/johndoe/hello-world:v1.0
 
 Allows containers to communicate with each other and external resources through the network. It works with the help of network drivers.
 
+Usage of host network provides performance benefits and easier port mapping, it also poses security risks as the container has unrestricted access to the host network.
+
+```shell
+# create network
+docker network create mynetwork
+
+# run postgres
+docker run \
+-d --network=mynetwork --name mydb -e \
+  POSTGRES_PASSWORD=mysecretpassword postgres
+
+# Start a web application that connects to the PostgreSQL
+docker run \
+-d --network=mynetwork --name myapp -e DATABASE_HOST=mydb \
+  -e DATABASE_PASSWORD=mysecretpassword myapp-image
+
+# connect container to existing network
+docker network connect mynetwork nginx-container
+
+# use host network directly
+docker run --net=host -d --name nginx-host-container nginx
+```
+
 ### Drivers
 
 - `bridge` - default. [Bridge networks](https://docs.docker.com/network/bridge/) are isolated from the Docker host. Typically used when applications run in standalone containers and communicate on the same host\

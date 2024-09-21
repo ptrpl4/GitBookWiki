@@ -240,9 +240,31 @@ docker run -e ENV=my_env -it --name hs-ubuntu-v1 ubuntu:v1
 
 ### EXPOSE
 
+tcp - default protocol.\
+to publish port use flag `-p`
+
 EXPOSE: - Informs Docker that the container listens on the specified network ports at runtime.
 	  `EXPOSE <port> [<port>/<protocol>]`
 	  `EXPOSE 80`
+
+example
+```dockerfile
+FROM ubuntu:22.04
+
+LABEL author=HyperUser
+
+EXPOSE 80 # not specified 80/tcp
+EXPOSE 80/udp # 80/udp
+
+ENTRYPOINT ["/bin/bash"]
+```
+
+#### commands
+
+```bash
+# check exposed ports on running containers
+docker ps --format "table {{.ID}}\t{{.Image}}\t{{.Names}}\t{{.Ports}}"
+```
 
 ### VOLUME
 
@@ -250,15 +272,45 @@ VOLUME: - Creates a mount point with the specified path and marks it as holding 
 	  `VOLUME ["/path/to/dir"]`
 	  `VOLUME ["/data"]`
 
+### USER
+
+default user - root
+
+Sets the user name (or UID) and optionally the user group (or GID) to use as the default user and group for the remainder of the current stage. The specified user is used for RUN instructions and at runtime, runs the relevant ENTRYPOINT and CMD commands.
+
+example
+```dockerfile
+FROM ubuntu:22.04
+
+LABEL author=HyperUser
+
+USER bin
+
+ENTRYPOINT ["whoami"]
+```
+
 ### WORKDIR
 
-WORKDIR: - Sets the working directory for any subsequent `RUN`, `CMD`, `ENTRYPOINT`, `COPY`, and `ADD` instructions.
+default working directory is the `/`. can be set more than once.
+
+Sets the working directory for any subsequent `RUN`, `CMD`, `ENTRYPOINT`, `COPY`, and `ADD` instructions.
 	  `WORKDIR /path/to/workdir`
 	  `WORKDIR /app`
 
+```dockerfile
+FROM ubuntu:22.04
+
+LABEL author=HyperUser
+
+WORKDIR /etc # creates /etc folder
+WORKDIR /etc/pupupu/lol # creates /etc/pupupu/lol
+
+ENTRYPOINT ["pwd"]
+```
+
 ### LABEL
 
-LABEL: - define [labels to specify metadata](https://docs.docker.com/engine/reference/builder/#label)
+define [labels to specify metadata](https://docs.docker.com/engine/reference/builder/#label)
       `LABEL key=value`
       `LABEL "application_environment"="development"`
 

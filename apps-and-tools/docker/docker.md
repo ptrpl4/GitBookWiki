@@ -191,6 +191,19 @@ docker inspect ff095b82
 docker inspect ubuntu:v1 --format='{{json .Config}}'
 ```
 
+### inspect
+
+syntax
+`docker inspect <container-id or container-name>`
+
+output - JSON object containing:
+
+- **Configuration:** image, command, entry point, environment, variables, exposed ports
+- **Network settings:** IP address, port mapping, attached networks
+- **Volume mounts**
+- **Environment variables**
+- **Runtime information:** status, start time, resource usage
+
 ### Registry
 
 ```bash

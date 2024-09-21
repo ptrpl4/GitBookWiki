@@ -55,6 +55,27 @@ Evolution of the programming systems product
 
 ![](../../aaa-assets/software-engineering-2.jpeg)
 
+## FURPS
+
+- **U**sability: How users can learn to interact with the system
+- **R**eliability: ability of the system to perform as expected without issues under certain conditions
+- **P**erformance: performance of the system in various metrics and how it can handle a large number of requests. It includes the **response time**, **throughput**, **availability**, and **accuracy**
+- **S**upportability: how easily the system can be modified. It covers the **adaptability**, **maintainability**, and **portability** properties
+
+### pseudo requirements
+
+- **Implementation requirements**: define how the system should be implemented. What frameworks, libraries, or programming languages will be used
+- **Interface requirements**: such constraints are set by external systems
+- **Operations requirements**: constraints on the administration and management of the system during its operation
+- **Packaging requirements**: constraints on the delivery of the system
+- **Legal requirements**: includes licensing, regulation, and certification constraints
+
+## Requirements documentation
+
+- **Functional decomposition**: break down system into parts and show how they interact with each other
+- **Use Case Diagram**: represents scenarios of how users can interact with the system
+- **Context Diagram**: describes how the system interacts with the surrounding environment entities
+
 ## Processes
 
 ### RFI RFP RFQ

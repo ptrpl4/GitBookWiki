@@ -4,10 +4,24 @@
 
 ## Basics
 
-```bash
-apt-get update
-apt-get upgrade
+### apt-get
 
+```bash
+apt list --upgradable
+
+apt-get update
+apt-get
+
+# not rm packages explicitly installed by the user
+apt-get upgrade --autoremove 
+
+# rm all unused packages
+apt-get full-upgrade
+```
+
+### etc
+
+```
 # check OS version
 cat /etc/os-release
 ```

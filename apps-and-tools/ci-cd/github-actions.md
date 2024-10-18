@@ -98,6 +98,45 @@ steps:
      fetch-depth: 0
 ```
 
+### Keys
+
+#### on
+
+what events trigger your workflow
+
+list of events - [link](https://docs.github.com/en/actions/writing-workflows/choosing-when-your-workflow-runs/events-that-trigger-workflows)
+
+syntax:
+
+```yaml
+on:
+  [event]: 
+    [activity-type]
+```
+
+examples:
+
+```yaml
+on: [push, fork]
+```
+
+```yaml
+on:
+  push:
+    branches:
+      - main
+      - 'releases/**'
+```
+
+```yaml
+on:
+  push:
+    branches: [main]
+  pull_request:
+    types: [opened, reopened, synchronize]
+```
+
+
 ## Environment variable
 
 ### Scopes

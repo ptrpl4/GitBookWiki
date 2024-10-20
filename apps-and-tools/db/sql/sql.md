@@ -15,10 +15,10 @@ Structured Query Language - [domain-specific programming language](https://www.j
 #### Therms
 
 - СУБД - система управления базами данных
-  DBMS - Database Management System
+	- DBMS - Database Management System
 - RDBMS - Relational Database Management System
-- schema describes how you organize the data
-- Metadata holds structural and statistical information
+- schema - describes how you organize the data
+- Metadata - holds structural and statistical information
 
 #### Правила проектирования
 
@@ -366,4 +366,35 @@ CREATE TABLE census (
     year_income DECIMAL(20,2),
     is_parent BOOLEAN
 );
+```
+
+## Index
+
+Data structure that improves the speed of data retrieval operations.  
+Contains a copy of selected columns from a table, along with a pointer to the location of the corresponding rows in the table.
+
+Improves queries
+- WHERE
+- ORDER BY (should match with order in index)
+- JOIN
+
+Cons:
+
+If column is updated frequently - it can lead to index fragmentation and reduced performance.
+
+### Types
+
+- **B-tree index**: A balanced tree index that is commonly used in databases. It's efficient for range queries and provides good performance for both small and large datasets.
+- **Hash index**: A hash-based index that is efficient for equality queries. It's commonly used in databases that require fast lookup operations.
+- **Full-text index**: A specialized index that is designed for full-text search queries. It's commonly used in databases that require fast text search operations.
+
+### examples
+
+```sql
+-- affects on name in superheroes table
+CREATE INDEX superheroes_name_idx
+ON superheroes (name)
+
+-- delete
+DROP INDEX superheroes_name_idx
 ```

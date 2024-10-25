@@ -98,9 +98,7 @@ steps:
      fetch-depth: 0
 ```
 
-### Keys
-
-#### on
+### Events that trigger workflows
 
 what events trigger your workflow
 
@@ -136,6 +134,121 @@ on:
     types: [opened, reopened, synchronize]
 ```
 
+`workflow_dispatch` - manual trigger for workflow
+
+```yaml
+name: Manual trigger
+
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: "Whom to greet"
+        default: "World"
+
+jobs:
+  hello:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Hello Step 
+        run: echo "Hello ${{ github.event.inputs.name }}" 
+```
+
+`workflow_run` - based on other workflow statuses
+
+```yaml
+name: Test
+
+on:
+  workflow_run:
+    workflows: [Workflow Name]
+    types: [completed]
+
+jobs:
+  on-success:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    steps:
+      - name: Print Success Message
+        run: echo 'The triggering workflow passed'
+
+  on-failure:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'failure' }}
+    steps:
+      - name: Print Failure Message
+        run: echo 'The triggering workflow failed'
+```
+
+`workflow_call` - allows invoke and reuse another workflow within the same repository or across repositories
+
+```yaml
+name: Workflow A (Ping)
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  ping:
+    uses: USER_OR_ORG_NAME/REPO_NAME/.github/workflows/pong.yaml@master
+    with:
+      ping: 'PONG'
+```
+
+```yaml
+name: Workflow B (Pong)
+on:
+  workflow_call:
+    inputs:
+      ping:
+        required: true
+        type: string
+
+jobs:
+  pong:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Pong
+        run: echo "${{ inputs.ping }}"
+```
+
+`repository_dispatch` - generic event triggered by custom events you define
+
+```yaml
+name: Remote Dispatch Responder (Repository A)
+
+on: repository_dispatch
+
+jobs:
+  ping-pong:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Event Information
+        run: |
+          echo "Event '${{ github.event.action }}' received from '${{ github.event.client_payload.repository }}'"
+```
+
+```yaml
+name: Remote Dispatch Action (Repository B)
+
+on:
+  push:
+
+jobs:
+  ping-pong:
+    runs-on: ubuntu-latest
+    steps:
+      - name: PING 
+        run: |
+          curl -L \
+            -X POST \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: token ${{secrets.ACCESS_TOKEN}}"\
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            https://api.github.com/repos/OWNER/REPO/dispatches \
+            -d '{"event_type": "ping", "client_payload": { "repository": "'"$GITHUB_REPOSITORY"'" }}'
+```
 
 ## Environment variable
 

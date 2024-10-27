@@ -8,7 +8,7 @@ Structured Query Language - [domain-specific programming language](https://www.j
 
 - [recap (ru)](https://tproger.ru/translations/sql-recap/)
 - [docs (ru)](https://postgrespro.ru/docs/postgresql/12/index)
-- [course (ru)](https://geekbrains.ru/chapters/1157)
+- [course (ru)](https://www.youtube.com/playlist?list=PLtPJ9lKvJ4oh5SdmGVusIVDPcELrJ2bsT)
 - [lectures](https://www.youtube.com/playlist?list=PLtPJ9lKvJ4oh5SdmGVusIVDPcELrJ2bsT)
 - [database-design-101](https://hyperskill.org/blog/post/database-design-101)
 
@@ -296,7 +296,7 @@ SELECT job_id,AVG(salary)
 
 ## View
 
-`View` — это виртуальная таблица SQL, созданная в результате выполнения выражения. Она содержит строки и столбцы и очень похожа на обычную SQL-таблицу. `View` всегда показывает самую свежую информацию из базы данных.
+`View` — virtual SQL table, it doesn't store any data itself. Instead, it references the underlying tables and retrieves the data when queried.
 
 ```sql
 -- Create
@@ -304,6 +304,10 @@ CREATE VIEW <view_name> AS
   SELECT <col_name1>, <col_name2>, …
   FROM <table_name>
   WHERE <condition>;
+
+-- Use
+
+SELECT * FROM test_v
 
 -- Delete
 DROP VIEW <view_name>; 
@@ -314,6 +318,79 @@ DROP VIEW <view_name>;
 example scheme for online shop
 
 ![](../../../aaa-assets/sql-3.png)
+
+## Restrictions
+
+Common restrictions
+
+- PRIMARY KEY (NOT NULL + UNIQUE)
+- FOREIGN KEY 
+- NOT NULL
+- UNIQUE
+- CHECK
+
+etc
+
+- CONSTRAINT - set a restriction name
+
+examples:
+
+```sql
+CREATE TABLE superheroes(
+	id INT PRIMARY KEY, 
+	name VARCHAR(100) UNIQUE, -- !
+	align VARCHAR(30), 
+	eye VARCHAR(30) NOT NULL, -- !
+	hair VARCHAR(30), 
+	gender VARCHAR(30), 
+	appearances INT, 
+	year INT,
+	universe VARCHAR(10)
+)
+```
+
+```sql
+CREATE TABLE products (
+	id PRIMARY KEY, 
+	name VARCHAR (100), 
+	type_id INT,
+	price INT CHECK (price >= 0) -- !
+)
+```
+
+```sql
+CREATE TABLE products( 
+	id PRIMARY KEY, 
+	name VARCHAR (100), 
+	type_ _id INT,
+	price INT CONSTRAINT positive_price -- set a name for restriction
+		CHECK (price >= 0)
+)
+```
+
+FOREIGN KEY:
+
+```sql
+CREATE TABLE products( 
+	id PRIMARY KEY, 
+	name VARCHAR(100),
+	type_id INT REFERENCES product_types(id)
+		ON DELETE RESTRICT,
+		-- ON DELETE/UPATE RESTRICT/CASCADE another cases
+	price INT
+)
+```
+
+
+```sql
+CREATE TABLE products(
+	id PRIMARY KEY, 
+	name VARCHAR(100), 
+	type_id INT, 
+	price INT,
+	FOREIGN KEY(type_id) REFERENCES product_types(id)
+)
+```
 
 ## Transaction - TCL
 

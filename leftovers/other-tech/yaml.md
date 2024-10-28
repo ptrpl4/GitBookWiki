@@ -32,7 +32,7 @@ published:
 
 Mapping consists of key-value pairs. Pairs are called _scalars._
 
-Indentation is always done with **spaces**, not tabs. Number of spaces doesn't matter, as long as the child node indentation is greater that its parent. Recommended indentation for YAML files is two spaces per level.
+Indentation is always done with **spaces**, not tabs. Number of spaces doesn't matter, as long as the child node indentation is greater that its parent. Recommended indentation for YAML files is **two** spaces per level.
 
 .yaml map example:
 

@@ -1,10 +1,16 @@
-# ⚙️ Kubernetes aka k8s
+# ⚙️ Kubernetes
 
-Also known as K8s, is an open-source system for automating deployment, scaling, and management of containerized applications.
+Also known as k8s, is an open-source system for automating deployment, scaling, and management of containerized applications.
 
-#### services
+### Managed Kubernetes
+
+Managed Kubernetes environment where cloud provider is responsible for managing the control plane, which includes the Kubernetes API server, scheduler, and controller manager.
+
 - Google Kubernetes Engine (GKE)
 - AWS Fargate
+- Amazon Elastic Container Service for Kubernetes (EKS)
+- Azure Kubernetes Service (AKS)
+- IBM Cloud Kubernetes Service
 
 ## Components
 
@@ -122,9 +128,10 @@ spec:
 
 ### minikube
 
+ tool for running and testing k8s locally
+
 - https://github.com/kubernetes/minikube
 
-**minikube** - tool for running and testing k8s locally
 
 ![](../../aaa-assets/k8s-7.png)
 

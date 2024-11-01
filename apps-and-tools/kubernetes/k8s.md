@@ -1,6 +1,12 @@
 # ⚙️ Kubernetes
 
-Also known as k8s, is an open-source system for automating deployment, scaling, and management of containerized applications.
+Also known as k8s, is an open-source system for automating deployment, scaling, and management of containerized applications. 
+
+"Cluster management system".
+
+#### links
+
+- [slurm io course (ru)](https://www.youtube.com/playlist?list=PL8D2P0ruohOBSA_CDqJLflJ8FLJNe26K-)
 
 ### Managed Kubernetes
 
@@ -66,6 +72,22 @@ It's a logical host for one or more containers.
 
 ![](../../aaa-assets/k8s-3.png)
 
+`pod.yaml`
+
+```yaml
+--- # begining of first document
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-pod
+spec:
+  containers: # list of containers. coulde be more
+  - image: quay.io/testing-farm/nginx:1.12
+    name: nginx
+    ports: # only for info, k8s not using it in setup
+    - containerPort: 80
+... # ending of first document
+```
 ### Service
 
 Could be internal or external.
@@ -130,7 +152,7 @@ spec:
 
 ### minikube
 
- tool for running and testing k8s locally
+Tool for running and testing k8s locally. Emulates a cluster on a single machine
 
 - https://github.com/kubernetes/minikube
 
@@ -166,7 +188,6 @@ minikube dashboard
 
 # check addons
 minikube addons list
-
 ```
 
 ### **kubectl**

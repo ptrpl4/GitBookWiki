@@ -4,6 +4,11 @@ YAML Ain't Markup Language
 
 Human-readable data serialization standard for all programming languages.
 
+#### links
+
+- [website](https://yaml.org/)
+- [spec](https://yaml.org/spec/1.2.2/)
+
 ### Basic data types
 
 * _integers_ like 15, 123
@@ -25,7 +30,6 @@ YAML auto-detects the type of data, but users can specify the type they need usi
 published:
   year: 1889 # inline comments
   country: United Kingdom
-
 ```
 
 ### Maps

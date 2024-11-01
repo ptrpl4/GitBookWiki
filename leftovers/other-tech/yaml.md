@@ -63,3 +63,22 @@ saturday: |
   order a pizza
   watch new series
 ```
+
+## Examples
+
+### k8s
+
+```yaml
+--- # begining of first document
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-pod
+spec:
+  containers:
+  - image: quay.io/testing-farm/nginx:1.12
+    name: nginx
+    ports:
+    - containerPort: 80
+... # ending of first document
+```

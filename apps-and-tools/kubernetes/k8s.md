@@ -60,6 +60,10 @@ On Master Node are running **Main k8s Processes** to run and manage cluster. Bet
 
 ### Pod
 
+Pod is the basic execution unit of a containerized application, represents a single instance of a running process in cluster. 
+
+It's a logical host for one or more containers. 
+
 ![](../../aaa-assets/k8s-3.png)
 
 ### Service
@@ -122,8 +126,6 @@ spec:
         - containerPort: 80
 ```
 
-
-
 ## Tools and Apps
 
 ### minikube
@@ -132,22 +134,39 @@ spec:
 
 - https://github.com/kubernetes/minikube
 
-
 ![](../../aaa-assets/k8s-7.png)
 
 Master node processes and Node processes inside one Virtual Node on your machine.
 
 minikube works as container (docker, etc) or as virtual machine (virtualbox, etc)
 
-is mainly used to start/delete a local cluster. all other interactions take place via kubectl
+is mainly used to start/delete a local cluster. kubectl gets configured to access the kubernetes cluster control plane inside minikube when the minikube start command is executed
 
 #### commands
 
 ```bash
-# start and define driver
-minikube start --driver docker
+# installation
+brew install docker
+open -a docker
+brew install minikube
+
+# management
+minikube start --driver docker # and define driver
+minikube pause
+minikube unpause
+minikube stop
+
+minikube delete --all
+
 # check current status
 minikube status
+
+# run dashboard
+minikube dashboard
+
+# check addons
+minikube addons list
+
 ```
 
 ### **kubectl**
@@ -163,8 +182,12 @@ minikube status
 kubectl get node
 # get created pods
 kubectl get pod
+kubectl get po -A # get all pods
 # get pods, deployments, services
 kubectl get all
+
+# get pod info
+kubectl describe pod my-pod-name
 ```
 
 ### configuration

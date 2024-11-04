@@ -1411,7 +1411,7 @@ user friendly top command
 brew install htop
 ```
 
-### **fonts**
+### fonts
 
 ```bash
 # for mac
@@ -1434,6 +1434,17 @@ source - [https://t.me/zhovner\_hub/1991](https://t.me/zhovner\_hub/1991)
 
 ```bash
 nmap -Pn 192.111.111.11
+```
+
+### jq
+
+command-line JSON processor
+
+- site - https://jqlang.github.io/jq
+- web - https://jqplay.org
+
+```shell
+brew install jq
 ```
 
 ## exit codes

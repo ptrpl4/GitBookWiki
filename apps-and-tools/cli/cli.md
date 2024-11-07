@@ -971,6 +971,8 @@ process:
 `#!` - "shebang"
 Directive for the Linux program loader that specifies a program that will run the script
 
+`#!/bin/sh` - use sh for script
+`#!/bin/bash` - use bash
 `#!/usr/bin/env python3` - python example
 
 ### Run a script

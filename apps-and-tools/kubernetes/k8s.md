@@ -18,7 +18,7 @@ Managed Kubernetes environment where cloud provider is responsible for managing 
 - Azure Kubernetes Service (AKS)
 - IBM Cloud Kubernetes Service
 
-## Components
+## List of Components
 
 ![](../../aaa-assets/k8s-1.png)
 
@@ -84,10 +84,11 @@ spec:
   containers: # list of containers. coulde be more
   - image: quay.io/testing-farm/nginx:1.12
     name: nginx
-    ports: # only for info, k8s not using it in setup
+    ports: # mostly for documentation
     - containerPort: 80
 ... # ending of first document
 ```
+
 ### Service
 
 Could be internal or external.
@@ -148,6 +149,38 @@ spec:
         - containerPort: 80
 ```
 
+### ReplicaSet
+
+Kubernetes object that ensures a specified number of replicas (identical copies) of a Pod are running at any given time
+
+- The ReplicaSet controller continuously monitors the number of replicas and ensures that the desired number is running
+- If a Pod is deleted or becomes unavailable, the ReplicaSet controller creates a new replica to replace it
+- if template data will be updated when replicaset is already running - changes will be applied only on new created pods, when they will be created
+
+```yaml
+---
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: my-replicaset
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+	      app: my-app
+  template:
+    metadata:
+      labels:
+        app: my-app # way to mark related pods
+    spec:
+      containers:
+      - image: quay.io/testing-farm/nginx:1.12
+        name: nginx
+        ports:
+        - containerPort: 80
+...
+```
+
 ## Tools and Apps
 
 ### minikube
@@ -198,17 +231,35 @@ minikube addons list
 
 #### commands
 
+`create vs apply` - `create` will work only once, `apply` will add changes to current config (if any)
+
 ```bash
+# add autocomplete
+source <(kubectl completion zsh)  
+
 # get active nodes
 kubectl get node
 # get created pods
 kubectl get pod
 kubectl get po -A # get all pods
+kubectl get pods -l app=my-app # get by label
 # get pods, deployments, services
 kubectl get all
 
 # get pod info
 kubectl describe pod my-pod-name
+
+# ReplicaSet
+## create ReplicaSet
+kubectl create -f replicaset.yaml
+## add new changes
+kubectl apply -f replicaset.yaml
+## get
+kubectl get rs # or full replicaset
+## scale (also could be changed in .yaml and re-applied)
+kubectl scale --replicas 5 replicaset my-replicaset # deleted will be newest pods
+# change image in replica template 
+kubectl set image replicaset my-replicaset 'nginx=quay.io/testing-farm/nginx:1.12'
 ```
 
 ### configuration

@@ -7,11 +7,13 @@ Also known as k8s, is an open-source system for automating deployment, scaling, 
 #### links
 
 - [slurm io course (ru)](https://www.youtube.com/playlist?list=PL8D2P0ruohOBSA_CDqJLflJ8FLJNe26K-)
+- [doc](https://kubernetes.io/docs/concepts/)
 
 ### Managed Kubernetes
 
-Managed Kubernetes environment where cloud provider is responsible for managing the control plane, which includes the Kubernetes API server, scheduler, and controller manager.
+Environment where cloud provider is responsible for managing the control plane, which includes the Kubernetes API server, scheduler, and controller manager.
 
+Examples
 - Google Kubernetes Engine (GKE)
 - AWS Fargate
 - Amazon Elastic Container Service for Kubernetes (EKS)
@@ -43,7 +45,7 @@ K8s cluster contains of:
 
 **kubelet** - allows running application processes and communicate
 
-**Apps** are running on Worker Nodes.
+**Apps** are running on Worker Nodes in containers inside Pods (typically pod=container), controlled by ReplicaSet, controlled by Deployment.
 
 ### Master Node
 
@@ -111,44 +113,6 @@ Stores data. Could be local or remote
 
 Virtual Network provides connection between nodes. "Creates one unified machine". Each Pod get internal IP address. If Pod will be restarted - IP will be chanegd.
 
-## Configutation
-
-Consist of
-
-* metadata
-* specification
-* status (gets from **etcd**)
-
-File format - .yaml, .json
-
-#### example
-
-`controllers/nginx-deployment.yaml`
-
-```yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: nginx-deployment
-  labels:
-    app: nginx
-spec:
-  replicas: 3
-  selector:
-    matchLabels:
-      app: nginx
-  template:
-    metadata:
-      labels:
-        app: nginx
-    spec:
-      containers:
-      - name: nginx
-        image: nginx:1.14.2
-        ports:
-        - containerPort: 80
-```
-
 ### ReplicaSet
 
 Kubernetes object that ensures a specified number of replicas (identical copies) of a Pod are running at any given time
@@ -180,6 +144,145 @@ spec:
         - containerPort: 80
 ...
 ```
+
+### Deployment
+
+- doc - [https://kubernetes.io/docs/concepts/workloads/controllers/deployment](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/)
+
+- Higher-level abstraction that manages the deployment. It creates Pods using ReplicaSet.
+- Provides a way to define and manage the lifecycle of applications in a declarative manner
+
+![](../../aaa-assets/k8s-9.png)
+
+### Service
+
+- doc - [https://kubernetes.io/docs/concepts/services-networking/service/](https://kubernetes.io/docs/concepts/services-networking/service/)
+
+![[k8s-10.png]]
+
+## Configutations
+
+Consist of
+
+* metadata
+* specification
+* status (gets from **etcd**)
+
+File format - .yaml, .json
+
+#### Deployment file
+
+`controllers/nginx-deployment.yaml`
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  labels:
+    app: nginx
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.14.2
+        ports:
+        - containerPort: 80
+```
+
+`/mongo.yaml`
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongo-deployment
+  labels:
+    app: mongo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mongo
+  template:
+    metadata:
+      labels:
+        app: mongo
+    spec:
+      containers:
+      - name: mongodb
+        image: mongo:5.0
+        ports:
+        - containerPort: 27017
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongo-service
+spec:
+  selector:
+    app.kubernetes.io/name: mongo
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 27017
+```
+
+#### ConfigMap file
+
+doc - [https://kubernetes.io/docs/concepts/configuration/configmap](https://kubernetes.io/docs/concepts/configuration/configmap/)
+
+/mongo-config.yaml
+
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mongo-config
+data:
+  mongo-url: mongo-service
+```
+
+#### Secret file
+
+doc - [https://kubernetes.io/docs/concepts/configuration/secret](https://kubernetes.io/docs/concepts/configuration/secret)
+
+/mongo-secret.yaml
+
+```bash
+# create example user and encode to base64
+echo -n mongouser | base64
+echo -n mongopassword | base64
+```
+
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mongo-secret
+type: Opaque
+data:
+  mongo-user: bW9uZ291c2Vy
+  mongo-password: bW9uZ29wYXNzd29yZA==
+```
+
+### Signal Terminate
+
+`SIGTERM` - when Pod is terminated, Kubernetes sends a `SIGTERM` signal to the containers running in that Pod. This is part of the graceful shutdown process, allowing applications to clean up resources and finish ongoing requests before they are forcibly terminated.
+
+k8s provides a grace period during which the container can handle the `SIGTERM` signal. By default - 30 seconds, can be configured in `terminationGracePeriodSeconds` field in the Pod specification.
+
+App should know what to do on `SIGTERM`. 
+
+`SIGKILL` will be sent to app when timer ends.
 
 ## Tools and Apps
 
@@ -249,6 +352,14 @@ kubectl get all
 # get pod info
 kubectl describe pod my-pod-name
 
+# delete
+kubectl delete replicaset --all
+kubectl delete pods --all
+
+# explain 
+kubectl explain pod
+kubectl explain pod.spec
+
 # ReplicaSet
 ## create ReplicaSet
 kubectl create -f replicaset.yaml
@@ -261,95 +372,3 @@ kubectl scale --replicas 5 replicaset my-replicaset # deleted will be newest pod
 # change image in replica template 
 kubectl set image replicaset my-replicaset 'nginx=quay.io/testing-farm/nginx:1.12'
 ```
-
-### configuration
-
-#### ConfigMap file
-
-doc - [https://kubernetes.io/docs/concepts/configuration/configmap](https://kubernetes.io/docs/concepts/configuration/configmap/)
-
-/mongo-config.yaml
-
-```yaml
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: mongo-config
-data:
-  mongo-url: mongo-service
-```
-
-#### Secret file
-
-doc - [https://kubernetes.io/docs/concepts/configuration/secret](https://kubernetes.io/docs/concepts/configuration/secret)
-
-/mongo-secret.yaml
-
-```bash
-# create example user and encode to base64
-echo -n mongouser | base64
-echo -n mongopassword | base64
-```
-
-```yaml
-apiVersion: v1
-kind: Secret
-metadata:
-  name: mongo-secret
-type: Opaque
-data:
-  mongo-user: bW9uZ291c2Vy
-  mongo-password: bW9uZ29wYXNzd29yZA==
-```
-
-### Deployment & Service file
-
-![](../../aaa-assets/k8s-9.png)
-
-doc - [https://kubernetes.io/docs/concepts/workloads/controllers/deployment](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/)
-
-/mongo.yaml
-
-deployment part
-
-```yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: mongo-deployment
-  labels:
-    app: mongo
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: mongo
-  template:
-    metadata:
-      labels:
-        app: mongo
-    spec:
-      containers:
-      - name: mongodb
-        image: mongo:5.0
-        ports:
-        - containerPort: 27017
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: mongo-service
-spec:
-  selector:
-    app.kubernetes.io/name: mongo
-  ports:
-    - protocol: TCP
-      port: 8080
-      targetPort: 27017
-```
-
-service part^
-
-![](../../aaa-assets/k8s-10.png)
-
-doc - [https://kubernetes.io/docs/concepts/services-networking/service/](https://kubernetes.io/docs/concepts/services-networking/service/)

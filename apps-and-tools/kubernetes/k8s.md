@@ -284,6 +284,19 @@ App should know what to do on `SIGTERM`.
 
 `SIGKILL` will be sent to app when timer ends.
 
+### Deployment strategy
+
+#### Rolling Update
+
+- **Default Strategy**: Gradually replaces old Pods with new ones.
+- **No Downtime**: New Pods are created and become ready before old Pods are terminated.
+- **Controlled Rollout**: Configurable parameters like `maxSurge` (extra Pods) and `maxUnavailable` (old Pods) manage the update pace.
+
+### Recreate
+
+- **Downtime**: All old Pods are terminated before new Pods are started.
+- **Simple**: Suitable for applications that cannot run multiple versions simultaneously.
+
 ## Tools and Apps
 
 ### minikube
@@ -346,6 +359,9 @@ kubectl get node
 kubectl get pod
 kubectl get po -A # get all pods
 kubectl get pods -l app=my-app # get by label
+# >> hello-minikube-7d48979fd6-slnbk
+# pod name [deployment-name]-[Replica Set hash]-[pod hash]
+
 # get pods, deployments, services
 kubectl get all
 
@@ -371,4 +387,23 @@ kubectl get rs # or full replicaset
 kubectl scale --replicas 5 replicaset my-replicaset # deleted will be newest pods
 # change image in replica template 
 kubectl set image replicaset my-replicaset 'nginx=quay.io/testing-farm/nginx:1.12'
+
+# deployment
+
+## add 
+kubectl appy -f deployment.yaml
+
+## get
+kubectl get deploy
+
+# change image 
+kubectl set image deployment my-deploy 'nginx=quay.io/testing-farm/nginx:1.12'
+
+# realtime edit data in cluster
+kubectl edit deployment my-deploy
+
+# rollout - revert to a previous revision
+kubectl rollout undo deployment my-deploy
+
+kubectl rollout history
 ```

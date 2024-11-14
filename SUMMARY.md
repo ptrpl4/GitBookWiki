@@ -6,7 +6,7 @@
 
 * [🤓 Basic Knowledge](programming/basic-knowledge/basic-knowledge.md)
   * [🔢 Algorithms](programming/basic-knowledge/algorithms.md)
-* [🐍 Python](programming/python3/README.md)
+* [🐍 Python](python.md)
   * [🐘 Django](programming/python3/django.md)
   * [Python Setup](programming/python3/macos-hints.md)
   * [requirements](programming/python3/requirements.md)
@@ -14,7 +14,7 @@
   * [Virtual env](programming/python3/virtual-env.md)
   * [List comprehension](programming/python3/list-comprehension.md)
   * [Nested lists](programming/python3/nested-lists.md)
-  * [pytest](programming/python3/pytest/README.md)
+  * [pytest](pytest.md)
     * [pytest Setup](programming/python3/pytest/configs.md)
     * [Markers](programming/python3/pytest/markers.md)
     * [fixtures](programming/python3/pytest/fixtures.md)

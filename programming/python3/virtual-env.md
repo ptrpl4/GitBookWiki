@@ -15,7 +15,10 @@ $ deactivate
 
 ### pipenv
 
-```
+```sh
+# on macos
+brew install pipenv
+
 # install
 pip install --user pipenv
 # install package

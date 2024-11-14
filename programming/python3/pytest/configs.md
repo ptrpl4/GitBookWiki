@@ -2,7 +2,7 @@
 
 CLI usage
 
-```
+```sh
 # detailed output (-v)
 $ python -m pytest --verbose
 # only imortant data (-q)

@@ -4,7 +4,7 @@
 
 Example with next()
 
-```
+```sh
 >>> a = (i**2 for i in range(1,5))
 >>> a
 <generator object <genexpr> at 0x0000023A7524D6D0>
@@ -24,7 +24,7 @@ StopIteration
 
 Example with for
 
-```
+```sg
 >>> a = (i**2 for i in range(1,5))
 >>> for i in a:
 ...     print(i)
@@ -36,7 +36,7 @@ Example with for
 
 We can use yield if we need to take and use current generator value only once and fast
 
-```
+```python
 def gen_countdown(n):
     while n != 0:
         yield n -1

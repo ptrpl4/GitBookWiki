@@ -4,7 +4,7 @@
 
 Step 1 add marker to tests
 
-```
+```python
 @pytest.mark.webtest
 def test_send_http():
     pass  # perform some webtest test for your app
@@ -25,7 +25,7 @@ markers =
 
 Step 3 run marked tests
 
-```
+```sh
 # run marked tests
 $ pytest -v -m webtest
 # run unmarked tests
@@ -43,9 +43,7 @@ Example
 ```python
 import pytest
 
-# --------------------------------------------------------------------------------
 # A parametrized test function
-# --------------------------------------------------------------------------------
 
 
 @pytest.mark.parametrize("test_input,expected", [("3+5", 8), ("2+4", 6), ("6*9", 42)])

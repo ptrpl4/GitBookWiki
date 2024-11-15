@@ -134,6 +134,9 @@ docker run -d -p 80:80 docker/getting-started
 # --interactive, --tty creating an interactive shell
 docker run -i -t ubuntu bash
 
+# container is automatically removed after it exits
+docker run --rm api-tests
+
 # --detach, -p bind port, Assign a name to the container
 docker run -d -p 3000:3000 --name myapp-new redis:4.0
 

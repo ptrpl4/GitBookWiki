@@ -70,5 +70,4 @@ pm.test("Content-Type header is application/json", function () {
 
 pm.expect(pm.response.headers.get("Content-Type")).to.include("application/json");
 });
-
 ```

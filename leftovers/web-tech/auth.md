@@ -24,3 +24,8 @@
 
 * Authorization - process of checking permission
   * provide access to service
+
+## Access control
+
+- ABAC: Attribute-Based Access Control
+- PBAC: Permission-Based Access Control

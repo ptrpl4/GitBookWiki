@@ -98,11 +98,28 @@ HTTP позволяет браузеру и серверу договорить�
 
 #### DNS
 
-**Domain Name System**
+Domain Name System
 
-Децентрализованная система.\
-Пространство имен разделено на зоны (домены)\
-За каждую зону отвечает регистратор.
+- Децентрализованная система
+- пространство имен разделено на зоны (домены)
+- за каждую зону отвечает регистратор
+
+##### apex domain
+
+An apex domain, also known as a root domain or bare domain, is the highest level of a domain name. It is the domain name without any subdomains.  "example.com" is the apex domain.
+
+##### types of DNS records
+
+- A (Address) record: Maps a domain name to an IP address
+- AAAA (Quad A) record: Maps a domain name to an IPv6 address
+- CNAME (Canonical Name) record: Maps an alias or subdomain to the canonical name of a server or another domain
+- MX (Mail Exchanger) record: Directs email to a mail server
+- NS (Name Server) record: Specifies the name servers for a domain
+- PTR (Pointer) record: Maps an IP address to a domain name (reverse DNS)
+- SOA (Start of Authority) record: Specifies the name server that is authoritative for a domain
+- SPF (Sender Policy Framework) record: Specifies which mail servers are authorized to send email on behalf of a domain
+- SRV (Service) record: Specifies the location of a service, such as a VoIP server
+- TXT (Text) record: Stores arbitrary text data, often used for verification or authentication purposes
 
 ![](../../../aaa-assets/network-4.png)
 

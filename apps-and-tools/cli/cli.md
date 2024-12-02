@@ -1355,7 +1355,6 @@ pkill -9 firefox
 
 # Sends SIGKILL signal to all the Chrome processes belonging to the user "jane":
 pkill -SIGKILL -u jane chrome
-
 ```
 
 ### MacOS - softwareupdate
@@ -1371,10 +1370,13 @@ sudo softwareupdate -i -a -R
 ```
 
 ### Others
+
 ```bash
 # secure check file info
 codesign -vvvv -R="anchor apple" /usr/libexec/rapportd
 
+# DNS lookup utility
+dig ptrpl4.page +nostats +nocomments +nocmd TXT
 ```
 
 ## Third-party programs

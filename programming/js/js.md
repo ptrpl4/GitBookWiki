@@ -174,12 +174,28 @@ Error and its subtypes represent errors that can arise when executing JavaScript
 
 Operators act on values (the operands) to produce a new value.
 
-#### _typeof_ operator 
+#### _typeof_ operator
 
 ```javascript
 console.log(typeof(9)); // number
 console.log(typeof 9); // number
 ```
+
+#### gt lt
+
+greater than (gt)
+
+```js
+a > b
+```
+
+greater than or equal to
+
+```js
+a >= b
+``` 
+
+lt and lte accordingly
 
 ### Arithmetic operators
 

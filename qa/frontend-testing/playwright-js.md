@@ -29,6 +29,14 @@ npm i -D @playwright/test
 
 # install supported browsers
 npx playwright install
+
+# basic commands
+npx playwright test # Runs the end-to-end tests.
+npx playwright test --ui # Starts the interactive UI mode.
+npx playwright test --project=chromium # Runs the tests on Desktop Chrome
+npx playwright test example-folder # Runs the tests in a specific file
+npx playwright test --debug # Runs the tests in debug mode.
+npx playwright codegen # Auto generate tests with Codegen.
 ```
 
 #### helper
@@ -40,8 +48,10 @@ npx playwright install
 
 #### file structure
 
+`./utils` - additional data, reusable functions
 `./tests/example.spec.ts` - Example end-to-end test
 `./playwright.config.ts` - Playwright configuration
+`.env` - environmental vars
 
 ## runner
 
@@ -62,6 +72,19 @@ npx playwright test --debug
 
 # list all tests
 npx playwright test --list
+
+# run by test/suite name
+npx playwright test --config=./tests/e2e/config.ts -g "Validation fails for invalid card number" --repeat-each 100
+
+# results
+npx playwright show-report
+
+# options
+## -x # stop on fail
+## --retries=10
+## --timeout 10000
+## --project Desktop\ Chrome
+## prod-api/aaa/bbb-exclusive.e2e.ts:70 # start test on line 70
 ```
 
 ## config
@@ -230,6 +253,29 @@ export default defineConfig({
 ```
 
 ## tests
+
+### network monitoring
+
+```js
+// Subscribe to 'request' and 'response' events.  
+page.on('request', request => console.log('>>', request.method(), request.url()));  
+page.on('response', response => console.log('<<', response.status(), response.url()));  
+  
+await page.goto('https://example.com');
+```
+
+### waiting
+
+```js
+// wait for resp
+await page.waitForResponse(response => response.url().startsWith('https://ponse.res/api/pay/'));
+```
+
+### parallel runs
+
+```js
+test.describe.configure({ mode: 'parallel' });
+```
 
 ### code snippets
 

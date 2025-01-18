@@ -1262,24 +1262,26 @@ done < "$filename"
 
 ## Shell config
 
+### configs
+
 * [https://github.com/ptrpl4/dotfiles](https://github.com/ptrpl4/dotfiles)
+
+- `/etc/...` - system config (all users)
+	- `/etc/bashrc`
+	- `/etc/profile`
+	- `/etc/enviroment`
+- `~/.zprofile`
+- `~/.zshrc` 
 
 ![](../../aaa-assets/cli-1.png)
 
 ### PATH
 
-`$PATH` environment variable. It contains the directories that the shell searches for executable files
-It's a list of directory paths, separated by colons (`:`)
-
-`/bin` - default system executable files
-
-`/usr/bin`  - default user executable files
-
-`/usr/local/bin` - bins for manually installed user-apps (docker, WARP, etc)
-
-`/opt/homebrew/bin` - created and maintained by Brew
-
-`/etc/paths` - system path
+- `$PATH` env var, contains dirs that shell searches for executable files
+- `/bin` - default system executable files
+- `/usr/bin`  - default user executable files
+- `/usr/local/bin` - bins for manually installed user-apps (docker, WARP, etc)
+- `/opt/homebrew/bin` - created and maintained by Brew
 
 ```bash
 # a default $PATH looks like
@@ -1294,7 +1296,7 @@ export PATH
 printenv PATH | tr ':' '\n'
 ```
 
-### alias - Aliases
+### alias
 
 ```bash
 # to save it in shell zsh - ~/.zshrc

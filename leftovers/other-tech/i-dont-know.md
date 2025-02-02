@@ -34,6 +34,7 @@ What have I done?
 * How to test mobile applications
 * How to perform load testing
 * How to be a Team Lead
+* How to conduct a QA interview
 
 ## I want know more about
 

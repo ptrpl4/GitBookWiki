@@ -4,7 +4,8 @@
 
 #### links
 
-- https://www.youtube.com/watch?v=Vp3-um3nBpo (ru)
+- [What a mobile tester must know (ru)](https://www.youtube.com/watch?v=Vp3-um3nBpo)
+- [iOS and iPadOS usage stats](https://developer.apple.com/support/app-store/)
 
 ### hard
 

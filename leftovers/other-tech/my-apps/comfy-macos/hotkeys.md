@@ -1,5 +1,7 @@
 # Hotkeys
 
+*Keyboard shortcuts, Quick keys, Key combinations* 
+
 ## Browser
 
 * open address bar\
@@ -15,6 +17,10 @@ browsers, Finder etc.
   **control-tab** / **control-tab-shift**
 * close window\
   **cmd-shift-w**
+
+### Firefox
+
+Screenshot tool - CMD + Shift + S
 
 ## System (macOS)
 

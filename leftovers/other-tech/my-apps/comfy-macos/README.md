@@ -22,11 +22,18 @@
 * **/tmp**: A directory for temporary files and caches
 * **/var**: Holds variable data, which includes files whose contents change as the operating system runs
 
-## Custom settings
+## Custom 'defaults' settings
+
+macOS applications and other programs use the **defaults** system to record user preferences and other information to be maintained when the application isn't running.
+
+User defaults belong to **domains**, which typically correspond to individual applications. Each domain has a dictionary of keys and values representing its defaults; for example, `"Default Font" = "Helvetica"`. 
+
+Keys are strings, Values can be complex data structures comprising arrays, dictionaries, strings, and binary data. Stored as XML Property Lists.
 
 #### links
 
- - [docs](https://macos-defaults.com/)
+ - [examples](https://macos-defaults.com/)
+ - [docs](https://www.real-world-systems.com/docs/defaults.1.html)
 
 ### Fast dock
 

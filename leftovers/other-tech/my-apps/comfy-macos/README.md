@@ -24,9 +24,13 @@
 
 ## Custom settings
 
-docs - [https://macos-defaults.com/](https://macos-defaults.com/)
+#### links
 
-#### Fast dock
+ - [docs](https://macos-defaults.com/)
+
+### Fast dock
+
+- https://macos-defaults.com/dock/autohide-delay.html
 
 ```bash
 # make fast
@@ -34,3 +38,14 @@ defaults write com.apple.dock "autohide-delay" -float "0" && killall Dock
 # bring back
 defaults delete com.apple.dock "autohide-delay" && killall Dock
 ```
+
+### Active applications only
+
+```sh
+# enable
+defaults write com.apple.dock "static-only" -bool "true" && killall Dock
+
+# reset
+defaults delete com.apple.dock "static-only" && killall Dock
+```
+

@@ -1,4 +1,14 @@
-# Postman
+# Postman & Bruno
+
+## codestyle
+
+### naming
+
+```
+varName, collectionName, folderName - camelCase
+
+LOGIN_URL_STAGE - var in .env files
+```
 
 ### Variables Types
 

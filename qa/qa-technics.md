@@ -36,3 +36,12 @@ Page data and components described in separate files and folders.
 
 ../tests/test.spec.ts
 ```
+
+### Strategy pattern
+
+Idea - use different "strategy" based on test needs.
+Your tests will call() some strategy based on test needs.
+
+- In case if test needs to test some user features in UI it doens't need to go trough UI registration every time. It can use API-strategy, or DB-strategy of user creation logic if main point is not to check registration for this case.
+
+But this strategy should only be used in cases where the logic we want to skip has already been covered in other tests.

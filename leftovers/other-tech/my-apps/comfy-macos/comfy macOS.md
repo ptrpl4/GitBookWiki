@@ -22,6 +22,27 @@
 * **/tmp**: A directory for temporary files and caches
 * **/var**: Holds variable data, which includes files whose contents change as the operating system runs
 
+### folders
+
+The `/var/folders` directory on macOS contains temporary files and caches used by the system and applications. 
+
+System Temporary Files
+
+- Process-specific temporary data
+- System caches
+- Application caches
+- User-specific temporary files
+
+Directory Structure
+
+```bash
+/var/folders/
+    zz/         # Random two-character directory names
+        xxxxxx/ # Long alphanumeric strings
+            T/  # Temporary items
+            C/  # Caches
+```
+
 ## Custom 'defaults' settings
 
 macOS applications and other programs use the **defaults** system to record user preferences and other information to be maintained when the application isn't running.
@@ -55,4 +76,3 @@ defaults write com.apple.dock "static-only" -bool "true" && killall Dock
 # reset
 defaults delete com.apple.dock "static-only" && killall Dock
 ```
-

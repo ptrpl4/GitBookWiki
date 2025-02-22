@@ -820,7 +820,7 @@ prints X newlines, X words, X bytes counts for file
 
 ```bash
 wc echo.txt 
-# stdout >> 3       5      24 echo.txt
+# stdout > 3       5      24 echo.txt
 
 echo "Hello world" | wc
 ```

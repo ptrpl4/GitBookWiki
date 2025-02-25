@@ -47,6 +47,7 @@
 	- web (via browser)
 	- native ()
 	- hybrid (React Native, Flutter)
+		  HTML, CSS, JavaScript wrapped in a native container
 	- PWA (web + service workers, push, background run)
 ### tools
 

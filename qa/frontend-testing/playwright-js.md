@@ -81,6 +81,7 @@ npx playwright show-report
 
 # options
 ## -x # stop on fail
+## --workers 5
 ## --retries=10
 ## --timeout 10000
 ## --project Desktop\ Chrome

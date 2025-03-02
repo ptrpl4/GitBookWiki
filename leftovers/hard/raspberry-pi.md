@@ -7,39 +7,25 @@ links
 
 ### Linux
 
-```bash
-# temperature check
-vcgencmd measure_temp
-
-# check gateway wlan/cabel, device wlan/cabel mac-address
-nmcli -f IP4.GATEWAY device show wlan0
-nmcli -f IP4.GATEWAY device show eth0
-nmcli -f GENERAL.HWADDR device show wlan0
-nmcli -f GENERAL.HWADDR device show eth0
-
-# check ip
-hostname -I
-
-# check installed
-apt list --installed
-dpkg --get-selections
-
-# apt-get update
-sudo apt-get update
-# check outdated
-sudo apt-get -s dist-upgrade # --simulate
-
-# ports 
-## check open
-netstat -lntu
-
-```
+Moved to [linux](../../apps-and-tools/cli/linux.md)
 
 ### Pi
 
 ```bash
 # manage settings
 sudo raspi-config
+
+# memory allocation
+vcgencmd get_mem 
+
+# temperature check
+vcgencmd measure_temp
+
+vcgencmd measure_volts
+vcgencmd get_mem gpu
+
+# watcher
+watch -n 1 vcgencmd measure_temp
 ```
 
 ## Connect
@@ -48,10 +34,11 @@ app - https://connect.raspberrypi.com
 doc - https://www.raspberrypi.com/documentation/services/connect.html
 
 ```bash
-# install. Connect automatically starts at login
-sudo apt update
-sudo apt full-upgrade
+sudo apt update # fetch updates
+
+# install connect
 sudo apt install rpi-connect
+
 sudo reboot
 
 # get url to connect
@@ -65,7 +52,6 @@ systemctl --user start rpi-connect
 
 # manual reload
 systemctl --user daemon-reload
-
 
 # status
 systemctl --user status rpi-connect
@@ -96,7 +82,7 @@ python3 -m venv .
 source bin/activate
 ```
 
-## homebridge
+### homebridge
 
 ```bash
 # home
@@ -104,4 +90,12 @@ cd /home/homebridge/
 
 sudo hb-service stop # start / restart
 sudo hb-shell # shell
+```
+
+### tailscale
+
+`tailscaled` - daemon
+
+```bash
+tailscale status
 ```

@@ -94,6 +94,10 @@ source bin/activate
 
 ### homebridge
 
+#### links
+
+- [github](https://github.com/homebridge/homebridge)
+
 ```bash
 # home
 cd /home/homebridge/

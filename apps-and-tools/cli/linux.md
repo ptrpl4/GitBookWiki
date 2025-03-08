@@ -1,5 +1,28 @@
 # linux
 
+## folders
+
+```sh
+# executable files for system-wide installed applications.
+ls /usr/bin
+
+# desktop application launchers
+ls /usr/share/applications
+
+# user apps, tools
+ls /usr/local/bin
+ls /opt
+```
+
+
+
+~/.local/bin: This folder contains executable files for user-specific installed applications.
+Command: ls ~/.local/bin
+/snap: This folder contains snap packages (if you're using Ubuntu or another distribution that supports snaps).
+Command: ls /snap
+/var/lib/flatpak: This folder contains flatpak packages (if you're using a distribution that supports flatpaks).
+Command: ls /var/lib/flatpak
+
 ## Built-in commands
 
 ## Basics
@@ -30,6 +53,7 @@ sudo apt update
 
 apt list --upgradable
 apt list --installed
+apt list --manual-installed
 
 apt show
 apt depends
@@ -44,7 +68,6 @@ sudo apt clean # clean only cache
 sudo apt autoremove && sudo apt clean # full clean
 
 sudo apt purge  # remove package and its conf files
-
 ```
 
 ### etc
@@ -67,12 +90,21 @@ hostname -I
 
 # ports 
 ## check open
-netstat -lntu
+sudo netstat -tlnp #tpc
+sudo ss -tlnp # similar to ^ but more info
+
+# find info by port
+sudo lsof -i :53 # one more similar tool
 
 # disc
 df -h # list of all mounted filesystems
 
 ncdu # interactive disk usage
+
+## procceses
+
+# get proccess info
+sudo systemctl status lighttpd
 ```
 ### Cron
 

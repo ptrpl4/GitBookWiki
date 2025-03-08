@@ -14,14 +14,11 @@ ls /usr/local/bin
 ls /opt
 ```
 
+## proceses
 
+- `systemd` 
 
-~/.local/bin: This folder contains executable files for user-specific installed applications.
-Command: ls ~/.local/bin
-/snap: This folder contains snap packages (if you're using Ubuntu or another distribution that supports snaps).
-Command: ls /snap
-/var/lib/flatpak: This folder contains flatpak packages (if you're using a distribution that supports flatpaks).
-Command: ls /var/lib/flatpak
+starts and stops services, manages dependencies, and provides logging through  `journalctl` command
 
 ## Built-in commands
 
@@ -51,10 +48,17 @@ Flags
 ```bash
 sudo apt update
 
+# check source files
+cat /etc/apt/sources.list # main list
+
+ls /etc/apt/sources.list.d/ # other lists
+
+# installed packages
 apt list --upgradable
 apt list --installed
 apt list --manual-installed
 
+# get package info
 apt show
 apt depends
 apt rdepends
@@ -91,6 +95,7 @@ hostname -I
 # ports 
 ## check open
 sudo netstat -tlnp #tpc
+sudo netstat -tlnp -A inet # filter ipv4
 sudo ss -tlnp # similar to ^ but more info
 
 # find info by port
@@ -105,6 +110,11 @@ ncdu # interactive disk usage
 
 # get proccess info
 sudo systemctl status lighttpd
+
+# find parent proccess
+ps -p 2200 -o ppid
+
+ps aux | grep systemd
 ```
 ### Cron
 

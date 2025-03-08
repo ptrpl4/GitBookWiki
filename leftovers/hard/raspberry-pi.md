@@ -67,7 +67,17 @@ links
 - https://www.raspberrypi.com/tutorials/running-pi-hole-on-a-raspberry-pi/
 
 ```bash
+# install
 curl -sSL https://install.pi-hole.net | bash
+
+which pihole
+# /usr/local/bin/pihole
+
+pihole status
+
+# in case of dns service errors
+sudo service pihole-FTL status # check status and logs
+sudo service pihole-FTL restart
 ```
 
 ### Home Assistant Core
@@ -98,4 +108,16 @@ sudo hb-shell # shell
 
 ```bash
 tailscale status
+```
+
+### AdguardHome
+
+#### links
+
+- [installation and usage on Pie](https://github.com/AdguardTeam/AdGuardHome/wiki/Raspberry-Pi#install-adguard-home)
+
+Commands
+
+```sh
+sudo /opt/AdGuardHome/AdGuardHome -s status # stop restart uninstall
 ```

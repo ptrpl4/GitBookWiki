@@ -120,6 +120,13 @@ docker container stop 9faa5154097e
 docker container rm 9faa5154097e # or docker rm
 ```
 
+### linux
+
+```bash
+# stop docker
+sudo systemctl stop docker
+```
+
 ### run
 
 flags

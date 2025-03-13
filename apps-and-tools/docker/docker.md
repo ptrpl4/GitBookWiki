@@ -125,6 +125,8 @@ docker container rm 9faa5154097e # or docker rm
 ```bash
 # stop docker
 sudo systemctl stop docker
+# containerd
+sudo systemctl stop containerd
 ```
 
 ### run

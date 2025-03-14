@@ -104,6 +104,8 @@ Domain Name System
 - пространство имен разделено на зоны (домены)
 - за каждую зону отвечает регистратор
 
+Protocol - UDP, Port - :53   
+
 ##### apex domain
 
 An apex domain, also known as a root domain or bare domain, is the highest level of a domain name. It is the domain name without any subdomains.  "example.com" is the apex domain.
@@ -142,7 +144,7 @@ An apex domain, also known as a root domain or bare domain, is the highest level
 Нет надежной доставки\
 Нет сохранения порядка сообщений
 
-DNS использует UDP
+DNS использует UDP (преимущественно)
 
 Нет проверки получения запросов, при отправке запроса запускается таймер и повторяет запрос если на него не получен ожидаемый ответ
 

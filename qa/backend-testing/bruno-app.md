@@ -108,6 +108,19 @@ assert {
 }
 ```
 
+### array
+
+in case if response is array
+
+`res.body[0].id`
+
+```json
+[
+{"bla": "blabla"},
+{"id": "myId"}
+]
+```
+
 ## vars
 
 helps to save and reuse response data

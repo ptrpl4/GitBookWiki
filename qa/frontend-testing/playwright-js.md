@@ -83,8 +83,9 @@ npx playwright show-report
 ## -x # stop on fail
 ## --workers 5
 ## --retries=10
-## --timeout 10000
+## --timeout 10000 # 10 sec
 ## --project Desktop\ Chrome
+## --repeat-each 100
 ## prod-api/aaa/bbb-exclusive.e2e.ts:70 # start test on line 70
 ```
 

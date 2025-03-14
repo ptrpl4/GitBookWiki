@@ -83,7 +83,10 @@ cat /etc/os-release
 cat /proc/cpuinfo
 cat /proc/meminfo
 
-# check gateway wlan/cabel, device wlan/cabel mac-address
+## network
+nslookup apple.com # get ip, check current dns server
+
+# check gateway wlan/cable, device wlan/cabel mac-address
 nmcli -f IP4.GATEWAY device show wlan0
 nmcli -f IP4.GATEWAY device show eth0
 nmcli -f GENERAL.HWADDR device show wlan0

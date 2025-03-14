@@ -269,6 +269,9 @@ git commit -a --amend -m 'feat: validation, registration'
 
 # if commit messgage is actual
 git commit -a --amend --no-edit
+
+# push if commit was already pushed
+git push --force-with-lease
 ```
 
 ### Remote

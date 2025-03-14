@@ -65,6 +65,7 @@ rpi-connect status
 links 
 - https://pi-hole.net/
 - https://www.raspberrypi.com/tutorials/running-pi-hole-on-a-raspberry-pi/
+- https://github.com/mullvad/dns-blocklists
 
 ```bash
 # install

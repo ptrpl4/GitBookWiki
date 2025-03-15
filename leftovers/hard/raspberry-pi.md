@@ -75,10 +75,12 @@ which pihole
 # /usr/local/bin/pihole
 
 pihole status
+pihole -up #update
 
 # in case of dns service errors
 sudo service pihole-FTL status # check status and logs
 sudo service pihole-FTL restart
+sudo service pihole-FTL stop
 ```
 
 ### Home Assistant Core

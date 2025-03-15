@@ -66,14 +66,22 @@ Devices will receive IPs in the range of _172.19.0.2-172.19.255.254._
 
 ![](../../../aaa-assets/network-2.png)
 
-## TCP/IP
+## TCP/IP (Internet protocol suite)
+
+#### links
+
+- https://en.wikipedia.org/wiki/Internet_protocol_suite
 
 Internet works based on the TCP/IP model
 
 - Application Layer
+	- BGP, DHCP (v6), DNS, FTP, HTTP (HTTP/3), HTTPS, IMAP, IRC, LDAP, MGCP, MQTT, NNTP, NTP, OSPF, POP, PTP, ONC/RPC, RTP, RTSP, RIP, SIP, SMTP, SNMP, SSH, Telnet, TLS/SSL
 - Transport Layer
-- Network Layer
+	- TCP, UDP, DCCP, SCTP, RSVP, QUIC
+- Internet Layer
+	- IPv4, IPv6, ICMP (v6), NDP, ECN, IGMP, IPsec
 - Link Layer
+	- ARP, Tunnels, PPP, MAC
 
 ![](../../../aaa-assets/network-3.png)
 
@@ -134,7 +142,6 @@ An apex domain, also known as a root domain or bare domain, is the highest level
 ![](../../../aaa-assets/network-6.png)
 
 Возможности DNS
-
 ![](../../../aaa-assets/network-7.png)
 
 ### Transport Layer
@@ -165,15 +172,31 @@ protocol that ensures that both the client and the server are ready to communica
 2. The server receives the SYN packet and sends a SYN-ACK (synchronize-acknowledge) packet back to the client. The SYN-ACK packet includes an acknowledgment number, which is the client's sequence number plus one, and a sequence number, which is a random value that the server uses to initialize the sequence number for the connection.
 3. The client receives the SYN-ACK packet and sends an ACK (acknowledge) packet back to the server. The ACK packet includes an acknowledgment number, which is the server's sequence number plus one.
 
-#### Стандартные порты
+#### Ports
 
-- 1-1024
+1-1024:
 - 80 - HTTP (WEB)
+- 443 - HTTPS (WEB)
 - 25 - SMTP (MAIL)
 - 53 - DNS
-- 1025-49151 - Зарегистрированные порты (нельзя использовать)
-- 49151-65535 - Динамические порты (можно использовать)
-
+- :20 - FTP (data) 
+- :21 - FTP (control) 
+- :22 - SSH 
+- :23 - Telnet 
+- :25 - SMTP 
+- :53 - DNS 
+- :80 - HTTP
+- :110 - POP
+- :143 - IMAP
+- :179 - BGP
+- :389 - LDAP
+- :465 - SMTP (secure)
+- :546 - DHCPv6 (client) 
+- :547 - DHCPv6 (server)
+- :636 - LDAP (secure)
+- :993 - IMAP (secure)
+1025-49151 - Registered ports (cannot be used)
+49151-65535 - Dynamic ports (can be used)
 #### Сокеты
 
 Сокет - сочетание IP + TCP(port)\
@@ -190,3 +213,54 @@ protocol that ensures that both the client and the server are ready to communica
 Брандмаур/Межсетевой экран
 
 Позволяет фильтровать все проходящие запросы по заданным правилам фильтрации
+
+### Network Layer
+
+#### IPv6
+
+**GUA** - Global Unicast Address. Routable on the public internet
+
+example `2001:0db8:1234:5678:90ab:cdef:1234:5678`
+
+- `2001:0db8:1234`: GUA prefix, which is 48 bits long.
+	- `2001`:  first 16 bits of the prefix, which is known as the "global routing prefix".
+	- `0db8`: "registry ID"
+	- `1234`: "organization ID"
+- `5678`: subnet ID, which is 16 bits long.
+- `90ab:cdef`: interface ID, which is 64 bits long.
+- `1234:5678`: host ID, which is 64 bits long.
+
+**ULA** - Unique local address. Private IPv6 address
+
+example `fc00:1234:5678:9abc:def0:1234:5678:9abc`
+
+- `fc00` : ULA prefix
+- `1234:5678:9abc` : Global ID (randomly generated)
+- `def0` : Subnet ID
+- `1234:5678:9abc` : Interface ID
+
+**Link-local address** - only for communication within the local network segment.
+
+- Created automatically by devices on a network using the Stateless Address Auto configuration (SLAAC) protocol.
+- Can be configured using the EUI-64 method (where the MAC address is embedded into the IPv6 address).
+
+example `fe80:0000:0000:0000:0211:22ff:fe33:4455`
+
+- `fe80::/64` : Link-local prefix
+- `0000:0000:0000:0000`: interface ID, which is 64 bits long
+- `0211:22ff:fe33:4455`: host ID, which is 64 bits long
+
+**RA** - Route Advertisement
+
+When enabled, router will periodically send **RA messages** or respond to **Router Solicitation (RS) messages** from clients. Contain information, such as:
+
+- The **IPv6 prefix** used on the network (e.g., `2001:db8::/64`).
+- Whether clients should use **SLAAC** Stateless Address Autoconfiguration
+- Whether clients should use **DHCPv6** for additional configuration
+- The **default gateway** IPv6 address.
+
+**SLAAC** - Stateless Address Autoconfiguration
+
+### Link Layer
+
+tbd

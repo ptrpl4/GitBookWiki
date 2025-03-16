@@ -112,7 +112,17 @@ Domain Name System
 - пространство имен разделено на зоны (домены)
 - за каждую зону отвечает регистратор
 
-Protocol - UDP, Port - :53   
+Default Protocol - UDP, Port - :53
+
+#### DNS-over
+
+- [adguard example](https://github.com/AdguardTeam/AdGuardHome/wiki/Configuration#configuring-upstreams)
+
+DNS-over-HTTPS (DoH) - HTTPS over TCP (or HTTP/3 over QUIC) with TLS encryption on port 443.
+
+DNS-over-TLS (DoT) - TLS over TCP on a dedicated port (853).
+
+DNS over QUIC (DoQ) uses QUIC protocol directly as its transport layer, which is a UDP-based protocol that integrates TLS. Port - typicaly 784, 853.
 
 ##### apex domain
 
@@ -142,6 +152,7 @@ An apex domain, also known as a root domain or bare domain, is the highest level
 ![](../../../aaa-assets/network-6.png)
 
 Возможности DNS
+
 ![](../../../aaa-assets/network-7.png)
 
 ### Transport Layer
@@ -174,11 +185,12 @@ protocol that ensures that both the client and the server are ready to communica
 
 #### Ports
 
-1-1024:
-- 80 - HTTP (WEB)
-- 443 - HTTPS (WEB)
-- 25 - SMTP (MAIL)
-- 53 - DNS
+1-1024
+
+- :80 - HTTP (WEB)
+- :443 - HTTPS (WEB)
+- :25 - SMTP (MAIL)
+- :53 - DNS
 - :20 - FTP (data) 
 - :21 - FTP (control) 
 - :22 - SSH 
@@ -195,8 +207,11 @@ protocol that ensures that both the client and the server are ready to communica
 - :547 - DHCPv6 (server)
 - :636 - LDAP (secure)
 - :993 - IMAP (secure)
+ 
 1025-49151 - Registered ports (cannot be used)
+
 49151-65535 - Dynamic ports (can be used)
+
 #### Сокеты
 
 Сокет - сочетание IP + TCP(port)\

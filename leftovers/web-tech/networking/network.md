@@ -131,11 +131,21 @@ An apex domain, also known as a root domain or bare domain, is the highest level
 ##### types of DNS records
 
 - A (Address) record: Maps a domain name to an IP address
+
+`example.com → 192.0.2.1`
+ 
 - AAAA (Quad A) record: Maps a domain name to an IPv6 address
-- CNAME (Canonical Name) record: Maps an alias or subdomain to the canonical name of a server or another domain
+ 
+`example.com → 2001:db8::1`
+ 
+- CNAME (Canonicalexample.com → 192.0.2.1 Name) record: Maps an alias or subdomain to the canonical name of a server or another domain
+  
 - MX (Mail Exchanger) record: Directs email to a mail server
 - NS (Name Server) record: Specifies the name servers for a domain
 - PTR (Pointer) record: Maps an IP address to a domain name (reverse DNS)
+
+`192.0.2.1 → example.com`
+  
 - SOA (Start of Authority) record: Specifies the name server that is authoritative for a domain
 - SPF (Sender Policy Framework) record: Specifies which mail servers are authorized to send email on behalf of a domain
 - SRV (Service) record: Specifies the location of a service, such as a VoIP server

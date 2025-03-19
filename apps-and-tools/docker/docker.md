@@ -368,10 +368,13 @@ sudo usermod -aG docker $USER
 
 ## VM vs Docker
 
-#### links
+### virtual machine
 
-- [Docker Crash Course](https://www.youtube.com/watch?v=pg19Z8LL06w)
+**virtual machine** is an emulation of another computer within a real computer, it runs a virtual instance of a computer in the hardware decoupled layer. Virtualization of the physical resources of the machine is performed by a software called _hypervisor_ that creates, hosts, and runs virtual machines.
+
+### docker
 
 ![](../../aaa-assets/vm-vs-docker-1.jpeg)
 
-Docker virtualised only application layer on top of current OS. To improve compatibility most of docker images based on linux kernel. Docker Desktop uses a Hypervisor layer with lightweight Linux distro (provides Linux Kernel).
+Docker virtualised only application layer on top of current OS. To improve compatibility most of docker images based on linux kernel. 
+- Docker Desktop uses a Hypervisor layer with lightweight Linux distro (provides Linux Kernel for macOS and Windows)

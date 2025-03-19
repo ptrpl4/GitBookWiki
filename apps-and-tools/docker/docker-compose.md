@@ -4,8 +4,8 @@ An Orchestration Tool for defining and running multi-container Docker applicatio
 
 #### links
 
-- https://docs.docker.com/compose/
-- https://docs.docker.com/reference/compose-file/
+- [compose](https://docs.docker.com/compose/)
+- [reference](https://docs.docker.com/reference/compose-file/)
 
 ## Structure
 
@@ -53,10 +53,6 @@ syntax - `<host>:<container>`
 ports:
       - 80:80
 ```
-
-##### volumes
-
-volumes attribute mounts directories or named volumes from the host machine into service containers to provide persistent data sharing and storage across services.
 
 ##### depends_on
 
@@ -110,27 +106,88 @@ command attribute overrides the default container image command and allows you t
 
 #### volumes
 
-Persistent data stores implemented by the container engine.
+volumes mounts directories or named volumes from the host machine into service containers to provide persistent data sharing and storage across services.
+
+syntax
+`<host dir>:<container dir>`
 
 ```yaml
+version: "3"
 services:
-  backend:
-    image: example/database
+  app:
+    image: myapp
     volumes:
-      - db-data:/etc/data
+      - ./data:/app/data
+```
 
-  backup:
-    image: backup-service
+Shared volume
+
+```yaml
+version: "3"
+services:
+  app1:
+    image: nginx
     volumes:
-      - db-data:/var/lib/backup/data
+      - shared_volume:/app/data
+  app2:
+    image: busybox
+    command: ["tail", "-f", "/dev/null"]
+    volumes:
+      - shared_volume:/app/data
 
 volumes:
-  db-data:
+  shared_volume:
+    driver: local
+    driver_opts:
+      type: nfs
+      o: addr=192.168.1.10,nolock,soft,rw
+      device: ":/path/to/shared_folder"
 ```
+
+##### driver_opts
+
+allows customization to optimize volume management for app's needs and storage setup. If you don't provide `driver_opts` for a volume, docker implements the default options which depend on the chosen driver
 
 #### configs
 
+useful when you need to parameterize your services or share common configurations across multiple instances
+
+```yaml
+version: "3"
+services:
+  app:
+    image: myapp
+    configs:
+      - app_config
+
+configs:
+  app_config:
+    file: ./config.ini # stores actual config data and located in the same directory as the Docker Compose file
+```
+
 #### secrets
+
+secrets offer a hidden vault for containers to access when required, do not show up in logs. 
+
+```yaml
+version: "3.1"
+services:
+  db:
+    image: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD_FILE=/run/secrets/db_root_password
+      - MYSQL_USER=myuser
+      - DB_USER_PASSWORD_FILE=/run/secrets/db_user_password
+    secrets:
+      - db_root_password
+      - db_user_password
+
+secrets:
+  db_root_password:
+    file: ./db_root_password.txt
+  db_user_password:
+    environment: "DB_USER_PASSWORD"
+```
 
 #### extensions
 
@@ -214,6 +271,9 @@ services:
           - db
 ```
 
+## Best practice
+
+- you can link secrets with environment variables to add another layer of security to your application's configuration
 ## Commands
 
 notes:

@@ -83,11 +83,11 @@
   * [⚖️ Load Balancers](apps-and-tools/proxy-servers/load-balancers.md)
   * [🛤️ API Gateway](apps-and-tools/proxy-servers/api-gateway.md)
 * [🐇 Message Brokers](apps-and-tools/message-brokers.md)
-* [👨‍💻 Logs](apps-and-tools/logs/logs.md)
-  * [🗒️ Kibana](apps-and-tools/logs/kibana.md)
-  * [⛅ Google Cloud Logging](apps-and-tools/logs/google-cloud-logging.md)
-* [📈 Metrics](apps-and-tools/metrics/metrics.md)
-  * [Prometheus & Grafana](apps-and-tools/metrics/prometheus-and-grafana.md)
+* [👨‍💻 Logs](logs.md)
+  * [🗒️ Kibana](logs-kibana.md)
+  * [⛅ Google Cloud Logging](logs-google-cloud.md)
+* [📈 Metrics](metrics.md)
+  * [Prometheus & Grafana](monitoring-prometheus-and-grafana.md)
 * [💅 AI](apps-and-tools/ai.md)
 
 ## leftovers

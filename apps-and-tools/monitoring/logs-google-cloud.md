@@ -1,4 +1,4 @@
-# ⛅ Google Cloud
+# ⛅ GCP Logs
 
 #### links
 

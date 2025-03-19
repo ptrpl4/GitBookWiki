@@ -1,12 +1,16 @@
 # Dockerfile
 
-- [full reference](https://docs.docker.com/engine/reference/)
+- [full reference](https://docs.docker.com/reference/dockerfile/)
 - [linter](https://github.com/michaellzc/vscode-hadolint)
 - [Auditing](https://docs.docker.com/scout/)
 
-Docker can build images automatically by reading the instructions from a Dockerfile. A Dockerfile is a text document that contains all the commands a user could call on the command line to assemble an image.
+Text file that contains a set of instructions and commands used to build a Docker image. It is the blueprint for creating a Docker container
 
-Each instruction is executed in isolation from the others
+Key components:
+
+1. **Base Image**: The starting point for the Docker image.
+2. **Instructions**: The set of commands to be executed during the image build process, such as `RUN`, `COPY`, `ENV`, `CMD`, etc.
+3. **Metadata**: Additional information about the image, such as the maintainer, exposed ports, and volume mounts.
 
 ## Syntax
 
@@ -20,11 +24,29 @@ INSTRUCTION arguments
 exclude files or directories from the build context. This helps avoid sending unwanted files and directories to the builder, improving build speed, especially when using a remote builder.
 
 ```dockerignore
-# test
+# Section name
 node_modules
 bar
+foo
+
+# Another section
+.foo
+.bar
 ```
+
+## Commands
+
+```shell
+# find dockerfile in current dir and tag build as my-app:1.0
+docker build -t my-app:1.0 .
+
+# run created build
+docker run my-app:1.0
+```
+
 ## Examples
+
+### Node app + mongo
 
 ```dockerfile
 FROM node
@@ -88,79 +110,17 @@ ENTRYPOINT ["python", "-m", "http.server"]
 CMD ["--directory", "directory", "8000"]
 ```
 
-## Common Dockerfile Instructions
+## Instructions
+
+### FROM
 
 FROM: - Specifies the base image
 	  `FROM <image>[:<tag>]`
 	  `FROM ubuntu:20.04 as base`
 
-RUN: - Executes a command in a new layer on top of the current image and commits the result.
-	  `RUN <command>`
-	  `RUN apt-get update && apt-get install -y python3`
-```dockerfile
-# multiline commands
-apt-get update -y \
-&& apt-get upgrade -y \
-&& apt-get install iputils-ping -y \
-&& apt-get install net-tools -y
-```
-
-COPY: - Copies files or directories from the host filesystem to the image.
-
-```dockerfile
-COPY [OPTIONS] <src> ... <dest>
-COPY [OPTIONS] ["<src>", ... "<dest>"]
-```
-
-ADD: - Similar to `COPY`, but also supports remote URLs and unpacking compressed files.
-	  `ADD <src> <dest>`
-	  `ADD myapp.tar.gz /app`
-
-CMD: - Specifies the default command to run when a container is started.
-	  [cmd vs entrypoint](https://docs.docker.com/reference/dockerfile/#understand-how-cmd-and-entrypoint-interact)
-	  `CMD ["executable","param1","param2"...]`
-	  `CMD ["python3", "app.py"]`
-	  or
-	  `CMD echo Hello Students. # Run command By default /bin/sh -c`
-
-ENTRYPOINT: - Configures a container to run as an executable.
-	  [cmd vs entrypoint](https://docs.docker.com/reference/dockerfile/#understand-how-cmd-and-entrypoint-interact)
-	  `ENTRYPOINT ["executable","param1","param2"]`
-	  `ENTRYPOINT ["python3", "app.py"]`
-
-ENV: - Sets environment variables.
-	  `ENV <key>=<value>`
-	  `ENV APP_ENV=production`
-
-EXPOSE: - Informs Docker that the container listens on the specified network ports at runtime.
-	  `EXPOSE <port> [<port>/<protocol>]`
-	  `EXPOSE 80`
-
-VOLUME: - Creates a mount point with the specified path and marks it as holding externally mounted volumes.
-	  `VOLUME ["/path/to/dir"]`
-	  `VOLUME ["/data"]`
-
-WORKDIR: - Sets the working directory for any subsequent `RUN`, `CMD`, `ENTRYPOINT`, `COPY`, and `ADD` instructions.
-	  `WORKDIR /path/to/workdir`
-	  `WORKDIR /app`
-
-LABEL: - define [labels to specify metadata](https://docs.docker.com/engine/reference/builder/#label)
-      `LABEL key=value`
-      `LABEL "application_environment"="development"`
-
-### Best practices
-
-- avoid the `apt-get upgrade` command. It can bring upgrades that can affect the environment you use.
-- Minimise RUN instruction layers
-- use alpine images if applicable
-- Remove unnecessary packages after installation
-- use `--no-install-recommends` for `apt-get install`
-- Use the exec form
-
-
 ### RUN
 
-allows to execute commands or a set of commands during an image build time
+Executes commands or a set of commands in a new layer on top of the current image during an image build time
 
 #### options
 
@@ -173,7 +133,7 @@ types:
 - **secret**: gives access to secure files
 - **ssh**: gives access to SSH keys via SSH agents
 
-```
+```dockerfile
 FROM ubuntu:22.04
 
 LABEL author=HyperUser
@@ -191,24 +151,146 @@ This configuration can speed up the build process because Docker can use cache f
 
 ### COPY
 
+COPY: - Copies files or directories from the host filesystem to the image.
+
+Syntax
+```dockerfile
+COPY [OPTIONS] <src> ... <dest>
+COPY [OPTIONS] ["<src>", ... "<dest>"]
+```
+
 link - https://docs.docker.com/reference/dockerfile/#copy
 
-```yaml
+Example
+```dockerfile
 FROM ubuntu:22.04
  
 LABEL author=HyperUser
   
-Copy demo.txt /demo/
+COPY demo.txt /demo/ # copy demo.txt to demo folder in root directory
+
+# COPY . /app/ # copy everything from working dir to app folder
+
+# COPY /settings/config / # copy config file to root folder
  
 ENTRYPOINT ["ls", "-l", "demo/demo.txt"]
 ```
 
 ### ADD
 
- similar to `COPY` it comes with two additional features:
+ADD: - Similar to `COPY`, but also supports remote URLs and unpacking compressed files.
 
 - The source can be a **remote URL** including git repositories. 
 - The source can also be a `tar` archive of `identity`, `gzip`, `bzip2`, or `xz`compression formats.
+
+Syntax
+```dockerfile
+ADD <src> <dest>
+ADD myapp.tar.gz /app
+```
+
+### CMD
+
+CMD: - Specifies the default command to run when a container is started.
+	  [cmd vs entrypoint](https://docs.docker.com/reference/dockerfile/#understand-how-cmd-and-entrypoint-interact)
+	  `CMD ["executable","param1","param2"...]`
+	  `CMD ["python3", "app.py"]`
+	  or
+	  `CMD echo Hello Students. # Run command By default /bin/sh -c`
+
+### ENTRYPOINT
+
+ENTRYPOINT: - Configures a container to run as an executable.
+	  [cmd vs entrypoint](https://docs.docker.com/reference/dockerfile/#understand-how-cmd-and-entrypoint-interact)
+	  `ENTRYPOINT ["executable","param1","param2"]`
+	  `ENTRYPOINT ["python3", "app.py"]`
+
+examples
+```dockerfile
+ENTRYPOINT ["ls","bin", "-l"]
+```
+
+### ENV
+
+lets you declare environment variables to use inside images
+
+ENV: - Sets environment variables.
+	  `ENV <key>=<value>`
+	  `ENV APP_ENV=production`
+both _key_ and _value_ can be set with or without double quotes.
+
+example
+```dockerfile
+FROM ubuntu:22.04
+ 
+LABEL author=HyperUser 
+
+ENV HOST_FILE=demo.txt
+ENV IMAGE_DESTINATION="/tmp"
+COPY $HOST_FILE $IMAGE_DESTINATION
+
+ENTRYPOINT ["ls", "/tmp"]
+```
+
+#### commands
+
+```shell
+docker run -e ENV=my_env -it --name hs-ubuntu-v1 ubuntu:v1 
+```
+
+### EXPOSE
+
+EXPOSE: - Informs Docker that the container listens on the specified network ports at runtime.
+	  `EXPOSE <port> [<port>/<protocol>]`
+	  `EXPOSE 80`
+
+### VOLUME
+
+VOLUME: - Creates a mount point with the specified path and marks it as holding externally mounted volumes.
+	  `VOLUME ["/path/to/dir"]`
+	  `VOLUME ["/data"]`
+
+### WORKDIR
+
+WORKDIR: - Sets the working directory for any subsequent `RUN`, `CMD`, `ENTRYPOINT`, `COPY`, and `ADD` instructions.
+	  `WORKDIR /path/to/workdir`
+	  `WORKDIR /app`
+
+### LABEL
+
+LABEL: - define [labels to specify metadata](https://docs.docker.com/engine/reference/builder/#label)
+      `LABEL key=value`
+      `LABEL "application_environment"="development"`
+
+### ARG
+
+The `ARG` instruction defines a variable that users can pass at build-time to the builder with the `docker build` command using the `--build-arg <varname>=<value>` flag.
+
+syntax
+`ARG <name>[=<default value>]`
+
+example
+```dockerfile
+ARG VERSION
+FROM ubuntu:$VERSION
+```
+
+#### commands
+
+```bash
+$ docker build --build-arg VERSION=22.04 -t ubuntu:v1 .
+```
+
+## Best practices
+
+### Instructions
+
+- avoid the `apt-get upgrade` command. It can bring upgrades that can affect the environment you use.
+- Minimise RUN instruction layers
+- use alpine images if applicable
+- Remove unnecessary packages after installation
+- use `--no-install-recommends` for `apt-get install`
+- Use the exec form
 
 ## Single-stage build
 

@@ -102,3 +102,31 @@ Each element of a class has a visibility option
 Type of relationship, indicates that instances of one class are connected to instances of another.
 
 ![](../../aaa-assets/basic-knowledge-4.png)
+
+## Number Systems
+
+### Binary (base 2)
+
+binary digit - bit
+
+Uses two digits: 0 and 1.
+
+### Octal (base-8)
+
+Uses eight digits: 0 to 7.
+
+### Decimal (base-10)
+
+Uses ten digits: 0 to 9.
+
+### Hexadecimal (base-16)
+
+Hexadecimal Number System
+
+Uses sixteen digits: 0 to 9 and A to F (where A=10, B=11, C=12, D=13, E=14, F=15).
+
+`63h`, `0x63` -  different ways to indicate that 63 is a hexadecimal number.
+
+### Base-64
+
+Uses 64 characters, typically including A-Z, a-z, 0-9, and two additional symbols (often + and /).

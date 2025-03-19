@@ -1435,3 +1435,14 @@ source - [https://t.me/zhovner\_hub/1991](https://t.me/zhovner\_hub/1991)
 ```bash
 nmap -Pn 192.111.111.11
 ```
+
+## exit codes
+
+|Exit code|Description|
+|---|---|
+|Exit code 0|Indicates the successful termination of a command or program without any errors.|
+|Exit code 1|Usually represents a generic "catch-all" error code. It is often used to indicate that a command or program encountered an unspecified error condition.|
+|Exit code 2|Typically indicates incorrect usage or invalid arguments passed to a command or script.|
+|Exit code 126|Suggests that the execution of invoked command or script was unsuccessful, usually due to insufficient permissions.|
+|Exit code 127|Signifies that the command or script could not be found or executed.|
+|Exit code 130|Commonly used to indicate the termination of a program by the user, typically by pressing _Ctrl+C_ to send a SIGINT signal.|

@@ -93,7 +93,7 @@
 ## leftovers
 
 * [👯 Software Engineering](leftovers/software-engineering/software-engineering.md)
-  * [Semantic versioning](leftovers/software-engineering/semantic-versioning.md)
+  * [Semantic versioning](versioning.md)
   * [Deployment processes](leftovers/software-engineering/deployment-processes.md)
   * [😎 TDD, BDD etc](leftovers/software-engineering/tdd-bdd.md)
   * [😖 Scrum framework](leftovers/software-engineering/scrum.md)

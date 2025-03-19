@@ -1,20 +1,17 @@
 # 🔧 SRE and SLA
 
-Site Reliability Engineering
+Site Reliability Engineering, Service Level Agreement.
 
 ### Culture
 
-Product Results/Metrics
-
-Incremental Product updates
-
-Automatisation
+- Product Results/Metrics
+- Incremental Product updates
+- Automatisation
 
 ### Tech
 
-Monitoring/Alerting
-
-Implementing Best Practice
+- Monitoring/Alerting
+- Implementing Best Practice
 
 ### Organisation
 

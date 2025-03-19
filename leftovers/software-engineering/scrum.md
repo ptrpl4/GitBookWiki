@@ -1,7 +1,3 @@
----
-description: Evolution of Agile+XP methodologies
----
-
 # 😖 Scrum framework
 
 #### links

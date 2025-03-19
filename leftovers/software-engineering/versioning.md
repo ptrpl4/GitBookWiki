@@ -1,4 +1,5 @@
-# Semantic versioning
+# Versioning
+## Semantic versioning 0.1.0-alpha
 
 The basic structure of semantic versioning, also known as [semver](https://semver.org/), goes like this:
 
@@ -17,3 +18,11 @@ The basic structure of semantic versioning, also known as [semver](https://semve
 * Major version: incremented when backward-incompatible changes are introduced to the package.
 * Minor version: incremented when backward-compatible feature updates are made.
 * Patch versions: incremented when backward-compatible bug fixes occur.
+
+## Chronologic Versioning 2019.05.19
+
+https://chronver.org/
+
+```
+2019.05.08
+```

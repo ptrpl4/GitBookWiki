@@ -87,8 +87,7 @@ Creates/Maintains architecture of particular app/service/microservice.
 
 ### C4
 
-Context-Container-Component-Code
-
+Context-Container-Component-Code\
 C4 model is a framework for visualizing the architecture of software systems. 
 
 The model consists of four main types of diagrams, each representing a different level of detail:
@@ -192,3 +191,37 @@ list:
 15. Supportability  
     - Diagnostic Tools
     - Troubleshooting Capabilities
+
+## Methodology
+
+Set of best practices and architectural guidelines for developing modern, scalable, and maintainable software applications
+
+links:
+- https://www.12factor.net/
+
+### The Twelve Factors
+
+1. Codebase:\
+   One codebase tracked in revision control, many deploys
+2. Dependencies: \
+   Explicitly declare and isolate dependencies 
+3. Config: \
+   Store config in the environment
+4. Backing services: \
+   Treat backing services as attached resources
+5. Build, release, run: \
+   Strictly separate build and run stages
+6. Processes: \
+   Execute the app as one or more stateless processes
+7. Port binding: \
+   Export services via port binding
+8. Concurrency: \
+   Scale out via the process model
+9. Disposability: \
+   Maximize robustness with fast startup and graceful shutdown
+10. Dev/prod parity: \
+    Keep development, staging, and production as similar as possible
+11. Logs: \
+    Treat logs as event streams
+12. Admin processes: \
+    Run admin/management tasks as one-off processes

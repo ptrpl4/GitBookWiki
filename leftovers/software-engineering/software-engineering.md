@@ -1,5 +1,9 @@
 # 👯 Software Engineering
 
+#### links
+
+- lecture - youtube.com/playlist?list=PLlb7e2G7aSpSidTs7HuqUX\_NeslBsg2Mb
+
 What is Program And what is Product
 
 If we're talking about the final product (for the business, for the customer), it's much more than just code or application components. And it takes a lot more time.
@@ -8,10 +12,6 @@ Frederick P. Brooks suggested that it would take 3 times as long as the program 
 
 ![](../../aaa-assets/software-engineering-1.jpeg)
 Evolution of the programming systems product
-
-### src
-
-- lecture - youtube.com/playlist?list=PLlb7e2G7aSpSidTs7HuqUX\_NeslBsg2Mb
 
 ## Requirements to requirements
 

@@ -1,4 +1,5 @@
 # DevOps
+
 DevOps combines “Development” and “Operations” into a single term. It represents a cultural and organizational philosophy that encourages collaboration and communication between development (Dev) and IT operations (Ops) teams. The primary goal of DevOps is to shorten the software development lifecycle and deliver high-quality software, so all members feel like a part of the same team.
 
 ## Tools and Practices

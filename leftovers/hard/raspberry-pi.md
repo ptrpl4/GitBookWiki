@@ -50,16 +50,26 @@ doc - https://www.raspberrypi.com/documentation/services/connect.html
 ```bash
 # install. Connect automatically starts at login
 sudo apt update
-sudo apt upgrade
+sudo apt full-upgrade
 sudo apt install rpi-connect
 sudo reboot
 
 # get url to connect
 rpi-connect signin
 
-# off screen sharing13
+# off screen sharing
 rpi-connect vnc off
 
+# manual start
+systemctl --user start rpi-connect
+
+# manual reload
+systemctl --user daemon-reload
+
+
+# status
+systemctl --user status rpi-connect
+rpi-connect status
 ```
 
 ## soft

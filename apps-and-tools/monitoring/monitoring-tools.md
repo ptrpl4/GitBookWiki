@@ -29,3 +29,7 @@ Cloud-based observability platform that provides:
 - Dashboards and visualization (like Grafana)
 - Long-term storage & analytics (like Mimir)
 - Logs & distributed tracing (extra features)
+
+## OpenTelemetry (OTel)
+
+Tool to generate, collect, and export telemetry data (metrics, logs, and traces.

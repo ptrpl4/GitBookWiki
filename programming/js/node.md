@@ -24,12 +24,13 @@ n lts # note! on macOS you probably should change app directory to avoid r/w res
 * nvm - [https://github.com/nvm-sh/nvm](https://github.com/nvm-sh/nvm)
 
 ```bash
+# choose folder
 cd
 mkdir nvm
 NVM_DIR="${HOME}/nvm"
 
-# install nvm (check latest https://github.com/nvm-sh/nvm/releases)
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+# install/update nvm (check latest https://github.com/nvm-sh/nvm/releases)
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.2/install.sh | bash
 
 # instal node
 nvm install 18

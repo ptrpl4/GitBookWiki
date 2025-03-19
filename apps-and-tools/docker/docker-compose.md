@@ -104,6 +104,45 @@ networks:
 
 command attribute overrides the default container image command and allows you to specify custom commands for the service startup.
 
+##### env_file
+
+```env
+# Database settings
+DB_HOST=localhost
+DB_NAME=my_blog_db
+DB_USER=blog_user
+DB_PASSWORD=super_secret_password
+
+# Application settings
+PORT=8000
+SECRET_KEY=another_super_secret_password
+
+# Logging configuration
+LOG_LEVEL=info
+```
+
+```yaml
+version: "3.8"
+
+services:
+  app:
+    build: .
+    env_file:
+      - .env
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./app:/app
+
+  db:
+    image: postgres:13
+    environment:
+      - POSTGRES_HOST=$DB_HOST
+      - POSTGRES_DB=$DB_NAME
+      - POSTGRES_USER=$DB_USER
+      - POSTGRES_PASSWORD=$DB_PASSWORD
+```
+
 #### volumes
 
 volumes mounts directories or named volumes from the host machine into service containers to provide persistent data sharing and storage across services.
@@ -271,6 +310,37 @@ services:
           - db
 ```
 
+```yaml
+version: '3'
+services:
+  web:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./web-content:/usr/share/nginx/html
+    networks:
+      - my_network
+  db:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: mydb
+    volumes:
+      - db-data:/var/lib/mysql
+    networks:
+      - my_network
+
+networks:
+  my_network:
+
+volumes:
+  db-data:
+```
+
+- The `web` utilizes the Nginx image and maps port 80 on the host to port 80 in the container, links the local `./web-content` directory to the container's web content directory, enabling dynamic content updates.
+- The `db`  powered by MySQL image, is enriched with environment variables. It specifies the root password as 'secret' and creates a database named `mydb`. Volumes are used to persist the MySQL data within the `db-data` volume, ensuring data durability and sharing.
+
 ## Best practice
 
 - you can link secrets with environment variables to add another layer of security to your application's configuration
@@ -281,14 +351,27 @@ notes:
 **network** - you don't need to specify docker-network using compose. Compose will run containers in new created docker-network
 
 ```sh
-# up
+# up detach
 docker compose up -d
+
+# up only
+docker-compose up nginx
+
+# scale
+docker-compose up -d --scale web=3
+
 # stop
-docker compose stop
+
 # restart
 docker compose start
+
 # remove
 docker compose down
+
+docker-compose down nginx
+
+# check what running
+docker-compose ps
 ```
 
 ## Dockge

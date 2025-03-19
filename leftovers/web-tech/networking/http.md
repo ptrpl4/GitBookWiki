@@ -114,10 +114,48 @@ Connection: Keep-Alive
 * HTTP/1.0 - 1996
   was finalized and formally documented in . This version had a key limitation: each request to the same server required a separate TCP connection.
 * HTTP/1.1 - 1997
-  It introduced the concept of a ‘persistent connection’, -  a TCP connection could be left open for reuse. Despite this enhancement, HTTP/1.1 couldn’t fix the issue of ‘Head-of-Line’ (HOL) blocking. In simple terms, HOL blocking happens when all parallel request slots in a browser are filled, forcing subsequent requests to wait until previous ones are complete.
+  It introduced the concept of a ‘persistent connection’, -  a TCP connection could be left open for reuse. Despite this enhancement, HTTP/1.1 couldn’t fix the issue of ‘Head-of-Line’ (HOL) blocking - happens when all parallel request slots in a browser are filled, forcing subsequent requests to wait until previous ones are complete. Since HTTP version 1.1, all connections are persistent unless declared otherwise.
 * HTTP/2.0 - 2015
   It implemented ‘request multiplexing’, a strategy to eliminate HOL blocking at the application layer, introduced the concept of HTTP ‘streams’. This abstraction allows the multiplexing of different HTTP exchanges onto the same TCP connection, freeing us from the need to send each stream in order. However, HOL blocking could still occur at the transport (TCP) layer.
 * HTTP/3.0 2020
   replaces TCP with [QUIC](https://en.wikipedia.org/wiki/QUIC) as the underlying transport protocol. This effectively eliminates HOL blocking at the transport layer. QUIC is based on UDP. It introduces streams as first-class citizens at the transport layer. QUIC streams share the same QUIC connection, requiring no additional handshakes or slow starts to create new ones. QUIC streams are delivered independently. It means that in most cases packet loss in one stream doesn't impact others.
-
+  
 ![](../../../aaa-assets/http-2.jpeg)
+
+## Persistent connection 
+
+Also known as HTTP keep-alive or HTTP connection reuse. Added in HTTP 1.1
+
+HTTP connection that can send multiple requests and receive multiple responses.
+
+Server will keep the TCP connection open for a certain period of time (known as the keep-alive timeout) or until the client closes the connection
+
+Header - `Connection: keep-alive`
+
+The browser's HTTP client implementation will typically handle the following tasks:
+
+- Managing the connection pool: The browser will maintain a pool of open connections to each server, and will reuse connections from the pool when making subsequent requests.
+- Handling connection timeouts: If the connection is idle for too long, the browser will close the connection to conserve resources.
+- Handling connection errors: If an error occurs on the connection, the browser will close the connection and establish a new one.
+
+![[http-4.png]]
+
+### Types
+
+- Long Polling - browser establishes an HTTP connection with the server and holds it for a long time so that the server can send its response at any time without having to create a new connection
+- Server-Sent Events (SSE) allows the browser to receive automatic updates from the server. Basically, the server sends updates to the browser and changes the content on the web page asynchronously
+- WebSockets - **independent protocol** based on the TCP, unlike long polling and SSE which are based on HTTP
+
+## Protocol upgrading
+
+HTTP 1.1 (or a higher)  provides protocol upgrading for persistent connections. It can be used to upgrade HTTP 1.1 to HTTP 2.0 or an HTTP connection into a WebSocket.
+
+```http
+Connection: upgrade
+Upgrade: HTTP/2.0
+```
+
+```http
+Connection: upgrade
+Upgrade: websocket
+```

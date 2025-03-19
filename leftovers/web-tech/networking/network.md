@@ -133,10 +133,18 @@ DNS использует UDP
 
 #### TCP - Transmission Control Protocol
 
-Гарантия доставки данных (подтверждение получения сегменов данных)\
+Гарантия доставки данных (подтверждение получения сегментов данных)\
 Гарантия порядка сообщений
 
-Перед передачей данных устанавливается соединение в рамках которого устанавливаются параметры передачи данных
+Перед передачей данных устанавливается соединение (three-way handshake) в рамках которого устанавливаются параметры передачи данных
+
+##### TCP three-way handshake
+
+protocol that ensures that both the client and the server are ready to communicate before any data is exchanged
+
+1. The client sends a SYN (synchronize) packet to the server, indicating that it wants to establish a connection. The SYN packet includes a sequence number, which is a random value that the client uses to initialize the sequence number for the connection.
+2. The server receives the SYN packet and sends a SYN-ACK (synchronize-acknowledge) packet back to the client. The SYN-ACK packet includes an acknowledgment number, which is the client's sequence number plus one, and a sequence number, which is a random value that the server uses to initialize the sequence number for the connection.
+3. The client receives the SYN-ACK packet and sends an ACK (acknowledge) packet back to the server. The ACK packet includes an acknowledgment number, which is the server's sequence number plus one.
 
 #### Стандартные порты
 

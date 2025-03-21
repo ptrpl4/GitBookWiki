@@ -227,6 +227,7 @@ git add my_file.txt
 
 # adding all files from your directory
 git add -A
+```
 
 ### Commit
 

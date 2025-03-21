@@ -16,9 +16,9 @@ ls /opt
 
 ## proceses
 
-- `systemd` 
+- `systemd`
 
-starts and stops services, manages dependencies, and provides logging through  `journalctl` command
+starts and stops services, manages dependencies, and provides logging through `journalctl` command
 
 ## Built-in commands
 
@@ -95,7 +95,7 @@ nmcli -f GENERAL.HWADDR device show eth0
 # check ip
 hostname -I
 
-# ports 
+# ports
 ## check open
 sudo netstat -tlnp #tpc
 sudo netstat -tlnp -A inet # filter ipv4
@@ -129,7 +129,7 @@ links:
 # list of cronejobs
 crontab -l
 
-# edit  /var/spool/cron/crontabs 
+# edit  /var/spool/cron/crontabs
 crontab -e
 
 # at midnight every Saturday

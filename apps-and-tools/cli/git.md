@@ -1,5 +1,7 @@
 # 📖 Git
 
+Distributed version control system
+
 #### links
 
 * [https://git-scm.com](https://git-scm.com/)
@@ -7,6 +9,7 @@
 * [https://ohshitgit.com](https://ohshitgit.com/)
 * [https://gitexplorer.com](https://gitexplorer.com/)
 * [https://blog.gitbutler.com](https://blog.gitbutler.com)
+* [Git by example: Interactive guide](https://antonz.org/git-by-example)
 
 commits
 
@@ -20,7 +23,38 @@ hints and examples
 
 * [https://wiki.nikiv.dev/programming/version-control/git](https://wiki.nikiv.dev/programming/version-control/git)
 
-![](../../aaa-assets/git-1.png)
+## Concepts
+
+### Working tree, staging area, repository
+
+```text
+┌──────────────┐         ┌──────────────┐
+│ local        │ push ─> │ remote       │
+│ repo         │ <- pull │ repo         │
+└──────────────┘         └──────────────┘
+check │  ↑↓ commit / reset
+out   │ ┌──────────────┐
+      │ │ staging area │
+      │ └──────────────┘
+      ▽  ↑↓ add / restore
+┌──────────────┐
+│ working tree │
+│ .            │
+│ ├── go.mod   │
+│ └── main.go  │
+└──────────────┘
+```
+
+### Branch, tag, HEAD
+
+```text
+      main             ○ v1.1
+feat-2 │               │
+      ╲│               •
+       │ feat-1        │
+       │╱              ○ v1.0
+       │               │
+```
 
 ## Basics
 

@@ -69,7 +69,7 @@ git remote add origin git@github.com:ptrpl4/GitBookWiki.git
 
 # create commit
 git commit -a -m 'init commit'
-# or 
+# or
 git ci -am 'init commit'
 
 # push to repo
@@ -95,7 +95,7 @@ Examples
 # |     +-> Summary in present tense.
 # |
 # +-------> Type: chore, docs, feat, fix, refactor, style, test.
-# 
+#
 # chore-(project's maintenance or improvement)
 
 git commit -m 'test(e2e): add e2e for existing user scenario'
@@ -106,6 +106,10 @@ git commit -m 'docs: update readme for playwright local run'
 
 ### config
 
+- `--system` set for OS level, stores in `/etc/gitconfig`
+- `--global` set for user level, stores in `~/.gitconfig`
+- `--local` for current folder and subfolders, stores in `.git/config`
+
 ```bash
 # check settings list and used config files
 git config --list --show-origin
@@ -113,16 +117,12 @@ git config --list --show-origin
 # set global. stores in ~/.gitconfig file
 git config --global user.name "John Doe"
 git config --global user.email johndoe@example.com
-# check current settings in file
-cat ~/.gitconfig
+cat ~/.gitconfig # check current settings in file
 git config --list --global
 
 # set local. stores in .git/config file
 git config --local user.name "Pyotr V."
-git config --local user.email ptrpl4@example.co
-# check current settings in file
-cat .git/config
-git config --list --local
+git config user.email ptrpl4@example.co # --local is default opt.
 
 # add alias
 git config --global alias.staash 'stash --all'
@@ -182,11 +182,9 @@ The following rules apply to templates in the .gitignore file:
 
 #### Sections of a Git project
 
-The **Git directory** (.git) is where Git stores the metadata and object base of your project. This is the most important part of Git, which gets copied when you clone a repository from another machine.  
-  
-The **working directory** is a snapshot of the project version. The files are unpacked from a compressed database into a Git directory and placed on a disk so that you can use and modify them.  
-  
-The **staging area** is a file located in your Git directory that contains information about what changes will go to the next commit. This area is also called the "_index_", but it is also common to call it the _stage area_. When you add a file, it first goes exactly to the index, and only after the commit it appears in the repository.
+- **Git directory** (.git) is where Git stores the metadata and object base of your project. This is the most important part of Git, which gets copied when you clone a repository from another machine.
+- **working directory** is a snapshot of the project version. The files are unpacked from a compressed database into a Git directory and placed on a disk so that you can use and modify them.
+- The **staging area** is a file located in your Git directory that contains information about what changes will go to the next commit. This area is also called the "_index_", but it is also common to call it the _stage area_. When you add a file, it first goes exactly to the index, and only after the commit it appears in the repository.
 
 ```bash
 cat .git/HEAD # >> ref: refs/heads/master
@@ -223,7 +221,7 @@ email = ptrpl4@mail.co
 
 ```bash
 # add --patch (parts of changes to commit)
-git add -p index.html 
+git add -p index.html
 # adding one concrete file
 git add my_file.txt
 
@@ -299,7 +297,7 @@ git commit -m 'feat: validation'
 
 # add some chaged in last commit
 git add forgotten_file.md
-git commit -a --amend -m 'feat: validation, registration' 
+git commit -a --amend -m 'feat: validation, registration'
 
 # if commit messgage is actual
 git commit -a --amend --no-edit
@@ -418,7 +416,7 @@ git restore CONTRIBUTING.md
 git revert @
 
 # Push the new revert commit to your remote repository
-git push origin main 
+git push origin main
 ```
 
 ### Diff
@@ -427,10 +425,10 @@ git push origin main
 
 The main commands:
 
-- `git diff` shows the difference between files in your staging area and modified files in the working tree;
-- `git diff --staged` and `git diff --cached` shows the difference between files in the staging area and the last commit;
-- `git diff <commit1>..<commit2>` and `git diff <branch1>..<branch2>` show differences between commits and branches;
-- `git diff --stat` shows a short summary of the number of changes and names of files with those changes;
+- `git diff` compare local and staged
+- `git diff --staged` and `git diff --cached` staging  and the last commit
+- `git diff <commit1>..<commit2>` and `git diff <branch1>..<branch2>` show differences between commits and branches
+- `git diff --stat` shows a short summary of the number of changes and names of files with those changes
 
 ```bash
 git diff
@@ -514,7 +512,7 @@ Typical steps and cases for work with feature branch
 # moving your current branch's commits to the tip of the main branch
 git checkout feature_branch
 git rebase main
-# will create one merge commit and add all changes from 
+# will create one merge commit and add all changes from
 git merge --squash feature_branch
 
 ## Other cases

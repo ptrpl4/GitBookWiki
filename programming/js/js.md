@@ -562,9 +562,9 @@ req.open("GET", "http://www.example.org/example.txt");
 req.send();
 ```
 
-## Promises 
+## Promises
 
-a Promise is an object. There are 3 states of the Promise object:
+Promise is an object with 3 states
 
 * **Pending:** Initial State, before the Promise succeeds or fails
 * **Resolved:** Completed Promise
@@ -686,7 +686,7 @@ console.log(original + " factorial is " + factorial);
 
 ![](../../aaa-assets/js-2.png)
 
-Instead of having to write code like this
+Instead of having to write code like:
 
 ```javascript
 function reqListener() {
@@ -702,7 +702,7 @@ oReq.open('get', './api/some.json', true);
 oReq.send();
 ```
 
-we can clean things up and write something a little more concise and readable with promises and modern syntax
+we can clean things up and write with promises and modern syntax
 
 ```javascript
 fetch('./api/some.json')

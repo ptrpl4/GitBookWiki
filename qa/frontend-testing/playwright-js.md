@@ -53,7 +53,7 @@ npx playwright install
 `./playwright.config.ts` - Playwright configuration
 `.env` - environmental vars
 
-## runner
+## commands
 
 ### test
 
@@ -61,7 +61,7 @@ npx playwright install
 # run all
 npx playwright test
 
-# run one
+# run one file
 npx playwright test tests/example.test.spec.ts
 
 # Runs the tests only on Desktop Chrome.
@@ -86,7 +86,9 @@ npx playwright show-report
 ## --timeout 10000 # 10 sec
 ## --project Desktop\ Chrome
 ## --repeat-each 100
-## prod-api/aaa/bbb-exclusive.e2e.ts:70 # start test on line 70
+## --last-failed
+
+## prod-api/aaa/bbb.e2e.ts:70 # start test on line 70
 ```
 
 ## config
@@ -254,7 +256,7 @@ export default defineConfig({
 });
 ```
 
-## tests
+## test helpers
 
 ### network monitoring
 

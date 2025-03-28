@@ -5,13 +5,11 @@
 - [https://www.gnu.org/software/make/manual/make.html](https://www.gnu.org/software/make/manual/make.html) \
 - [https://opensource.com/article/18/8/what-how-makefile](https://opensource.com/article/18/8/what-how-makefile)
 
-## Make
+## makefile
 
 Utility Make is a build automation tool that automatically builds executable programs and libraries from source code by reading files called _makefiles_
 
-## makefile
-
-structure
+### structure
 
 ```makefile
 target … : prerequisites …
@@ -22,7 +20,7 @@ target … : prerequisites …
 
 example
 
-!use TAB insted spaces to avoid run errors
+`!use TAB instead spaces to avoid run errors`
 
 ```makefile
 say_hello:
@@ -36,6 +34,8 @@ clean:
         @echo "Cleaning up..."
         rm *.txt
 ```
+
+another
 
 ```makefile
 install:
@@ -70,10 +70,9 @@ run:
 
 upd-and-save:
 	$(SAVE_TOKEN)
-
 ```
 
-run
+## CLI
 
 ```bash
 # run target

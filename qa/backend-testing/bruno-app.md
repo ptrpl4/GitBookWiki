@@ -132,3 +132,19 @@ vars:post-response {
   loginServerToken: res.body.access_token
 }
 ```
+
+## CLI
+
+### install
+
+```shell
+npm install -g @usebruno/cli
+```
+
+### run
+
+```shell
+bru run
+
+bru run foldername/testFolderName -r --env stage --reporter-html --insecure
+```

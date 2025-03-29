@@ -88,7 +88,7 @@ ssh-agent -k
 ## Copy Public Key
 
 ```bash
-$ cat ~/.ssh/id_rsa.pub | pbcopy
+cat ~/.ssh/id_rsa.pub | pbcopy
 ```
 
 ## SSH Connect

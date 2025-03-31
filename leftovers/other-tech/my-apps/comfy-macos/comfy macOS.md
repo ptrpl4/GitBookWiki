@@ -43,6 +43,12 @@ Directory Structure
             C/  # Caches
 ```
 
+#### Helper tools
+
+```shell
+ls -la /Library/PrivilegedHelperTools
+```
+
 ## Custom 'defaults' settings
 
 macOS applications and other programs use the **defaults** system to record user preferences and other information to be maintained when the application isn't running.

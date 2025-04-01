@@ -1,7 +1,6 @@
 # 🔞 JavaScript
 
-a lightweight, interpreted, or just-in-time compiled programming
-  language
+A lightweight, interpreted, or just-in-time compiled programming language
 
 #### Links
 
@@ -9,7 +8,8 @@ a lightweight, interpreted, or just-in-time compiled programming
 - ESLint statically analyzes your code - [https://eslint.org/](https://eslint.org)
 - Online IDE - [https://replit.com/](https://replit.com/)
 
-#### Comments
+## Basics
+### Comments
 
 Example
 
@@ -23,7 +23,6 @@ console.log("Nice to see you!"); // This code outputs the message to the console
 */
 ```
 
-## Types, Values, and Variables
 
 ### Variables
 
@@ -158,32 +157,27 @@ companies.length // check length
 
 ### Other object types
 
-A Set object represents a set of values.
-
-A Map object represents a mapping from keys to values.
-
-Various “typed array” types facilitate operations on arrays of bytes and other binary data.
-
-The RegExp type represents textual patterns and enables sophisticated matching, searching, and replacing operations on strings.
-
-The Date type represents dates and times and supports rudimentary date arithmetic.
-
-Error and its subtypes represent errors that can arise when executing JavaScript code.
+- **Set** object represents a set of values.
+- **Map** object represents a mapping from keys to values.
+- Various **typed array** types facilitate operations on arrays of bytes and other binary data.
+- **RegExp** type represents textual patterns and enables sophisticated matching, searching, and replacing operations on strings.
+- **Date** type represents dates and times and supports rudimentary date arithmetic.
+- **Error** and its subtypes represent errors that can arise when executing JavaScript code.
 
 ## Operators
 
 Operators act on values (the operands) to produce a new value.
 
-#### _typeof_ operator
+### _typeof_ operator
 
 ```javascript
 console.log(typeof(9)); // number
 console.log(typeof 9); // number
 ```
 
-#### gt lt
+### comparison operators
 
-greater than (gt)
+greater than - *gt*
 
 ```js
 a > b
@@ -195,7 +189,7 @@ greater than or equal to
 a >= b
 ``` 
 
-lt and lte accordingly
+*lt* and *lte* accordingly
 
 ### Arithmetic operators
 
@@ -225,8 +219,6 @@ console.log(12 % 4); // 0, because 12 divided by 4 leaves no remainder
 console.log(2 ** 3); // 8, because (2 * 2 * 2) is 8
 ```
 
-#### Order
-
 The list below is sorted from the highest to the lowest precedence level:
 
 * parentheses
@@ -234,13 +226,7 @@ The list below is sorted from the highest to the lowest precedence level:
 * multiplication, division
 * addition and subtraction
 
-#### equality
-
-the `==` equality operator is deprecated in favor of the strict equality operator `===`, which does no type conversions
-
-### Boolean and logical operators
-
-#### Comparison operators 
+### Logical operators 
 
 [https://hyperskill.org/learn/step/8580](https://hyperskill.org/learn/step/8580)
 
@@ -280,7 +266,7 @@ console.log(!(false && !true)); // true
 
 ## Type conversion
 
-#### String conversion
+### String conversion
 
 In JS, an _implicit conversion_ will be called by the binary `+` operator when one of the operands is a string:
 
@@ -299,7 +285,7 @@ Remember the order of arithmetic operations. If there are several numbers before
 3 + 10 + "1" // "131", not "3101"
 ```
 
-#### Numeric conversion 
+### Numeric conversion 
 
 When converting a string to a number, spaces and characters `\n,`  at the beginning and the end of the string are cut off. If the string turns out to be empty, the result will be `0`. The boolean type behaves as expected: `false` turns into `0`, `true` turns into `1`.
 
@@ -315,7 +301,7 @@ true + 43 // 44
 +"85"     // 85
 ```
 
-#### Boolean conversion 
+### Boolean conversion 
 
 The rules for using this function are simple: values that imply "empty", like `0` or an empty string `""` turn into `false`. All other values turn into `true`.
 
@@ -329,7 +315,7 @@ An _implicit_ conversion occurs when using logical operators (`||&&` `!`):
 
 ## **built-in** Functions
 
-#### Console.log()
+### Console.log()
 
 print some text
 
@@ -337,14 +323,14 @@ print some text
 console.log("Learning JavaScript is easy and enjoyable!");
 ```
 
-#### String()
+### String()
 
 ```javascript
 String(123);   // "123"
 String(false); // "false"
 ```
 
-#### Number()
+### Number()
 
 ```javascript
 Number("1");    // 1
@@ -357,7 +343,7 @@ Number(true);   // 1
 Number(false);  // 0
 ```
 
-#### Boolean()
+### Boolean()
 
 ```javascript
 Boolean(1);            // true
@@ -366,7 +352,7 @@ Boolean("Am I nice?"); // true
 Boolean("");           // false
 ```
 
-#### fetch()
+### fetch()
 
 The global **`fetch()`** method starts the process of fetching a resource from the network, returning a promise which is fulfilled once the response is available.
 
@@ -607,6 +593,9 @@ idealHuman.sayMyName(); // call method
 ```
 
 ## Conditional operators
+#### equality
+
+the `==` equality operator is deprecated in favor of the strict equality operator `===`, which does no type conversions
 
 ### if
 
@@ -761,5 +750,4 @@ let timestamp = Date.now(); // The current time as a timestamp (a number).
 let now = new Date(); // The current time as a Date object.
 let ms = now.getTime(); // Convert to a millisecond timestamp.
 let iso = now.toISOString(); // Convert to a string in standard format.
-
 ```

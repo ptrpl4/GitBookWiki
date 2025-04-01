@@ -131,6 +131,9 @@ git config --global alias.script !any-script.sh
 
 ### .gitignore
 
+#### links
+- [examples](https://www.w3schools.com/git/git_ignore.asp)
+
 The following rules apply to templates in the .gitignore file:
 
 * Blank lines, as well as lines starting with #, are ignored.

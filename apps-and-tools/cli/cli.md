@@ -546,6 +546,14 @@ cat text.txt | sort
 - **cp**: Copy files or directories.
 - **touch**: Change file timestamps or create empty files.
 - **ln**: Create links between files.
+
+#### symlink
+
+```shell
+# symlink (source) (destination)
+ln -s ~/dotfiles/settings/obsidian/project/.obsidian ~/project/.obsidian 
+```
+
 #### rm
 
 ```bash
@@ -570,7 +578,6 @@ mv file renamed-file
 # make copy
 cp renamed-file renamed-file-copy
 ```
-
 
 #### find
 

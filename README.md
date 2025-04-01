@@ -1,6 +1,6 @@
 # 🍞 README
 
-### Greetings!
+## Greetings!
 
 Hi, this is my personal Tech Wiki.
 
@@ -12,8 +12,18 @@ Main themes - programming languages - python, go, js, also testing frameworks an
 
 Most of this content is written as a way to memorize and may contain errors and reductions.
 
-### Info
+## Info
 
 - Created with markdown and nothing more
 - Hosted on [github.com](http://github.com)
 - My contacts [ptrpl4.github.io](https://ptrpl4.github.io)
+
+## Setup
+
+- setup dotfiles
+- symlink settings
+
+```shell
+# cd to GitBookWiki
+ln -sf "${HOME}"/dotfiles/settings/obsidian/GitBookWiki/.obsidian/ .dotfiles
+```

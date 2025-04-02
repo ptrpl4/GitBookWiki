@@ -24,7 +24,7 @@
 
 ### folders
 
-The `/var/folders` directory on macOS contains temporary files and caches used by the system and applications. 
+The `/var/folders` directory on macOS contains temporary files and caches used by the system and applications.
 
 System Temporary Files
 
@@ -43,19 +43,41 @@ Directory Structure
             C/  # Caches
 ```
 
-#### Helper tools
+#### System/User Application folders and tools
 
-```shell
-ls -la /Library/PrivilegedHelperTools
+```bash
+# Privileged Tools & Services
+ls -la /Library/PrivilegedHelperTools # tools requiring elevated privileges (e.g., auto-updaters, system services)
+
+ls -la /Library/LaunchAgents # run on user login for all users
+ls -la ~/Library/LaunchAgents # for current user
+
+ls -la /Library/LaunchDaemons/ # run as root, no user login required
+
+# Application Support
+ls -la /Library/Application\ Support
+ls -la ~/Library/Application\ Support
+
+# app preferences
+ls -la /Library/Preferences/
+ls -la ~/Library/Preferences/
+
+# soft and tools
+ls -la /usr/local/bin/ # user CLI tools
+ls -la /opt/ # soft (homebrew)
+
+# applications
+ls -la /Applications/
+ls -la ~/Applications/
 ```
 
 ## Custom 'defaults' settings
 
-macOS applications and other programs use the **defaults** system to record user preferences and other information to be maintained when the application isn't running.
+macOS applications and other programs use the **defaults** system to record user preferences and other information to be maintained when the application isn't running.
 
-User defaults belong to **domains**, which typically correspond to individual applications. Each domain has a dictionary of keys and values representing its defaults; for example, `"Default Font" = "Helvetica"`. 
+User defaults belong to **domains**, which typically correspond to individual applications. Each domain has a dictionary of keys and values representing its defaults; for example, `"Default Font" = "Helvetica"`. 
 
-Keys are strings, Values can be complex data structures comprising arrays, dictionaries, strings, and binary data. Stored as XML Property Lists.
+Keys are strings, Values can be complex data structures comprising arrays, dictionaries, strings, and binary data. Stored as XML Property Lists.
 
 #### links
 

@@ -25,5 +25,5 @@ Most of this content is written as a way to memorize and may contain errors and 
 
 ```shell
 # cd to GitBookWiki
-ln -sf "${HOME}"/dotfiles/settings/obsidian/GitBookWiki/.obsidian/ .dotfiles
+ln -sf "${HOME}"/dotfiles/settings/obsidian/GitBookWiki/.obsidian/ .obsidian
 ```

@@ -29,14 +29,14 @@ W3C - консорциум интернета
 
 Example - `"Subnet": "172.19.0.0/16", "Gateway": "172.19.0.1"`
 
-IPv4 addresses are 4 blocks of 8 bits. For _172.19.0.0/16_ first 16 bits (2 sections) are constant and the rest is dynamic. 
+IPv4 addresses are 4 blocks of 8 bits. For _172.19.0.0/16_ first 16 bits (2 sections) are constant and the rest is dynamic. 
 
-_172.19.0-255.0-255_ - **Range** of IPs 
-_172.19.0.0_ -  **Subnet Address**
-_172.19.0.1_ - **Default Gateway**
-_172.19.255.255_ - **Broadcast Address**. 
+_172.19.0-255.0-255_ - **Range** of IPs 
+_172.19.0.0_ -  **Subnet Address**
+_172.19.0.1_ - **Default Gateway**
+_172.19.255.255_ - **Broadcast Address**. 
 
-Devices will receive IPs in the range of _172.19.0.2-172.19.255.254._
+Devices will receive IPs in the range of _172.19.0.2-172.19.255.254._
 
 ## OSI Model
 
@@ -259,10 +259,10 @@ example `2001:0db8:1234:5678:90ab:cdef:1234:5678`
 
 example `fc00:1234:5678:9abc:def0:1234:5678:9abc`
 
-- `fc00` : ULA prefix
-- `1234:5678:9abc` : Global ID (randomly generated)
-- `def0` : Subnet ID
-- `1234:5678:9abc` : Interface ID
+- `fc00` : ULA prefix
+- `1234:5678:9abc` : Global ID (randomly generated)
+- `def0` : Subnet ID
+- `1234:5678:9abc` : Interface ID
 
 **Link-local address** - only for communication within the local network segment.
 
@@ -277,12 +277,12 @@ example `fe80:0000:0000:0000:0211:22ff:fe33:4455`
 
 **RA** - Route Advertisement
 
-When enabled, router will periodically send **RA messages** or respond to **Router Solicitation (RS) messages** from clients. Contain information, such as:
+When enabled, router will periodically send **RA messages** or respond to **Router Solicitation (RS) messages** from clients. Contain information, such as:
 
-- The **IPv6 prefix** used on the network (e.g., `2001:db8::/64`).
-- Whether clients should use **SLAAC** Stateless Address Autoconfiguration
-- Whether clients should use **DHCPv6** for additional configuration
-- The **default gateway** IPv6 address.
+- The **IPv6 prefix** used on the network (e.g., `2001:db8::/64`).
+- Whether clients should use **SLAAC** Stateless Address Autoconfiguration
+- Whether clients should use **DHCPv6** for additional configuration
+- The **default gateway** IPv6 address.
 
 **SLAAC** - Stateless Address Autoconfiguration
 

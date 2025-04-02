@@ -28,7 +28,7 @@ setBody(data)
 
 ### runtime
 
- runtime variables can only be set via the API - `getVar()` and `setVar()` or via Vars/Post-response request menu
+ runtime variables can only be set via the API - `getVar()` and `setVar()` or via Vars/Post-response request menu
 
 ## Structure
 

@@ -210,11 +210,11 @@ syntax
 
 output - JSON object containing:
 
-- **Configuration:** image, command, entry point, environment, variables, exposed ports
-- **Network settings:** IP address, port mapping, attached networks
+- **Configuration:** image, command, entry point, environment, variables, exposed ports
+- **Network settings:** IP address, port mapping, attached networks
 - **Volume mounts**
 - **Environment variables**
-- **Runtime information:** status, start time, resource usage
+- **Runtime information:** status, start time, resource usage
 
 ### Registry
 
@@ -259,12 +259,12 @@ docker run --net=host -d --name nginx-host-container nginx
 
 ### Drivers
 
-- `bridge` - default. [Bridge networks](https://docs.docker.com/network/bridge/) are isolated from the Docker host. Typically used when applications run in standalone containers and communicate on the same host\
+- `bridge` - default. [Bridge networks](https://docs.docker.com/network/bridge/) are isolated from the Docker host. Typically used when applications run in standalone containers and communicate on the same host\
   `docker network create <network-name>`
-- `host`: A [host networks](https://docs.docker.com/network/host/) is used for standalone containers. It removes network isolation between the container and the Docker host to use the host’s networking configurations directly, container doesn't get its own IP address.\
+- `host`: A [host networks](https://docs.docker.com/network/host/) is used for standalone containers. It removes network isolation between the container and the Docker host to use the host’s networking configurations directly, container doesn't get its own IP address.\
   Offers better performance when making a large number of requests with different ports. It doesn't require NAT(Network address translation) which saves time.
   Docker automatically creates a host network and you can't create more.
-- `overlay`: [Overlay networks](https://docs.docker.com/network/overlay/) connect multiple Docker daemons and enable swarm services to communicate with each other. You can also use overlay networks to facilitate communication between a swarm service and a standalone container, or between two standalone containers on different Docker daemons. This strategy removes the need to do OS-level routing between containers.\
+- `overlay`: [Overlay networks](https://docs.docker.com/network/overlay/) connect multiple Docker daemons and enable swarm services to communicate with each other. You can also use overlay networks to facilitate communication between a swarm service and a standalone container, or between two standalone containers on different Docker daemons. This strategy removes the need to do OS-level routing between containers.\
   Useful when you want containers on different hosts to communicate with one another. Docker manages to route itself and provides secure communication between containers when encryption is enabled.
   `docker network create -d overlay --attachable <network-name>`
 - ipvlan
@@ -314,9 +314,9 @@ docker run --net=host -d --name nginx-host-container nginx
 ]
 ```
 
- - IPAM(IP Address Management). 
-   includes subnet and default gateway. In this case, based on the values of subnet the containers will receive IP addresses in the range of 172.19.0.2 - 172.19.255.254
- 
+ - IPAM(IP Address Management). 
+   includes subnet and default gateway. In this case, based on the values of subnet the containers will receive IP addresses in the range of 172.19.0.2 - 172.19.255.254
+ 
 
 ### Commands
   
@@ -361,10 +361,10 @@ Orchestration is the automated configuration, management, and coordination of co
 Container orchestration automates the deployment, management, scaling, and networking of containers.
 
 - Docker Compose
-	- Primarily designed for running multi-container applications on a **single host**. It simplifies the process of defining and running applications with multiple containers using a simple YAML file.
+	- Primarily designed for running multi-container applications on a **single host**. It simplifies the process of defining and running applications with multiple containers using a simple YAML file.
 
 - Kubernetes
-	-  A robust orchestration platform that manages containers across **multiple nodes**(servers). It is suitable for large-scale applications and can handle complex deployments.
+	-  A robust orchestration platform that manages containers across **multiple nodes**(servers). It is suitable for large-scale applications and can handle complex deployments.
 
 
 ## Helpers

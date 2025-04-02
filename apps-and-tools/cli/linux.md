@@ -31,9 +31,9 @@ starts and stops services, manages dependencies, and provides logging through `j
 
 How it works
 
-- The package list is updated from the repositories specified in the `/etc/apt/sources.list`
+- The package list is updated from the repositories specified in the `/etc/apt/sources.list`
 - The package list is updated to reflect the latest available packages and their versions
-- The package list is stored in the `/var/lib/apt/lists/` directory
+- The package list is stored in the `/var/lib/apt/lists/` directory
 
 Flags
 
@@ -107,7 +107,7 @@ sudo lsof -i :53 # one more similar tool
 # disc
 df -h # list of all mounted filesystems
 
-ncdu # interactive disk usage
+ncdu # interactive disk usage
 
 ## procceses
 

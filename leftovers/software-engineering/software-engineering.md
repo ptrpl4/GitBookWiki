@@ -59,8 +59,8 @@ Evolution of the programming systems product
 
 - **U**sability: How users can learn to interact with the system
 - **R**eliability: ability of the system to perform as expected without issues under certain conditions
-- **P**erformance: performance of the system in various metrics and how it can handle a large number of requests. It includes the **response time**, **throughput**, **availability**, and **accuracy**
-- **S**upportability: how easily the system can be modified. It covers the **adaptability**, **maintainability**, and **portability** properties
+- **P**erformance: performance of the system in various metrics and how it can handle a large number of requests. It includes the **response time**, **throughput**, **availability**, and **accuracy**
+- **S**upportability: how easily the system can be modified. It covers the **adaptability**, **maintainability**, and **portability** properties
 
 ### pseudo requirements
 

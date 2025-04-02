@@ -70,7 +70,7 @@ Object-Oriented Paradigm
 
 ### Class Diagram
 
-In the Unified Model Language (UML), Class Diagram is a visual representation of an object-oriented structure
+In the Unified Model Language (UML), Class Diagram is a visual representation of an object-oriented structure
 
 #### Elements
 

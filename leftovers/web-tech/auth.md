@@ -9,7 +9,7 @@
 * Identification
   * get user data
 
-* Authentication -  process of verifying identity
+* Authentication -  process of verifying identity
   * verify user data
 * Multifactor Authentication
 	* Two-Factor Authentication

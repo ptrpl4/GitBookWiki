@@ -124,14 +124,14 @@ Executes commands or a set of commands in a new layer on top of the current imag
 
 #### options
 
-`--mount` option [to create mounts](https://docs.docker.com/engine/reference/builder/#run---mount) that you can access at the build time to bind files, store cache, etc.
+`--mount` option [to create mounts](https://docs.docker.com/engine/reference/builder/#run---mount) that you can access at the build time to bind files, store cache, etc.
 
 types:
-- **bind**: binds files or directories to the build container
-- **cache**: caches directories for compilers and package managers
-- **tmpfs**: for mounting tmpfs in the build container
-- **secret**: gives access to secure files
-- **ssh**: gives access to SSH keys via SSH agents
+- **bind**: binds files or directories to the build container
+- **cache**: caches directories for compilers and package managers
+- **tmpfs**: for mounting tmpfs in the build container
+- **secret**: gives access to secure files
+- **ssh**: gives access to SSH keys via SSH agents
 
 ```dockerfile
 FROM ubuntu:22.04
@@ -147,7 +147,7 @@ RUN --mount=type=cache,target=/var/cache/apt/archives \
 ENTRYPOINT ["/bin/bash"]
 ```
 
-This configuration can speed up the build process because Docker can use cache from the target directory in case it needs to rebuild the `RUN` layer in later builds.
+This configuration can speed up the build process because Docker can use cache from the target directory in case it needs to rebuild the `RUN` layer in later builds.
 
 ### COPY
 
@@ -180,8 +180,8 @@ ENTRYPOINT ["ls", "-l", "demo/demo.txt"]
 
 ADD: - Similar to `COPY`, but also supports remote URLs and unpacking compressed files.
 
-- The source can be a **remote URL** including git repositories. 
-- The source can also be a `tar` archive of `identity`, `gzip`, `bzip2`, or `xz`compression formats.
+- The source can be a **remote URL** including git repositories. 
+- The source can also be a `tar` archive of `identity`, `gzip`, `bzip2`, or `xz`compression formats.
 
 Syntax
 ```dockerfile
@@ -303,7 +303,7 @@ ENTRYPOINT ["whoami"]
 
 ### WORKDIR
 
-default working directory is the `/`. can be set more than once.
+default working directory is the `/`. can be set more than once.
 
 Sets the working directory for any subsequent `RUN`, `CMD`, `ENTRYPOINT`, `COPY`, and `ADD` instructions.
 	  `WORKDIR /path/to/workdir`
@@ -328,7 +328,7 @@ define [labels to specify metadata](https://docs.docker.com/engine/reference/bui
 
 ### ARG
 
-The `ARG` instruction defines a variable that users can pass at build-time to the builder with the `docker build` command using the `--build-arg <varname>=<value>` flag.
+The `ARG` instruction defines a variable that users can pass at build-time to the builder with the `docker build` command using the `--build-arg <varname>=<value>` flag.
 
 syntax
 `ARG <name>[=<default value>]`
@@ -349,7 +349,7 @@ $ docker build --build-arg VERSION=22.04 -t ubuntu:v1 .
 
 ### Instructions
 
-- avoid the `apt-get upgrade` command. It can bring upgrades that can affect the environment you use.
+- avoid the `apt-get upgrade` command. It can bring upgrades that can affect the environment you use.
 - Minimise RUN instruction layers
 - use alpine images if applicable
 - Remove unnecessary packages after installation

@@ -761,8 +761,8 @@ eval "$command"
 load average of the system for the last 1, 5, and 15 minutes
 
 ```bash
-uptime                 
-# stdout > 13:42  up 8 days,  1:28, 3 users, load averages: 2.00 2.56 2.88
+uptime                 
+# stdout > 13:42  up 8 days,  1:28, 3 users, load averages: 2.00 2.56 2.88
 ```
 
 #### ps
@@ -826,8 +826,8 @@ history -c
 prints X newlines, X words, X bytes counts for file
 
 ```bash
-wc echo.txt 
-# stdout > 3       5      24 echo.txt
+wc echo.txt 
+# stdout > 3       5      24 echo.txt
 
 echo "Hello world" | wc
 ```

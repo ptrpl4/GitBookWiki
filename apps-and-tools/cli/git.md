@@ -152,17 +152,17 @@ The following rules apply to templates in the .gitignore file:
 ├── hooks
 ├── info
 ├── logs
-│   └── refs
-│       ├── heads
-│       └── remotes
-│           └── origin
+│   └── refs
+│       ├── heads
+│       └── remotes
+│           └── origin
 ├── objects
-│   ├── info
-│   └── pack
+│   ├── info
+│   └── pack
 └── refs
     ├── heads
     ├── remotes
-    │   └── origin
+    │   └── origin
     └── tags
 ```
 
@@ -193,7 +193,7 @@ The following rules apply to templates in the .gitignore file:
 ```bash
 cat .git/HEAD # >> ref: refs/heads/master
 
-cat .git/config 
+cat .git/config 
 : '
 [core]
 repositoryformatversion = 0

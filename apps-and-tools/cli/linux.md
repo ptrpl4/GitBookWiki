@@ -22,8 +22,6 @@ starts and stops services, manages dependencies, and provides logging through `j
 
 ## Built-in commands
 
-## Basics
-
 ### apt
 
 - `apt-get` lower-level tool that provides more granular control over package management (more used for scripts)
@@ -153,3 +151,101 @@ crontab -e
 | *                     | Match all possible values for the field                   | 0 18 * * * echo 'This runs every day at 6 pm'                |
 | ,                     | Specify multiple values for the field separated by commas | 0 18 1,15 * * echo '1st and 15th day of every month at 6 pm' |
 | -                     | Specify a range of values for a field                     | 0 18 * * 1-5 echo ' Monday to Friday of every week at 6 pm'  |
+
+### systemctl
+
+```bash
+# services list
+systemctl list-unit-files --type=service 
+systemctl list-unit-files --type=service | grep enabled
+systemctl list-units --type=service --state=running
+
+# check service
+systemctl is-enabled pihole-FTL
+```
+
+## apps and tools
+
+### pi-hole
+
+links 
+- https://pi-hole.net/
+- https://www.raspberrypi.com/tutorials/running-pi-hole-on-a-raspberry-pi/
+- https://github.com/mullvad/dns-blocklists
+
+```bash
+# install
+curl -sSL https://install.pi-hole.net | bash
+
+which pihole
+# /usr/local/bin/pihole
+
+pihole status
+pihole -up #update
+
+# in case of dns service errors
+sudo service pihole-FTL status # check status and logs
+sudo service pihole-FTL restart
+sudo service pihole-FTL stop
+
+# autostart
+sudo systemctl disable pihole-FTL
+systemctl is-enabled pihole-FTL
+sudo systemctl enable pihole-FTL
+```
+
+### Home Assistant Core
+
+install steps - https://www.home-assistant.io/installation/raspberrypi#install-home-assistant-core
+
+```bash
+# run h-a core
+sudo -u homeassistant -H -s
+cd /srv/homeassistant
+python3 -m venv .
+source bin/activate
+```
+
+### homebridge
+
+#### links
+
+- [github](https://github.com/homebridge/homebridge)
+
+```bash
+# home
+cd /home/homebridge/
+
+sudo hb-service stop # start / restart
+sudo hb-shell # shell
+```
+
+### tailscale
+
+`tailscaled` - daemon
+
+```bash
+tailscale status
+```
+
+### AdguardHome
+
+#### links
+
+- [installation and usage on Pie](https://github.com/AdguardTeam/AdGuardHome/wiki/Raspberry-Pi#install-adguard-home)
+
+Commands
+
+```sh
+sudo /opt/AdGuardHome/AdGuardHome -s status # stop restart uninstall
+```
+
+### docker
+
+```bash
+# rm
+sudo systemctl stop docker
+
+sudo apt-get purge docker-ce docker-ce-cli containerd.io
+
+```

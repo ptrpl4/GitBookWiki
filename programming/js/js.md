@@ -23,7 +23,6 @@ console.log("Nice to see you!"); // This code outputs the message to the console
 */
 ```
 
-
 ### Variables
 
 The name of a variable can contain only letters, numbers or symbols `$` and `_` and it _cannot_ begin with a number.
@@ -49,7 +48,7 @@ The special JavaScript values `null` and `undefined` are primitive values, but t
 
 Any JavaScript value that is not a number, a string, a boolean, a symbol, null, or undefined is an object.
 
-#### Numbers, strings, boolean, null, undefined
+#### Numbers, boolean, null, undefined
 
 ```javascript
 // JavaScript supports several types of values
@@ -285,7 +284,7 @@ Remember the order of arithmetic operations. If there are several numbers before
 3 + 10 + "1" // "131", not "3101"
 ```
 
-### Numeric conversion 
+### Numeric conversion
 
 When converting a string to a number, spaces and characters `\n,`  at the beginning and the end of the string are cut off. If the string turns out to be empty, the result will be `0`. The boolean type behaves as expected: `false` turns into `0`, `true` turns into `1`.
 
@@ -301,7 +300,7 @@ true + 43 // 44
 +"85"     // 85
 ```
 
-### Boolean conversion 
+### Boolean conversion
 
 The rules for using this function are simple: values that imply "empty", like `0` or an empty string `""` turn into `false`. All other values turn into `true`.
 
@@ -313,7 +312,7 @@ An _implicit_ conversion occurs when using logical operators (`||&&` `!`):
 "Master" && "Margarita"  // "Margarita"
 ```
 
-## **built-in** Functions
+## built-in Functions
 
 ### Console.log()
 
@@ -629,6 +628,7 @@ idealHuman.sayMyName(); // call method
 ```
 
 ## Conditional operators
+
 #### equality
 
 the `==` equality operator is deprecated in favor of the strict equality operator `===`, which does no type conversions
@@ -648,7 +648,7 @@ else {
 }
 ```
 
-### ternary operator "? :" <a href="#the-ternary-operator" id="the-ternary-operator"></a>
+### ternary operator "? :"
 
 short version of the `if...else` block
 

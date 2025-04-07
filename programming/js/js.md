@@ -369,9 +369,10 @@ fetch('https://domain.com/api/v1/purchases?limit=50&offset=50',
           {
               'Authorization': 'Bearer blalax'
           }
-})
-  .then((response) => response.json())
-  .then((data) => data)
+});
+	.then((response) => response.json());
+	.then((data) => data);
+	.catch((err) => { ... });
 ```
 
 ## user-defined Functions
@@ -452,9 +453,21 @@ setTimeout(() => {
 
 ### async-await
 
-The [`async`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async\_function) keyword gives you a simpler way to work with asynchronous promise-based code. Adding `async` at the start of a function makes it an async function.
+The [`async`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function) keyword gives you a simpler way to work with asynchronous promise-based code. Adding `async` at the start of a function makes it an async function.
 
 Inside an async function, you can use the `await` keyword before a call to a function that returns a promise. This makes the code wait at that point until the promise is settled, at which point the fulfilled value of the promise is treated as a return value, or the rejected value is thrown.
+
+```js
+// modern cool async function
+async function foo() {
+  await 1;
+}
+
+// old and ugly, but same function
+function foo() {
+  return Promise.resolve(1).then(() => undefined);
+}
+```
 
 ```javascript
 async function fetchProducts() {
@@ -489,8 +502,29 @@ const movies = getStarWarsMovie(1).then((movie) => {
   console.log(movie.title)
 }) // *2
 console.log("результат вызова функции", movies) // *3
-
 ```
+
+#### parallel execution
+
+- `await Promise.all()` - parallel execution of several independen functions (expects success)
+- `Promise.allSettled()` - parallel exec. expects both err/success
+
+```js
+async function getUser(){..} // return userinfo
+
+async function getNews(){..} // return newsfeed
+
+// one by one
+const user = await getUser() // wait for execution
+const news = await getNews() // run after getUser()
+
+// parallel
+const [user, news] = await Promise.all([
+  getUser(),
+  getNews()
+])
+```
+
 
 ## Methods
 
@@ -549,6 +583,8 @@ req.send();
 ```
 
 ## Promises
+
+- [doka(ru)](https://doka.guide/js/promise/)
 
 Promise is an object with 3 states
 

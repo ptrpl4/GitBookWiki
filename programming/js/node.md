@@ -21,7 +21,7 @@ n lts # note! on macOS you probably should change app directory to avoid r/w res
 
 ### nvm
 
-* nvm - [https://github.com/nvm-sh/nvm](https://github.com/nvm-sh/nvm)
+- [nvm](https://github.com/nvm-sh/nvm)
 
 ```bash
 # choose folder
@@ -89,6 +89,9 @@ npm view npm
 
 # install projects deps
 npm install
+
+# upgrade npm itself
+npm install -g npm
 ```
 
 ### Installation folders

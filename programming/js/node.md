@@ -64,7 +64,7 @@ Node Package Manager
 **npm** is installed with **Node.js**
 
 ```bash
-# install latest
+# install/upgrade to latest
 npm install -g npm
 # check version
 npm -v
@@ -89,9 +89,6 @@ npm view npm
 
 # install projects deps
 npm install
-
-# upgrade npm itself
-npm install -g npm
 ```
 
 ### Installation folders
@@ -172,7 +169,7 @@ At least two fields must be present in the definition file: **name** and **versi
 } 
 ```
 
-### packages 
+### packages
 
 A **package** is a file or directory that is described by a `package.json` file. A package must contain a `package.json` file in order to be published to the npm registry.
 

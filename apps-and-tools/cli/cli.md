@@ -1267,11 +1267,11 @@ while read line; do
 done < "$filename"
 ```
 
-## Shell config
+## Shell
 
 ### configs
 
-* [https://github.com/ptrpl4/dotfiles](https://github.com/ptrpl4/dotfiles)
+* [dotfiles](https://github.com/ptrpl4/dotfiles)
 
 - `/etc/...` - system config (all users)
 	- `/etc/bashrc`
@@ -1321,6 +1321,16 @@ alias
 
 # to remove (for aliases added by command, not file)
 unalias key
+```
+
+### zsh
+
+fpath - list of directories where Zsh looks for function definitions, including autocompletion scripts
+
+compinit - loads completion definitions from $fpath
+
+```shell
+echo $fpath
 ```
 
 ## OS programs

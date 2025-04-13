@@ -89,6 +89,9 @@ npm view npm
 
 # install projects deps
 npm install
+
+# list
+npm ls -g # global level
 ```
 
 ### Installation folders

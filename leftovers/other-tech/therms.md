@@ -1,5 +1,7 @@
 # 🔦 Therms
 
+What I’m talking about when I talk about...
+
 ## Programs, Tools, Services and  Apps
 
 **Program** - any set of instructions that can be executed by a computer. Basically almost everything is a program
@@ -11,4 +13,10 @@ Therm **Utilities** also could mean a Tool or set of Tools
 
 **Application** - end-user oriented programs
 
-To sum up - most end-user programs with GUI are applications, small specific programs with GUI could be called Tools, Services - programs that run in background and helping to work other Applications in System.
+### Summary 
+
+Most end-user programs with a GUI are considered applications. An application can consist of multiple services.
+Small, specific programs with a GUI can be called tools or utilities – these are typically smaller programs with a single purpose, or even command-line-only programs.
+Services are programs that run in the background and support the operation of other applications or the system itself.
+
+( utils => tools => services => apps ) == program

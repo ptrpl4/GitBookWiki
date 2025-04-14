@@ -36,6 +36,9 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.2/install.sh | bash
 nvm install 18
 nvm install --lts
 
+# install project node from .nvmrc file in project dir
+nvm install
+
 # npm
 nvm install-latest-npm
 
@@ -56,8 +59,7 @@ Node Package Manager
 
 #### Links
 
-* Official - [https://www.npmjs.com](https://www.npmjs.com/)
-* off - [https://yarnpkg.com](https://yarnpkg.com/)
+* Official - [npm](https://www.npmjs.com/)
 
 ### Installation
 
@@ -66,6 +68,7 @@ Node Package Manager
 ```bash
 # install/upgrade to latest
 npm install -g npm
+
 # check version
 npm -v
 ```
@@ -79,10 +82,12 @@ npm init
 # (un)install
 npm install express
 npm uninstall package_name
-npm install -g package_name # global
+npm install -g package_name
 
 # update
 npm update package_name@version
+npm outdated -g --depth=0
+npm update -g
 
 # info
 npm view npm
@@ -92,6 +97,11 @@ npm install
 
 # list
 npm ls -g # global level
+
+# config ( .npmrc file in - ~/ and project/ )
+npm config list
+npm config set fund false
+npm config get fund
 ```
 
 ### Installation folders
@@ -121,6 +131,8 @@ provides partial support for deterministic builds through the package-lock.json 
 ## yarn
 
 Yet Another Resource Negotiator
+
+* [yarn](https://yarnpkg.com/)
 
 ### Installation
 

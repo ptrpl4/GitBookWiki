@@ -9,6 +9,7 @@ A lightweight, interpreted, or just-in-time compiled programming language
 - Online IDE - [https://replit.com/](https://replit.com/)
 
 ## Basics
+
 ### Comments
 
 Example
@@ -41,14 +42,11 @@ let 1number; // SyntaxError: Invalid or unexpected token
 
 ### Primitive types
 
-JavaScript types can be divided into two categories: primitive types and object types. \
-Primitive types include `numbers`, `strings` of text (known as strings), and `Boolean` truth values (known as booleans).
+Any JavaScript value that is not a number, a string, a boolean, a symbol, null, or undefined is an object. Primitive types are immutable, object types are mutable.
 
-The special JavaScript values `null` and `undefined` are primitive values, but they are not numbers, strings, or booleans. undefined to represent a system-level, unexpected, or error- like absence of value and null to represent a program-level, normal, or expected absence of value.
+Technically, it is only  JavaScript objects that have methods. But numbers, strings, boolean, and  symbol values behave as if they have methods.
 
-Any JavaScript value that is not a number, a string, a boolean, a symbol, null, or undefined is an object.
-
-#### Numbers, boolean, null, undefined
+#### Numb, bool, null, undefined
 
 ```javascript
 // JavaScript supports several types of values
@@ -112,39 +110,37 @@ s[0] // => "h"
 s[s.length-1] // => "d"
 ```
 
-### Object
+### Object types
 
-An **object** is a _non-primitive_ data type that represents an **unordered** collection of _properties_. A **property** is a part of the object that imitates a variable. It consists of a **key** and a **value** separated by a colon. A key can only be a string, but the value may be of any data type.
+A  non-primitive data type that represents an unordered collection of properties. A property is a part of the object that imitates a variable, consists of a key and a value separated by a colon. A key can only be a string, but the value may be of any data type.
 
-JavaScript’s object types are **mutable** and its primitive types are **immutable**. \
+JavaScript’s object types are **mutable** and its primitive types are **immutable**.  
 JavaScript program can change the values of object properties and array elements.
 
 ```javascript
 // An object is a collection of name/value pairs, or a string to value map.
-let book = { // Objects are enclosed in curly braces.
-topic: "JavaScript", // The property "topic" has value  "JavaScript."
-edition: 7 // The property "edition" has value 7
-}; // The curly brace marks the end of the object.
+let book = {
+topic: "JavaScript", 
+edition: 7 
+}; 
 
 // Access the properties of an object with . or []:
-book.topic // => "JavaScript" 
-book["edition"] // => 7: another way to access property values.
-book.author = "Flanagan"; // Create new properties by assignment.
+book.topic
+book["edition"]
+
+book.author = "Flanagan"; // Create new properties 
 book.contents = {}; // {} is an empty object with no properties.
+
+// delete prop.
+delete book.author;
 
 // Conditionally access properties with ?. (ES2020): 
 book.contents?.ch01?.sect1 // => undefined: book.contents has no ch01 property.
 ```
 
-To **delete** a property, we can use the `delete` operator and a dot.
+#### Array
 
-```javascript
-delete country.population;
-```
-
-### Array
-
-Object. Ordered collection of numbered values. The JavaScript language includes special syntax for working with arrays, and arrays have some special behavior that distinguishes them from ordinary objects.
+Object. Ordered collection of numbered values
 
 ```javascript
 const companies = ["Apple", "Google", "Amazon"];
@@ -154,14 +150,63 @@ const firstPlace = companies[0] // get by index
 companies.length // check length
 ```
 
-### Other object types
+#### Set
 
-- **Set** object represents a set of values.
-- **Map** object represents a mapping from keys to values.
-- Various **typed array** types facilitate operations on arrays of bytes and other binary data.
-- **RegExp** type represents textual patterns and enables sophisticated matching, searching, and replacing operations on strings.
-- **Date** type represents dates and times and supports rudimentary date arithmetic.
-- **Error** and its subtypes represent errors that can arise when executing JavaScript code.
+represents a set of values
+
+```js
+const mySet = new Set([1, 2, 3, 3]);
+console.log(mySet); // Set(3) {1, 2, 3}
+```
+
+#### Map 
+
+represents a mapping from keys to values
+
+```js
+const myMap = new Map();
+myMap.set('a', 1);
+console.log(myMap.get('a')); // 1
+```
+
+#### Typed Array 
+
+types facilitate operations on arrays of bytes and other binary data.
+
+```js
+const buffer = new Uint8Array([10, 20, 30]);
+console.log(buffer[1]); // 20
+```
+
+#### RegExp
+
+represents textual patterns and enables sophisticated matching, searching, and replacing operations on strings.
+
+```js
+const regex = /hello/i;
+console.log(regex.test('Hello world')); // true
+```
+
+#### Date 
+
+represents dates and times and supports rudimentary date arithmetic.
+
+```js
+const now = new Date();
+console.log(now.toISOString()); // e.g., 2025-02-19T13:00:00.000Z
+```
+
+#### Error
+
+and its subtypes represent errors that can arise when executing JavaScript code.
+
+```js
+try {
+  throw new Error('Something went wrong');
+} catch (err) {
+  console.log(err.message); // Something went wrong
+}
+```
 
 ## Operators
 

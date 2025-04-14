@@ -255,12 +255,20 @@ count += 2; // Add 2: same as count = count + 2;
 count *= 3; // Multiply by 3: same as count = count * 3;
 count // => 6: variable names are expressions, too.
 
-// remainder %. This operator finds the residue from the division
-console.log(10 % 3); // 1, because 10 divided by 3 leaves a remainder of 1
-console.log(12 % 4); // 0, because 12 divided by 4 leaves no remainder
+//  % for - modulo (remainder after  division)
+console.log(10 % 3); // 1
+console.log(12 % 4); // 0
 
 // exponentiation **
 console.log(2 ** 3); // 8, because (2 * 2 * 2) is 8
+
+// rounding
+let x = .3 - .2; // thirty cents minus 20 cents  
+let y = .2 - .1; // twenty cents minus 10 cents  
+x === y // => false: the two values are not the same!  
+x === .1 // => false: .3-.2 is not equal to .1  
+y === .1 // => true: .2-.1 is equal to .1
+
 ```
 
 The list below is sorted from the highest to the lowest precedence level:
@@ -424,17 +432,17 @@ fetch('https://domain.com/api/v1/purchases?limit=50&offset=50',
 ### default style
 
 ```javascript
-function plus1(x) { // Define a function named "plus1" with parameter "x"
-    return x + 1; // Define a function named "plus1" value passed in
-}
+function plus1(x) {
+    return x + 1;
+};
 
-plus1(y) // => 4: y is 3, so this invocation returns 3+1
+plus1(y);
 
 let square = function (x) { // Functions are values and can be assigned to vars
-    return x * x;           // Compute the function's value
-};                         // Semicolon marks the end of the assignment.
+    return x * x;
+};
 
-square (plus1(y)) // => 16: invoke two functions in one expression
+square (plus1(y)) // => 16: invoke two functions in one line
 ```
 
 ### arrow functions style

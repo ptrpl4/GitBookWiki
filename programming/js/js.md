@@ -46,17 +46,48 @@ Any JavaScript value that is not a number, a string, a boolean, a symbol, null, 
 
 Technically, it is only  JavaScript objects that have methods. But numbers, strings, boolean, and  symbol values behave as if they have methods.
 
-#### Numb, bool, null, undefined
+#### Numb
 
-```javascript
-// JavaScript supports several types of values
+```js
 x = 1; // Numbers.
 x = 0.01; // Numbers can be integers or reals.
-x = "hello world"; // Strings of text in quotation marks.
-x = 'JavaScript'; // Single quote marks also delimit strings.
-x = true; // A Boolean value.
-x = false; // The other Boolean value.
-x = null; // Null is a special value that means "no value."
+```
+
+#### bool
+
+```js
+// false:
+false
+undefined  
+null  
+0  
+-0  
+NaN  
+"" // the empty string
+
+// all other - true
+true
+{}              // non-empty object
+[]              // empty array
+42              // any non-zero number
+-42             // negative numbers are truthy
+3.14            // floats
+"In Code We Trust" // non-empty string
+" "             // even a string with just a space
+new Date()      // date object
+Infinity        // positive or negative Infinity
+-Infinity
+function() {}   // any function
+Symbol("id")    // all Symbols are truthy
+```
+
+#### undefined, null
+
+null is a language keyword that evaluates to a special value that is  usually used to indicate the absence of a value
+
+undefined value is also the return value of functions that do not  explicitly return a value and the value of function parameters for which no  argument is passed
+
+```js
 x = undefined; // Undefined is another special value like null.
 
 // more undefined examples
@@ -73,20 +104,12 @@ function getDetails(a) {
 }
 getDetails(); // undefined value returned when a function has a missing parameter:
 
-//more string examples
-'two\nlines' // A string representing 2 lines written on one line
-
-// A one-line string written on 3 lines:
-"one\
- long\
- line"
- 
-// A two-line string written on two lines:
-`the newline character at the end of this line
-is included literally in this string`
+x = null; // Null is a special value that means "no value."
 ```
 
 #### Strings
+
+String is an immutable ordered sequence of 16-bit values, each of which typically represents a Unicode character. 
 
 Strings are immutable in JavaScript. Methods like replace() and toUpperCase() return new strings: they do not modify the string on which they are invoked.
 
@@ -94,20 +117,61 @@ Strings are immutable in JavaScript. Methods like replace() and toUpperCase() re
 let s = "hello"; // Start with some lowercase text 
 s.toUpperCase(); // Returns "HELLO" , but doesn't alter s 
 s // => "hello": the original string has not  changed
+
+// string examples
+"" // The empty string: it has zero characters  
+'testing'  
+"3.14"  
+'name="myform"'  
+"Wouldn't you prefer O'Reilly's book?"  
+"τ is the ratio of a circle's circumference to its radius"  
+`"She said 'hi'", he said.`
+
+// A string representing 2 lines written on one line:  
+'two\nlines'  
+// A one-line string written on 3 lines:  
+"one\
+long\
+line"  
+// A two-line string written on two lines:  
+`the newline character at the end of this line  
+is included literally in this string`
+```
+
+unicode
+
+```js
+let euro = "€";
+let love = "❤️";
+euro.length // => 1: this character has one 16-bit element
+love.length // => 2: UTF-16 encoding of ❤ is "\ud83d\udc99"
 ```
 
 Strings can also be treated like read-only arrays
 
-#### Template Literals (ES 6)
+```js
+// string as array
+let s = "hello, world";
+s[0] // => "h"
+s[s.length-1] // => "d"
+```
+
+##### Template Literals
+
+In ES6 and later, string literals can be delimited with backticks.
+
+Everything between the ${ and the matching } is interpreted as a  JavaScript expression
 
 ```javascript
 let name = "Bill";
 let greeting = `Hello ${name}.`; // greeting == "Hello Bill."
 
-// string as array
-let s = "hello, world";
-s[0] // => "h"
-s[s.length-1] // => "d"
+let errorMessage = `\  
+\u2718 Test failure at ${filename}:${linenumber}:  
+${exception.message}  
+Stack trace:  
+${exception.stack}  
+`;
 ```
 
 ### Object types
@@ -185,6 +249,14 @@ represents textual patterns and enables sophisticated matching, searching, and r
 ```js
 const regex = /hello/i;
 console.log(regex.test('Hello world')); // true
+
+let text = "testing: 1, 2, 3"; // Sample text  
+let pattern = /\d+/g; // Matches all instances of one or more digits
+pattern.test(text) // => true: a match exists
+text.search(pattern) // => 9: position of first match
+text.match(pattern) // => ["1", "2", "3"]: array of all matches  
+text.replace(pattern, "#") // => "testing: #, #, #"  
+text.split(/\D+/) // => ["","1","2","3"]: split on nondigits
 ```
 
 #### Date 

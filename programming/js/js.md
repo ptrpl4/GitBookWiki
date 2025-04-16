@@ -44,7 +44,7 @@ let 1number; // SyntaxError: Invalid or unexpected token
 
 Any JavaScript value that is not a number, a string, a boolean, a symbol, null, or undefined is an object. Primitive types are immutable, object types are mutable.
 
-Technically, it is only  JavaScript objects that have methods. But numbers, strings, boolean, and  symbol values behave as if they have methods.
+Technically, it is only JavaScript objects that have methods. But numbers, strings, boolean, and  symbol values behave as if they have methods.
 
 #### Numb
 
@@ -223,7 +223,7 @@ const mySet = new Set([1, 2, 3, 3]);
 console.log(mySet); // Set(3) {1, 2, 3}
 ```
 
-#### Map 
+#### Map
 
 represents a mapping from keys to values
 
@@ -233,7 +233,7 @@ myMap.set('a', 1);
 console.log(myMap.get('a')); // 1
 ```
 
-#### Typed Array 
+#### Typed Array
 
 types facilitate operations on arrays of bytes and other binary data.
 
@@ -259,7 +259,7 @@ text.replace(pattern, "#") // => "testing: #, #, #"
 text.split(/\D+/) // => ["","1","2","3"]: split on nondigits
 ```
 
-#### Date 
+#### Date
 
 represents dates and times and supports rudimentary date arithmetic.
 
@@ -278,6 +278,40 @@ try {
 } catch (err) {
   console.log(err.message); // Something went wrong
 }
+```
+
+## Global object
+
+JavaScript stores there  built-in methods, properties, global variables, and functions.
+
+- **Browser Environment**: The global object is window.
+
+```js
+console.log(window === this);        // true (in global scope)
+console.log(window.Math === Math);   // true
+console.log(window.parseInt === parseInt); // true
+
+// Defining global variables
+window.myVar = 'Hello, world!';
+console.log(myVar); // 'Hello, world!'
+```
+
+- **Node.js Environment**: The global object is global.
+
+```js
+console.log(global === this); // false (in modules), true (in REPL)
+console.log(global.setTimeout === setTimeout); // true
+
+// Defining global variables
+global.myVar = 'Hello from Node!';
+console.log(global.myVar); // 'Hello from Node!'
+```
+
+```js
+// Works in both browser and Node.js
+console.log(globalThis);
+globalThis.myGlobalVariable = 'Universal!';
+console.log(myGlobalVariable); // 'Universal!'
 ```
 
 ## Operators
@@ -350,7 +384,7 @@ The list below is sorted from the highest to the lowest precedence level:
 * multiplication, division
 * addition and subtraction
 
-### Logical operators 
+### Logical operators
 
 [https://hyperskill.org/learn/step/8580](https://hyperskill.org/learn/step/8580)
 

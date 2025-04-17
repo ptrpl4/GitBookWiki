@@ -11,9 +11,11 @@ zsh & bash -  programs that runs in Terminal, interprets Unix commands, and inte
 * Database and OS scripting - [https://ss64.com/](https://ss64.com)
 * 60 commands - [https://www.youtube.com/watch?v=gd7BXuUQ91w](https://www.youtube.com/watch?v=gd7BXuUQ91w)
 - ShellCheck - https://www.shellcheck.net/
+
 ## Syntax
 
 ### comments '# '
+
 ```bash
 # one line
 
@@ -73,6 +75,7 @@ echo $b
 echo $a
 # => 5
 ```
+
 #### double (( ))
 
 ```bash
@@ -143,6 +146,7 @@ echo ${fruit}ification
 ```
 
 ### square brackets
+
 #### single \[ ]
 
 alternative to the built-in `test` command
@@ -300,14 +304,14 @@ echo -e "Hmm...\nBrr...\nMmm..." | grep "m"
 
 #### Arithmetic operators
 
-| Op. | Function       | Description                                    | Example    | Result |
-| --- | -------------- | ---------------------------------------------- | ---------- | ------ |
-| +   | Addition       | Add two operands                               | $((10+3))  | 13     |
-| -   | Subtraction    | Subtract two operands                          | $((10-3))  | 7      |
-| *   | Multiplication | Multiply two operands                          | $((10*3))  | 30     |
-| /   | Division       | Return quotient after division                 | $((10/3))  | 3      |
-| %   | Modulo         | Return remainder after division                | $((10%3))  | 1      |
-| **  | Exponential    | Raise the first operand to the power of second | $((10**3)) | 1000   |
+| Op. | Function       | Description                                  | Example    | Result |
+| --- | -------------- | -------------------------------------------- | ---------- | ------ |
+| +   | Addition       | Add two operands                             | $((10+3))  | 13     |
+| -   | Subtraction    | Subtract two operands                        | $((10-3))  | 7      |
+| *   | Multiplication | Multiply two operands                        | $((10*3))  | 30     |
+| /   | Division       | Return quotient after division               | $((10/3))  | 3      |
+| %   | Modulo         | Return remainder after division              | $((10%3))  | 1      |
+| **  | Exponential    | Raise the first operand to the power of sec. | $((10**3)) | 1000   |
 
 ```bash
 #!usr/bin/env/bash
@@ -318,6 +322,7 @@ echo $(( 40/6 ))
 ```
 
 #### Operations with a variable
+
 | Operator | Function                   | Description                     | Example     | Result |
 | -------- | -------------------------- | ------------------------------- | ----------- | ------ |
 | +=       | Addition by constant       | Add two operands                | $((_x_+=3)) | 13     |
@@ -337,7 +342,6 @@ echo $val1
 # both `val=$(( 2 ))` and `$(( val = 2 ))` to assign values to vars
 echo $(( val1 *= 3 ))
 ```
-
 
 #### Relational and logical operations
 
@@ -785,22 +789,22 @@ or
 Test command options
 https://kapeli.com/cheat_sheets/Bash_Test_Operators.docset/Contents/Resources/Documents/index
 
-| **Option** | **Purpose**                                                      | **Syntax**                  |
-| ---------- | ---------------------------------------------------------------- | --------------------------- |
-| -eq        | True if two integers are equal                                   | `if [ INT1 -eq INT2 ]`      |
-| -ne        | True if two integers are not equal                               | `if [ INT1 -ne INT2 ]`      |
-| -gt        | True if the first integer is greater than the second             | `if [ INT1 -gt INT2 ]`      |
-| -ge        | True if the first integer is greater than or equal to the second | `if [ INT1 -ge INT2 ]`      |
-| -lt        | True if the first integer is smaller than the second             | `if [ INT1 -lt INT2 ]`      |
-| -le        | True if the first integer is smaller than or equal to the second | `if [ INT1 -le INT2 ]`      |
-| =          | True if two strings are equal                                    | `if [ STRING1 = STRING2 ]`  |
-| !=         | True if two strings are not equal                                | `if [ STRING1 != STRING2 ]` |
-| \>         | True if the first string is greater than the second              | `if [ STRING1 \> STRING2 ]` |
-| -z         | True if the string is null                                       | `if [ -z STRING ]`          |
-| -n         | True if the string is not null                                   | `if [ -n STRING ]`          |
-| -e         | True if file exists                                              | `if [ -e FILE ]`            |
-| -d         | True if the file is a directory                                  | `if [ -d FILE ]`            |
-| -s         | True if the file is not empty (non-zero file size)               | `if [ -s FILE ]`            |
+| Option | Purpose                                                      | Syntax                      |
+| ------ | ------------------------------------------------------------ | --------------------------- |
+| -eq    | True if two integers are equal                               | `if [ INT1 -eq INT2 ]`      |
+| -ne    | True if two integers are not equal                           | `if [ INT1 -ne INT2 ]`      |
+| -gt    | True if the first integer is greater than the second         | `if [ INT1 -gt INT2 ]`      |
+| -ge    | True if the first integer is greater than or equal to the sec| `if [ INT1 -ge INT2 ]`      |
+| -lt    | True if the first integer is smaller than the second         | `if [ INT1 -lt INT2 ]`      |
+| -le    | True if the first integer is smaller than or equal to the sec| `if [ INT1 -le INT2 ]`      |
+| =      | True if two strings are equal                                | `if [ STRING1 = STRING2 ]`  |
+| !=     | True if two strings are not equal                            | `if [ STRING1 != STRING2 ]` |
+| \>     | True if the first string is greater than the second          | `if [ STRING1 \> STRING2 ]` |
+| -z     | True if the string is null                                   | `if [ -z STRING ]`          |
+| -n     | True if the string is not null                               | `if [ -n STRING ]`          |
+| -e     | True if file exists                                          | `if [ -e FILE ]`            |
+| -d     | True if the file is a directory                              | `if [ -d FILE ]`            |
+| -s     | True if the file is not empty (non-zero file size)           | `if [ -s FILE ]`            |
 
 | Logical Operators |             |                         |
 | ----------------- | ----------- | ----------------------- |
@@ -833,6 +837,7 @@ echo "Hello world" | wc
 ```
 
 If you do not specify any files and run `wc` - terminal will read standard data input. When you finish, go to a new line and press the `Ctrl + D` key combination.
+
 ### tr
 
 can translate, squeeze, and delete characters from standard input, writing to standard output. The program processes the text character by character
@@ -969,6 +974,7 @@ process:
 * Ctrl+K → Exit shell
 
 ### Nano
+
 - Ctrl+K → delete a line
 
 ## Shell Scripts
@@ -1269,11 +1275,9 @@ done < "$filename"
 
 ## Shell
 
-### configs
+[dotfiles](https://github.com/ptrpl4/dotfiles)
 
-* [dotfiles](https://github.com/ptrpl4/dotfiles)
-
-- `/etc/...` - system config (all users)
+- `/etc/...` - sm config (all users)
 	- `/etc/bashrc`
 	- `/etc/profile`
 	- `/etc/enviroment`

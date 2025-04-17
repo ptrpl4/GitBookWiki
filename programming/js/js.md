@@ -28,16 +28,34 @@ console.log("Nice to see you!"); // This code outputs the message to the console
 
 The name of a variable can contain only letters, numbers or symbols `$` and `_` and it _cannot_ begin with a number.
 
-JavaScript uses keywords to create variables:
+#### keywords
 
-* `let` defines a **mutable variable** the value of which can be changed as many times as needed;
-* `const` declares a **constant** the value of which cannot be changed.
-* `var` - is an **outdated** way of declaring a variable
+* `let` - defines a mutable variable the value of which can be changed as many times as needed
+* `const` - declares a variable whose binding (reference) cannot be reassigned . It does not make the value itself immutable
+* `var` - an outdated way of declaring a variable
 
 ```javascript
 let letters, &ampersand, _underscore; // variable examples
 
 let 1number; // SyntaxError: Invalid or unexpected token
+```
+
+#### Best Practices
+
+- Use `const` by default
+- Use `let` when reassignment is necessary
+
+#### Destructuring Assignment
+
+```js
+let [first, ...rest] = "Hello"; // first == "H"; rest == ["e","l","l","o"]
+
+let transparent = {r: 0.0, g: 0.0, b: 0.0, a: 1.0};
+let {r, g, b} = transparent; // r == 0.0; g == 0.0; b == 0.0
+
+let points = [{x: 1, y: 2}, {x: 3, y: 4}]; // An array of  two point objects
+let [{x: x1, y: y1}, {x: x2, y: y2}] = points; // destructured  into 4 variables.  
+(x1 === 1 && y1 === 2 && x2 === 3 && y2 === 4) // => true
 ```
 
 ### Primitive types
@@ -424,6 +442,15 @@ console.log(!(false && !true)); // true
 
 ## Type conversion
 
+`==` operator with a flexible definition  of equality
+
+```js
+null == undefined // => true: These two values are treated as equal.
+"0" == 0 // => true: String converts to a number
+0 == false // => true: Boolean converts to number
+"0" == false // => true: Both operands convert to 0
+```
+
 ### String conversion
 
 In JS, an _implicit conversion_ will be called by the binary `+` operator when one of the operands is a string:
@@ -469,6 +496,19 @@ An _implicit_ conversion occurs when using logical operators (`||&&` `!`):
 !!3                      // true
 0 || "hello"             // "hello"
 "Master" && "Margarita"  // "Margarita"
+```
+
+### Explicit Conversions
+
+```js
+Number("3") // => 3
+String(false) // => "false": Or use false.toString()  
+Boolean([]) // => true
+
+x + "" // => String(x)  
++x // => Number(x)  
+x-0 // => Number(x)  
+!!x // => Boolean(x): Note double !
 ```
 
 ## built-in Functions

@@ -4,13 +4,13 @@ zsh & bash -  programs that runs in Terminal, interprets Unix commands, and inte
 
 #### links
 
-* Mac Shortcuts - [https://support.apple.com/guide/terminal/keyboard-shortcuts-trmlshtcts/mac](https://support.apple.com/guide/terminal/keyboard-shortcuts-trmlshtcts/mac)
-* More shortcuts - [http://macmy.ru/pages/terminal-commands-macosx#](http://macmy.ru/pages/terminal-commands-macosx)
-* Explain Shell - [https://explainshell.com/explain?cmd=curl+-fsSL+example.org](https://explainshell.com/explain?cmd=curl+-fsSL+example.org)
-* Filesystem Hierarchy Standard - [https://ru.wikipedia.org/wiki/FHS](https://ru.wikipedia.org/wiki/FHS)
-* Database and OS scripting - [https://ss64.com/](https://ss64.com)
-* 60 commands - [https://www.youtube.com/watch?v=gd7BXuUQ91w](https://www.youtube.com/watch?v=gd7BXuUQ91w)
-- ShellCheck - https://www.shellcheck.net/
+* Mac Shortcuts - [support.apple.com](https://support.apple.com/guide/terminal/keyboard-shortcuts-trmlshtcts/mac)
+* More shortcuts - [macmy.ru](http://macmy.ru/pages/terminal-commands-macosx)
+* Explain Shell - [explainshell.com](https://explainshell.com/explain?cmd=curl+-fsSL+example.org)
+* Filesystem Hierarchy Standard - [wikipedia.org](https://ru.wikipedia.org/wiki/FHS)
+* Database and OS scripting - [https://ss64.com](https://ss64.com)
+* 60 commands - [youtube.com](https://www.youtube.com/watch?v=gd7BXuUQ91w)
+* [ShellCheck](https://www.shellcheck.net)
 
 ## Syntax
 
@@ -477,6 +477,10 @@ cd || ls
 ```
 
 ## Built-in commands
+
+![](../../aaa-assets/ecupiu.jpg)
+
+[ref](https://bsky.app/profile/b0rk.jvns.ca/post/3lmxa6vneks23) 
 
 ### examples
 

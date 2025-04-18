@@ -2,7 +2,8 @@
 
 #### links
 
-- doc - https://docs.usebruno.com/
+- [doc](https://docs.usebruno.com)
+- [cli](https://www.npmjs.com/package/@usebruno/cli)
 
 ## response data
 
@@ -147,4 +148,48 @@ npm install -g @usebruno/cli
 bru run
 
 bru run foldername/testFolderName -r --env stage --reporter-html --insecure
+```
+
+### CI
+
+#### gitlab
+
+```yml
+image: node:22-alpine
+
+stages:
+  - test
+
+run_bruno_tests:
+  stage: test
+  before_script:
+    - apk add --no-cache make
+    - cd api-collection
+    - npm install # expect you to have @usebruno/cli in package.json
+    - echo "node $(node -v) npm $(npm -v) bru $(npx bru --version)"
+  script:
+    - cp .env.sample .env
+    - make run_stage
+  artifacts:
+    reports: # allows to see the test results in the GitLab UI
+      junit: api-collection/bruno-report/report.xml
+    paths: # allows to download the test results
+      - api-collection/bruno-report
+    when: on_failure
+    expire_in: 1 day
+```
+
+### make
+
+because its more convenient than package.json scripts
+
+```makefile
+run_stage:
+	test -d bruno-report || mkdir bruno-report
+	npx bru run Api/testCollection \
+		-r \
+		--env stage \
+		--reporter-html bruno-report/report.html \
+		--reporter-junit bruno-report/report.xml \
+		--insecure
 ```

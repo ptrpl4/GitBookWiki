@@ -83,6 +83,30 @@ Job names must be 255 characters or fewer.
 
 Use unique names for your jobs. If multiple jobs have the same name, only one is added to the pipeline, and it’s difficult to predict which one is chosen.
 
+### when
+
+by default jobs are automatic
+
+- There's no `when: manual` setting
+- There are no conditional `rules` that would prevent automatic execution
+- There are no `only`/`except` clauses limiting execution
+
+```yml
+run_bruno_tests:
+  stage: test
+  when: manual  # This makes the job require manual intervention
+  before_script:
+    # ...rest of your configuration...
+```
+
+### only
+
+```yml
+run_bruno_tests:
+  only:
+    - main  # Only run automatically on the main branch
+```
+
 ## Variables
 
 ```yaml
@@ -129,7 +153,6 @@ build_image:
 
 ### Docker
 
-
 ```yaml
 # build, and push to registry
 build_image:
@@ -137,5 +160,8 @@ build_image:
     - docker build --tag ptrpl4/repo-name:ci-cd-test-app-1.0 .
     - docker login --user $DOCKER_USER --password $DOCKER_PASSWORD
     - docker push ptrpl4/repo-name:ci-cd-test-app-1.0
-
 ```
+
+### Bruno
+
+[bruno-app](../../qa/backend-testing/bruno-app.md)

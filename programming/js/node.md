@@ -102,6 +102,8 @@ npm ls -g # global level
 npm config list
 npm config set fund false
 npm config get fund
+
+npm config -L project set fund false
 ```
 
 ### Installation folders

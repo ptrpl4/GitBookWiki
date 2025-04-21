@@ -298,7 +298,19 @@ try {
 }
 ```
 
-## Global object
+#### Object creation
+
+Creates a new object and invokes a function (constructor) to initialize the properties.
+
+```js
+new Object()  
+new Point(2,3)
+
+new Object  
+new Date
+```
+
+### Global object
 
 JavaScript stores there  built-in methods, properties, global variables, and functions.
 
@@ -332,18 +344,18 @@ globalThis.myGlobalVariable = 'Universal!';
 console.log(myGlobalVariable); // 'Universal!'
 ```
 
-## Operators
+### Operators
 
 Operators act on values (the operands) to produce a new value.
 
-### _typeof_ operator
+#### _typeof_ operator
 
 ```javascript
 console.log(typeof(9)); // number
 console.log(typeof 9); // number
 ```
 
-### comparison operators
+#### comparison operators
 
 greater than - *gt*
 
@@ -359,7 +371,7 @@ a >= b
 
 *lt* and *lte* accordingly
 
-### Arithmetic operators
+#### Arithmetic operators
 
 The JavaScript programming language provides operators to perform arithmetic operations. They are called **binary** because they apply to two **operands** (objects over which the operation is performed).
 
@@ -402,7 +414,7 @@ The list below is sorted from the highest to the lowest precedence level:
 * multiplication, division
 * addition and subtraction
 
-### Logical operators
+#### Logical operators
 
 [https://hyperskill.org/learn/step/8580](https://hyperskill.org/learn/step/8580)
 
@@ -440,7 +452,44 @@ console.log(!false && !true);   // false
 console.log(!(false && !true)); // true
 ```
 
-## Type conversion
+#### in
+
+expects: 
+- left-side operand that is a string, symbol, or  value that can be converted to a string
+- right-side operand - an object
+
+```js
+let point = {x: 1, y: 1}; // Define an object  
+"x" in point // => true: object has property named "x"  
+"z" in point // => false: object has no "z" property.
+"toString" in point // => true: object inherits toString method
+let data = [7,8,9]; // An array with elements (indices) 0, 1, and 2  
+"0" in data // => true: array has an element "0"  
+1 in data // => true: numbers are converted to  strings
+3 in data // => false: no element 3
+```
+
+#### instanceof
+
+expects:
+- a left-side operand that is an object 
+- a right-side operand that identifies a class of objects
+
+object in JavaScript **inherits from Object.prototype** unless explicitly created without a prototype
+
+```js
+let d = new Date(); // Create a new object with the Date() constructor
+d instanceof Date // => true: d was created with Date()
+d instanceof Object // => true: all objects are instances of Object
+d instanceof Number // => false: d is not a Number object
+
+let a = [1, 2, 3]; // Create an array with array literal syntax
+a instanceof Array // => true: a is an array
+a instanceof Object // => true: all arrays are objects
+a instanceof RegExp // => false: arrays are not regulal expressions
+```
+
+### Type conversion
 
 `==` operator with a flexible definition  of equality
 
@@ -451,7 +500,7 @@ null == undefined // => true: These two values are treated as equal.
 "0" == false // => true: Both operands convert to 0
 ```
 
-### String conversion
+##### String conversion
 
 In JS, an _implicit conversion_ will be called by the binary `+` operator when one of the operands is a string:
 
@@ -470,7 +519,7 @@ Remember the order of arithmetic operations. If there are several numbers before
 3 + 10 + "1" // "131", not "3101"
 ```
 
-### Numeric conversion
+#### Numeric conversion
 
 When converting a string to a number, spaces and characters `\n,`  at the beginning and the end of the string are cut off. If the string turns out to be empty, the result will be `0`. The boolean type behaves as expected: `false` turns into `0`, `true` turns into `1`.
 
@@ -498,7 +547,7 @@ An _implicit_ conversion occurs when using logical operators (`||&&` `!`):
 "Master" && "Margarita"  // "Margarita"
 ```
 
-### Explicit Conversions
+#### Explicit Conversions
 
 ```js
 Number("3") // => 3

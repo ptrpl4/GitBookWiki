@@ -1,12 +1,44 @@
 # Browser
 
+- Browser is a JS runtime environment that adds APIs for interacting with the web page, user, and network. 
+- Provides objects like window, document, and built-in behaviours like rendering and events.
+
 ## Global object
 
-The global object provides variables and functions that are available anywhere. By default, those that are built into the language or the environment.
+The global object provides variables and functions that are available anywhere
 
-In a browser it is named `window`, for Node.js it is `global`, for other environments it may have another name.
+In a browser it is named `window`, for Node.js it is `global`
 
 ![](../../aaa-assets/browser-1.png)
+
+## BOM
+
+Browser Object Model, centered around the window object, and it includes:
+
+| **Object / API**             | **Description**                                         |
+| ---------------------------- | ------------------------------------------------------- |
+| window                       | The global object in the browser; root of BOM           |
+| navigator                    | Info about the browser (e.g. user agent, online status) |
+| location                     | Info about and control over the current URL             |
+| history                      | Allows navigation through browser history               |
+| screen                       | Info about the user’s screen dimensions                 |
+| alert(), prompt(), confirm() | Dialogs for user interaction                            |
+| setTimeout(), setInterval()  | Timers                                                  |
+| open(), close()              | Manage browser windows or tabs                          |
+
+These are **not part of the JavaScript language or DOM**, but are provided by browsers to enhance web page interactivity.
+
+
+```js
+/*
+                              BOM
+                              |
+    __________________________|______________________________________
+    |             |           |             |             |         |
+navigator      screen      location       fetch        history     ...
+
+*/
+```
 
 ## Browser events
 
@@ -139,7 +171,7 @@ With the `querySelector()` method it is possible to return the first document el
 </script>
 ```
 
-#### querySelectorAll()
+### querySelectorAll()
 
 \*\*\*\*gets all elements that match the specified selector:
 

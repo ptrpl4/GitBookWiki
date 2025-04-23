@@ -418,8 +418,6 @@ The list below is sorted from the highest to the lowest precedence level:
 
 [https://hyperskill.org/learn/step/8580](https://hyperskill.org/learn/step/8580)
 
-There are only three of them in JavaScript: logical AND (`&&`), logical OR (`||`) and NOT (`!`).
-
 ```javascript
 console.log(true && true);   // true
 console.log(true && false);  // false

@@ -174,7 +174,7 @@ The content of package.json must be written in **JSON**.
 
 At least two fields must be present in the definition file: **name** and **version**.
 
-```
+```json
 {
 "name" : "foo",
 "version" : "1.2.3",
@@ -201,6 +201,15 @@ A **module** is any file or directory in the `node_modules` directory that can b
 
 Since modules are not required to have a `package.json` file, not all modules are packages. Only modules that have a `package.json` file are also packages.
 
+### devDependencies
+
+deps only needed for development. Stored in devDependencies section in package.json
+
+```shell
+npm install --save-dev <package> # or -D
+
+npm install --production # ignored all devDep
+```
 
 ## process.env
 

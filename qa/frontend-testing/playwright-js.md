@@ -565,5 +565,73 @@ export class TopMenuPage {
     }
 
 }
+
 export default TopMenuPage;
+```
+
+### Screenshot tests
+
+```ts
+import { test } from '@playwright/test';
+import { Routes } from '../../../constants';
+
+const { describe, expect } = test;
+
+describe(`card_cancelled: ${Routes.card_cancelled}`, () => {
+  test('card_cancelled', async ({ page }) => {
+    await page.goto(Routes.card_cancelled, { waitUntil: 'networkidle' });
+
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot('card_cancelled.png', {
+      threshold: 0.1
+    });
+  });
+});
+```
+
+## CI
+
+### Gitlab
+
+package.json
+
+```json
+"scripts": {
+
+"test": "npx playwright test --project=chromium --config=playwright.config.ts"
+```
+
+.gitlab-ci.yml
+
+```yml
+.test_template:
+  image: mcr.microsoft.com/playwright:v1.47.0-jammy
+  stage: tests
+  artifacts:
+    reports:
+      junit:
+        - tests/test-results/report.xml
+    paths:
+      - tests/test-results
+    expire_in: 1d
+    when: on_failure
+  script:
+    - npm run test
+```
+
+## Docker
+
+```Dockerfile
+FROM mcr.microsoft.com/playwright:v1.47.0-jammy
+
+WORKDIR /app
+
+COPY package.json package-lock.json* ./
+
+RUN npm install --production
+
+RUN npx playwright install chromium webkit firefox
+
+COPY . .
+
+CMD ["npm", "run", "test"]
 ```

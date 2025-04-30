@@ -104,3 +104,9 @@ defaults write com.apple.dock "static-only" -bool "true" && killall Dock
 # reset
 defaults delete com.apple.dock "static-only" && killall Dock
 ```
+
+### Change screenshot format
+
+```shell
+defaults write com.apple.screencapture type JPG && killall SystemUIServer
+```

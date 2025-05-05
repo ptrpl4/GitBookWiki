@@ -53,6 +53,16 @@ nvm use 18
 nvm uninstall 12
 ```
 
+#### .nvmrc
+
+- [doc](https://github.com/nvm-sh/nvm?tab=readme-ov-file#nvmrc)
+
+Contains project node ver. `nvm use`,`nvm install`,`nvm exec`,`nvm run`, and`nvm which`will use it.
+
+```.nvmrc
+22.14.0
+```
+
 ## npm
 
 Node Package Manager

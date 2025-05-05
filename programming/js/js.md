@@ -310,6 +310,54 @@ new Object
 new Date
 ```
 
+#### Property Access Expressions
+
+JavaScript defines two syntaxes for property access:  
+`expression . identifier`  
+`expression [ expression ]`
+
+```js
+// dot.notation
+const user = { name: "Alice", age: 30 };
+console.log(user.name); // "Alice"
+user.age = 31;
+
+// bracket["notation]
+const user = { name: "Alice" };
+const key = "name";
+console.log(user[key]); // "Alice"
+
+// complex example
+const data = {
+  items: [
+    {
+      sku: "bundle_123",
+      price: {
+        amount: "16.00",
+        currency: "USD"
+      },
+      loyalty_rewards: [
+        {
+          name: "Pirate Coins",
+          amount: 160
+        }
+      ]
+    }
+  ]
+};
+
+// Dot notation for nested properties
+console.log(data.items[0].price.amount);             // "16.00"
+console.log(data.items[0].loyalty_rewards[0].amount); // 160
+
+// Bracket notation with string keys
+console.log(data["items"][0]["price"]["currency"]);  // "USD"
+
+// Mixed notation with dynamic key
+const rewardKey = "loyalty_rewards";
+console.log(data.items[0][rewardKey][0].name);       // "Pirate Coins"
+```
+
 ### Global object
 
 JavaScript stores there  built-in methods, properties, global variables, and functions.

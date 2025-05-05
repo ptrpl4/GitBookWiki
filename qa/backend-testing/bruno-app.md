@@ -165,7 +165,7 @@ run_bruno_tests:
   before_script:
     - apk add --no-cache make
     - cd api-collection
-    - npm install # expect you to have @usebruno/cli in package.json
+    - npm ci # expect you to have @usebruno/cli in package.json
     - echo "node $(node -v) npm $(npm -v) bru $(npx bru --version)"
   script:
     - cp .env.sample .env

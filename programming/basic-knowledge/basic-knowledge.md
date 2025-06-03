@@ -130,3 +130,35 @@ Uses sixteen digits: 0 to 9 and A to F (where A=10, B=11, C=12, D=13, E=14, F=15
 ### Base-64
 
 Uses 64 characters, typically including A-Z, a-z, 0-9, and two additional symbols (often + and /).
+
+## Primitive Data Structures
+
+- **Integers**: Whole numbers
+- **Floats**: Decimal numbers
+- **Characters**: Single letters or symbols
+- **Booleans**: True or false values
+
+## Non-Primitive Data Structures
+
+### Arrays
+
+A collection of elements of the same type, stored in contiguous memory locations. Each element can be accessed using its index.
+
+- O(1) time complexity for accessing elements by index, making it very fast for retrieval.
+- O(n) time complexity for insertion and deletion (except at the end) because elements may need to be shifted to maintain order.
+
+### Linked lists
+
+A linear collection of nodes, where each node contains data and a reference (link) to the next node. It allows for dynamic memory allocation.
+
+First node - HEAD, Last node - TAIL
+
+- O(n) time complexity for accessing elements, as you must traverse the list from the head to reach a specific node.
+
+### Stacks
+
+### Queues
+
+### Trees
+
+### Graphs

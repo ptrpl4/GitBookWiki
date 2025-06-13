@@ -94,6 +94,10 @@ example:
 - should be ready for environment switch
 - should be ready for request-specific data switch
 
+### notes
+
+- better to avoid manual sorting if it not necessary - all item in folder will update `seq` info if you insert new item in top of the list
+
 ## assert
 
 can be used with [[#response data]]

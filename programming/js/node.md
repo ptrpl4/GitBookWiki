@@ -95,9 +95,13 @@ npm uninstall package_name
 npm install -g package_name
 
 # update
-npm update package_name@version
 npm outdated -g --depth=0
-npm update -g
+npm outdated -l --depth=0
+
+npm update package_name@version
+npm update -g # update to wanted version
+
+npm install blabla@latest # update to latest
 
 # info
 npm view npm
@@ -114,6 +118,10 @@ npm config set fund false
 npm config get fund
 
 npm config -L project set fund false
+
+# cleanup
+npm prune
+npm dedupe
 ```
 
 ### Installation folders
@@ -219,6 +227,18 @@ deps only needed for development. Stored in devDependencies section in package.j
 npm install --save-dev <package> # or -D
 
 npm install --production # ignored all devDep
+```
+
+### versioning
+
+- ^1.2.3 allows non-breaking updates (1.x.x)
+- ~1.2.3 allows patch updates (1.2.x)
+- "1.2.3" locks to a specific version
+
+```json
+"dependencies": {
+    "@usebruno/cli": "~2.4.0"
+  }
 ```
 
 ## process.env

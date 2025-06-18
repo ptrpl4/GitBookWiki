@@ -61,3 +61,11 @@ rpi-connect status
 ## Soft
 
 Moved to [linux](../../apps-and-tools/cli/linux.md)
+
+## hard
+
+### Original Fan for pi 4 model
+
+Can be managed via `raspi-config`. 
+
+![](../../aaa-assets/raspberry-pi-1.png)

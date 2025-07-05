@@ -19,3 +19,15 @@ A _Web Application's_ job is to receive HTTP requests and return HTTP responses.
 links:
 
 - https://developer.mozilla.org/en-US/docs/Learn/Server-side/First_steps/Client-Server_overview
+
+### SSR Server-Side Rendering
+
+- HTML is generated on the server on each request
+- Server sends a fully rendered HTML page to the browser
+- Browser shows content immediately, then JS enhances interactivity
+
+### CSR Client-Side Rendering
+
+- Server sends a blank HTML page + JavaScript bundle
+- Browser runs JS, which builds and renders the UI on the client side
+- Data fetched via API, then rendered in-browser

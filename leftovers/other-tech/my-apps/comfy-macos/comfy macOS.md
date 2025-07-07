@@ -113,8 +113,12 @@ defaults write com.apple.screencapture type JPG && killall SystemUIServer
 
 ## other
 
-disable spotlight indexing
+spotlight indexing
 
 ```shell
+# disable
 sudo mdutil -i off /
+
+# status
+mdutil -s /
 ```

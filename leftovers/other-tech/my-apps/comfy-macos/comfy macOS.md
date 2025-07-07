@@ -110,3 +110,11 @@ defaults delete com.apple.dock "static-only" && killall Dock
 ```shell
 defaults write com.apple.screencapture type JPG && killall SystemUIServer
 ```
+
+## other
+
+disable spotlight indexing
+
+```shell
+sudo mdutil -i off /
+```

@@ -26,6 +26,9 @@ vcgencmd get_mem gpu
 
 # watcher
 watch -n 1 vcgencmd measure_temp
+
+# get hardware info
+cat /proc/cpuinfo
 ```
 
 ## Connect

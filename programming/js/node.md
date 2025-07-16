@@ -4,19 +4,21 @@ Asynchronous event-driven JavaScript runtime.
 
 #### Links
 
-* Docs - [https://nodejs.org/en/](https://nodejs.org/en/)
+* [Node Docs](https://nodejs.org/en/)
 
 ## Node version management
 
 ### n
 
-* n - [https://github.com/tj/n](https://github.com/tj/n)
+* n - [github](https://github.com/tj/n)
+- [installation hints](https://github.com/tj/n?tab=readme-ov-file#installation) 
 
 ```bash
-# install with n (Node.js version management)
+# with node
 npm install -g n
-# install node with n
-n lts # note! on macOS you probably should change app directory to avoid r/w restrictions
+
+n lts 
+# !on macOS you probably should change app directory to avoid r/w restrictions
 ```
 
 ### nvm

@@ -152,11 +152,17 @@ npm install -g @usebruno/cli
 bru run
 
 bru run foldername/testFolderName -r --env stage --reporter-html --insecure
+
+# --env-var expects lovercase 
+# --env-var  urlstage=https://$${CI_PROJECT_NAME}-$${CI_COMMIT_REF_SLUG}.$${k8s_base_domain}
+
 ```
 
 ### CI
 
 #### gitlab
+
+##### one job
 
 ```yml
 image: node:22-alpine
@@ -171,9 +177,18 @@ run_bruno_tests:
     - cd api-collection
     - npm ci # expect you to have @usebruno/cli in package.json
     - echo "node $(node -v) npm $(npm -v) bru $(npx bru --version)"
+  variables:
+    URL_STAGE: "api.stage.srv.local"
   script:
+    - echo "test will be conducted on $URL_STAGE"
     - cp .env.sample .env
     - make run_stage
+  cache:
+    key:
+      files:
+        - testCollection/package-lock.json
+    paths:
+      - testCollection/node_modules/
   artifacts:
     reports: # allows to see the test results in the GitLab UI
       junit: api-collection/bruno-report/report.xml
@@ -181,6 +196,64 @@ run_bruno_tests:
       - api-collection/bruno-report
     when: on_failure
     expire_in: 1 day
+```
+
+##### multiple jobs
+
+```yaml
+# Templates
+.bruno_template:
+  image: node:22-alpine
+  before_script:
+    - apk add --no-cache make
+    - cd testCollection
+    - npm ci
+    - echo "node $(node -v) npm $(npm -v) bru $(npx bru --version)"
+    - cp .env.sample .env
+    - sed -i '/^URL_STAGE=/d' .env
+  cache:
+    key:
+      files:
+        - testCollection/package-lock.json
+    paths:
+      - testCollection/node_modules/
+  artifacts:
+    reports:
+      junit: testCollection/bruno-report/report.xml
+    paths:
+      - estCollection/bruno-report
+    when: on_failure
+    expire_in: 1 day
+
+# Jobs
+
+bruno_current_tests:
+  stage: test
+  extends:
+    - .only_template
+    - .bruno_template
+  when: manual
+  allow_failure: true
+  variables:
+    URL_STAGE: "loyalty-points-api.gcp-k8s-b2c-login-stage.srv.local"
+  script:
+    - echo "test will be conducted on $URL_STAGE"
+    - make run_stage_ci_current
+
+
+bruno_deployment_tests:
+  stage: test_on_stage
+  extends:
+    - .k8s_variables_stage
+    - .bruno_template
+  variables:
+    URL_STAGE: "$CI_PROJECT_NAME-$CI_COMMIT_REF_SLUG.stage.srv.local"
+  script:
+    - echo "test will be conducted on $URL_STAGE"
+    - make run_stage_ci_deployment
+    
+  rules:
+    - if: '$CI_COMMIT_TAG =~ /^stage-.*$/'
 ```
 
 ### make

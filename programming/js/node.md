@@ -126,6 +126,14 @@ npm prune
 npm dedupe
 ```
 
+#### .npmrc
+
+example
+
+```.npmrc
+fund = false
+```
+
 ### Installation folders
 
 - local installs have links created at the `./node_modules/.bin/` directory

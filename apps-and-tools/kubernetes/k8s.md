@@ -28,6 +28,7 @@ Examples
 * Master Node - Main Node for cluster
 * Pod - abstraction over container. Usually 1 Pod = 1 App
 * Service - static address for Pod (not connected with Pod lifecycle)
+* Namespace - mechanism for isolating resources
 * Ingress - routs traffic to k8s cluster and sends to services inside k8s
 * ConfigMap - keeps external config of application. could keep env. vars
 * Secret - same as config map, encoded in base64 + should be secure encoded
@@ -159,6 +160,17 @@ spec:
 - doc - [https://kubernetes.io/docs/concepts/services-networking/service/](https://kubernetes.io/docs/concepts/services-networking/service/)
 
 ![[k8s-10.png]]
+
+### Namespace
+
+Way to divide cluster resources between multiple users or applications.
+
+#### Default Namespaces
+
+- default - namespace for objects that do not have a specified namespace.
+- kube-system - system services and components managed by Kubernetes.
+- kube-public - readable by all users, including unauthenticated users.
+- kube-node-lease - for node lease objects, which improve the performance of the node heartbeats.
 
 ## Configutations
 
@@ -296,6 +308,47 @@ App should know what to do on `SIGTERM`.
 
 - **Downtime**: All old Pods are terminated before new Pods are started.
 - **Simple**: Suitable for applications that cannot run multiple versions simultaneously.
+
+### Resource Management
+
+- limit - maximum reserved cpu/memory resource for Pof
+- requests - minimum expected cpu/memory consumed by Pod
+
+```yaml
+spec:
+  containers:
+	resources:
+      limits:
+        cpu: 100m
+        memory: 256Mi
+      requests:
+        cpu: 10m
+        memory: 128Mi
+```
+
+#### milliCPU
+
+1 CPU - represents one virtual CPU (vCPU) or one physical CPU core.
+
+- 10m means 0.01 CPU or half of a CPU core
+- 500m means 0.5 CPU or half of a CPU core
+- 250m means 0.25 CPU or a quarter of a CPU core
+- 1000m means 1 CPU
+
+
+#### Quality of Service
+
+used to categorize Pods based on their resource requests and limits
+
+- Guaranteed - requests and limits equal. This class provides the highest level of service and ensures that the Pod will not be evicted under resource pressure.
+- Burstable	- requests and limits are not equal. This class allows for some flexibility, enabling the Pod to use more resources when available, but it may be evicted under high resource pressure.
+- BestEffort - Pods that do not have any resource requests or limits set. This class provides the lowest level of service, and these Pods are the first to be evicted when the node runs out of resources.
+
+```
+status:
+  conditions:
+    qosClass: Burstable
+```
 
 ## Tools and Apps
 

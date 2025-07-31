@@ -25,7 +25,7 @@ npm init playwright@latest
 npm init playwright new-project
 
 # Or install manualy 
-npm i -D @playwright/test
+npm i -D @playwright/tests
 
 # install supported browsers
 npx playwright install
@@ -37,6 +37,16 @@ npx playwright test --project=chromium # Runs the tests on Desktop Chrome
 npx playwright test example-folder # Runs the tests in a specific file
 npx playwright test --debug # Runs the tests in debug mode.
 npx playwright codegen # Auto generate tests with Codegen.
+```
+
+Project start
+
+```shell
+nvm install --lts
+
+npm install playwright -l
+
+npx playwright install
 ```
 
 #### helper

@@ -53,6 +53,9 @@ nvm use 18
 
 # uninstall
 nvm uninstall 12
+
+# create project .nvmrc
+node -v > .nvmrc
 ```
 
 #### .nvmrc
@@ -196,22 +199,24 @@ yarn info name
 
 generates a lockfile (**yarn.lock**) to ensure deterministic installations, guaranteeing consistent dependency resolution across different environments
 
-## Package.JSON
-
-The content of package.json must be written in **JSON**.
+## package.json
 
 At least two fields must be present in the definition file: **name** and **version**.
 
 ```json
 {
-"name" : "foo",
-"version" : "1.2.3",
-"description" : "A package for fooing things",
-"main" : "foo.js",
-"keywords" : ["foo", "fool", "foolish"],
-"author" : "John Doe",
-"licence" : "ISC"
-} 
+  "name": "bruno-api-tests",
+  "version": "0.0.1",
+  "description": "API tests",
+  "author": "Pyotr Void",
+  "type": "commonjs",
+  "scripts": {
+    "test:stage": "make run_stage"
+  },
+  "dependencies": {
+    "@usebruno/cli": "~2.8.0"
+  }
+}
 ```
 
 ### packages
@@ -241,8 +246,8 @@ npm install --production # ignored all devDep
 
 ### versioning
 
-- ^1.2.3 allows non-breaking updates (1.x.x)
-- ~1.2.3 allows patch updates (1.2.x)
+- "^1.2.3" allows non-breaking updates (1.x.x)
+- "~1.2.3" allows patch updates (1.2.x)
 - "1.2.3" locks to a specific version
 
 ```json
@@ -266,8 +271,9 @@ Loads environment variables from a .env file into process.env
 docs - [https://github.com/motdotla/dotenv#dotenv](https://github.com/motdotla/dotenv#dotenv-)
 
 ```javascript
-require('dotenv').config()
-// import 'dotenv/config' // for ES6
+import dotenv from 'dotenv';
+dotenv.config({ path: '/custom/path/to/.env' })
 
+// to check
 console.log(process.env)
 ```

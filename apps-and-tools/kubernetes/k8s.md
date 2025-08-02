@@ -102,8 +102,50 @@ Has permanent ip address and works as load balancer if there is more than one Po
 
 ### Config Map and Secrets
 
+Allow to manage configuration separately from application code, can be created from files, directories, or literal values
+
 ![](../../aaa-assets/k8s-5.png)
 
+Usage example
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-pod
+spec:
+  containers:
+  - name: my-container
+    image: my-image
+    env:
+    - name: MY_ENV_VAR
+      valueFrom:
+        configMapKeyRef:
+          name: my-config
+          key: key1
+```
+
+file example
+
+```configmap.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+	name: my-configmap-env
+data:
+	dbhost: postgresql
+	DEBUG: "false"
+```
+
+commands
+
+```shell
+# get all configmaps
+k get cm
+
+# apply
+k apply -f configmap.yaml
+```
 ### Volume
 
 ![](../../aaa-assets/k8s-6.png)

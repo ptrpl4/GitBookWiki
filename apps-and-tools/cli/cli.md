@@ -529,7 +529,10 @@ seq 10 # 1 2 3 4 5 6 7 8 9 10
 #  -f --ignore-case, 
 cat text.txt | sort
 
-# uniq -i --ignore-case, -c --count, -D --all-repeated,
+# uniq -i --ignore-case, -c --count, -D --all-repeated
+
+xxd # hex representation (hexdump) from a binary file
+echo 'my as' xxd -p
 ```
 
 * `pwd` - **p**rint **w**orking **d**irectory

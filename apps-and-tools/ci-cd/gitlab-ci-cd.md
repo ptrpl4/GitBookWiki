@@ -1,7 +1,5 @@
 # 🦊 GitLab CI/CD
 
-## Info
-
 A pipeline is composed of independent jobs that run scripts, grouped into stages. Stages run in sequential order, but jobs within stages run in parallel.
 
 #### Links
@@ -10,13 +8,21 @@ A pipeline is composed of independent jobs that run scripts, grouped into stages
 - examples - [https://docs.gitlab.com/ee/ci/examples/](https://docs.gitlab.com/ee/ci/examples/)
 - guides - [https://gitlab.com/gitlab-org/gitlab-foss/-/blob/master/doc/development/cicd/templates.md](https://gitlab.com/gitlab-org/gitlab-foss/-/blob/master/doc/development/cicd/templates.md#development-guide-for-gitlab-cicd-templates)
 
-#### Filename
+## gitlab-ci.yml
+
+[YAML file](https://docs.gitlab.com/ee/ci/yaml/), located in project's root directory, defines CI/CD pipeline, including stages, jobs, and runners.
 
 ```
 .gitlab-ci.yml
 ```
 
-#### File Structure
+### templates
+
+- [link](https://docs.gitlab.com/ci/examples/#cicd-templates)
+
+Use the `include` keyword to include the template.
+
+### File Structure
 
 ```yaml
 # List of stages for jobs, and their order of execution
@@ -60,7 +66,26 @@ deploy-job:
     - echo "Application successfully deployed.
 ```
 
+## Gitlab Runner
+
+Executes CI/CD jobs on your infrastructure (e.g. physical machines, virtual machines, Docker containers, or Kubernetes clusters).
+
+## Stages
+
+Stages define the order of execution for jobs
+
+```bash
+stages:
+    - deps
+    - test
+    - build
+    - e2e
+    - deploy
+```
+
 ## Jobs
+
+Individual units of work within a stage. Jobs within stages run in parallel.
 
 ### Job name limitations
 
@@ -109,6 +134,8 @@ run_bruno_tests:
 
 ## Variables
 
+- [doc](https://docs.gitlab.com/ci/variables)
+
 ```yaml
 build_image:
   variables:
@@ -119,17 +146,6 @@ build_image:
   script:
     - docker build -t $IMAGE_NAME:$IMAGE_TAG .
     - docker push $IMAGE_NAME:$IMAGE_TAG
-```
-
-## Stages
-
-```bash
-stages:
-    - deps
-    - test
-    - build
-    - e2e
-    - deploy
 ```
 
 ## Services

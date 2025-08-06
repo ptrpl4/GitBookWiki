@@ -1,26 +1,51 @@
 # 🐇 Message Brokers
 
-links
+#### links
 
-[https://hasithas.medium.com/introduction-to-message-brokers-c4177d2a9fe3](https://hasithas.medium.com/introduction-to-message-brokers-c4177d2a9fe3)
+- [link](https://hasithas.medium.com/introduction-to-message-brokers-c4177d2a9fe3)
 
-Message queue stores messages in the exact order they are received and sends to the receiver in the same order. If somehow a message was unable to be delivered (problem with the network) the message will be rescheduled for later in the queue. Also in a message queue, messages are stored in the exact order in which they were transmitted and remain in the queue until receipt is confirmed.
+## basics
 
-Using a message broker is an optimal solution where when there are **time and resource consuming tasks** and when the **response of a request is not required immediately**.
+Message broker is a middleware that facilitates communication between different applications, services, or components by receiving, storing, and forwarding messages. 
 
 ### Components of a message broker
 
-Now let’s look into the basic components of a message broker:
+#### Producer/Publisher
 
-**Producer** –This component is responsible for sending messages. It’s connected to the message broker. In publish/subscribe pattern (We have discussed in the below section) they are called publishers.
+Integration with existing service that creates "events". Sends messages to the broker.
 
-**Consumer** — This component consumes messages in the message broker. In publish/subscribe pattern they are called subscribers.
+#### Consumer/Subscriber
 
-**Queue/topic** — Message broker store messages here.
+Service that receives messages from the broker and process it. 
+
+#### Queue/Topic
+
+Queue: A storage area where messages are placed for consumers to pick up (used in Point-to-Point or Queue model).
+
+Topic: A named logical channel to which messages are sent, allowing multiple consumers to receive the same message (used in Publish/Subscribe model).
+
+#### Broker
+
+Manages message delivery between producers and consumers.
 
 ![](../aaa-assets/message-brokers-1.png)
 
-### Point-to-Point 
+### Process Description
+
+- Producer Sends a Message
+	•	The producer sends a message to the broker. The message could be anything like task data, event notifications, or user interactions.
+- Broker Receives the Message:
+	•	The broker stores the message temporarily, either in a queue (point-to-point) or a topic (publish/subscribe).
+	•	The broker can also apply routing rules to determine where the message goes.
+- Consumer Picks Up the Message:
+	•	The consumer retrieves the message from the queue (in the case of a queue-based system) or from the topic (in the case of a pub/sub system).
+	•	In some cases, multiple consumers can receive the same message (in pub/sub systems).
+	•	The broker ensures that each message is delivered to the appropriate consumer(s).
+- Acknowledgment and Processing:
+	•	After processing, the consumer acknowledges receipt of the message to the broker, which then removes the message from the queue or topic.
+
+## messaging patterns
+### Point-to-Point (Queue Model)
 
 ![](../aaa-assets/message-brokers-2.png)
 
@@ -32,23 +57,6 @@ Now let’s look into the basic components of a message broker:
 
 ![](../aaa-assets/message-brokers-3.png)
 
-* This message model is also known as “pub/sub”.
 * In this model, message queues have a one-to-many relationship with the message sender and receiver. Also, the sender is known as the publisher and the receiver is known as the subscribe.
 * According to this model, a sender publishes messages on a topic. These messages are distributed among all the consumers that have subscribed to the topic.
 * This model can be used for a system where data should be shared among several parties constantly.
-
-### advantages of using 
-
-**Message delivery is guaranteed —** Even though the consumer was not active or offline the message will deliver when active.
-
-**System performance is increased with asynchronous processing —** Processes that take a long time can be processed separately and therefore the main thread of the application will not be affected.
-
-**Applications to communicate with each other, even if they are implemented in different programming languages —** (Ex: SOAP, REST API, IoT devices etc).
-
-### drawbacks of using 
-
-**Learning curve —** There are several messaging brokers and design patterns you can use them with. You need to know the differences and which one to use. Not to mention the configuration process of setting up message brokers.
-
-**Debugging —** With system complexity, increased debugging can be hard.
-
-**Complexity —** Having a message broker definitely adds a whole new component to the system architecture.

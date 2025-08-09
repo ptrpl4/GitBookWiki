@@ -120,6 +120,26 @@ var foo int = 32
 var foo = 32
 ```
 
+### goroutine
+
+Functions launched with `go` are called goroutine. They're extremely lightweight tasks managed by Go's runtime, which schedules many concurrent ones across OS threads on CPU cores
+
+```go
+func main() {
+    go say(1, "go is awesome")
+    go say(2, "cats are cute")
+}
+
+func say(id int, phrase string) {
+    for _, word := range strings.Fields(phrase) {
+        fmt.Printf("Worker #%d says: %s...\n", id, word)
+        dur := time.Duration(rand.Intn(100)) * time.Millisecond
+        time.Sleep(dur)
+    }
+}
+```
+
+```
 ## Commands
 
 ### run

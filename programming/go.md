@@ -139,7 +139,6 @@ func say(id int, phrase string) {
 }
 ```
 
-```
 ## Commands
 
 ### run

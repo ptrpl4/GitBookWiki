@@ -93,10 +93,11 @@ npx playwright show-report
 ## -x # stop on fail
 ## --workers 5
 ## --retries=10
-## --timeout 10000 # 10 sec
+## --timeout 5000 # 5 sec
 ## --project Desktop\ Chrome
 ## --repeat-each 100
 ## --last-failed
+## --reporter "list", "line", "dot", "json", "junit", "null", "github", "html", "blob" (default: "list")
 
 ## prod-api/aaa/bbb.e2e.ts:70 # start test on line 70
 ```
@@ -399,6 +400,31 @@ test.describe.skip('Test Case', () => {
   });
 ```
 
+#### CPU throttling emulation
+
+```env
+CPU_THROTTLE_RATE=5
+```
+
+```js
+...
+const cpuThrottlingRate = process.env.CPU_THROTTLE_RATE
+    ? Number(process.env.CPU_THROTTLE_RATE)
+    : 1;
+  if (
+    page.context().browser()?.browserType().name() === 'chromium' &&
+    cpuThrottlingRate > 1
+  ) {
+    const cdpSession = await page.context().newCDPSession(page);
+    await cdpSession.send('Emulation.setCPUThrottlingRate', {
+      rate: cpuThrottlingRate,
+    });
+  }
+
+  await page.goto(url);
+}
+```
+
 ### built in functions
 
 #### test
@@ -439,6 +465,13 @@ test.describe('Pay button appearance', () => { // declare group of tests
 
 To make an assertion, call `expect(value)` and choose a matcher that reflects the expectation. There are many generic matchers like `toEqual`, `toContain`, and `toBeTruthy` that can be used to assert any conditions.\
 [https://playwright.dev/docs/test-assertions](https://playwright.dev/docs/test-assertions)
+
+#### await expect
+
+- await expect - Testing/Assertions with retry logic
+- await - Actions, setup, data retrieval, conditional logic
+
+
 
 ### POM
 
@@ -500,6 +533,14 @@ test.describe('Playwright website', () => {
         });
     });
 });
+```
+
+#### locator
+
+- auto-waiting built-in
+
+```js
+await page.locator('button.submit').click();
 ```
 
 example pom

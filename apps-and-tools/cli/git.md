@@ -338,6 +338,29 @@ git rebase
 git stash pop
 ```
 
+### stash
+
+```shell
+git stash 'good idea'
+
+git stash save --keep-index # Stash only unstaged changes
+git stash save --include-untracked #  Also stash untracked files
+
+git stash list
+
+git stash show stash@{0}
+
+git stash show -p stash@{0} # show changes
+
+git stash apply stash@{0}
+
+git stash pop # apply and rm from list
+
+git stash drop stash@{n} # delete specific
+
+git stash branch <branchname> stash@{n}
+```
+
 ### Tag
 
 ```shell

@@ -6,6 +6,7 @@
 - examples - [https://gobyexample.com/](https://gobyexample.com/)
 - Language Specification - [https://go.dev/ref/spec](https://go.dev/ref/spec)
 - sandbox - [https://go.dev/play/](https://go.dev/play/)
+- course - https://stepik.org/lesson/526867/ (ru)
 
 ## Basics
 
@@ -15,8 +16,10 @@
 
 ```bash
 which go
-# stdout > /usr/local/go/bin/go
+>> /usr/local/go/bin/go
+
 go version
+>> go version go1.24.0 darwin/arm64
 ```
 
 ### New project init
@@ -31,6 +34,8 @@ go mod init myproject
 
 - Go modules are project-based
 - One `go.mod` controls all subfolders
+
+file example:
 
 ```go.mod
 module myproject
@@ -85,7 +90,7 @@ Thanks for reading!
 */
 ```
 
-### Values
+### Types
 
 ```go
 fmt.Println("1+1 =", 1+1)
@@ -101,11 +106,18 @@ fmt.Println(true || false)
 
 fmt.Println(!true)
 // false
+
 fmt.Println("go" + "lang")
 // golang
+
+var f float64 = 12.34
+fmt.Println(f)
+// 12.34
 ```
 
-### Declaration
+### Variables
+
+Examples:
 
 ```go
 foo := 32 // is short form of
@@ -118,6 +130,20 @@ var foo int = 32
 
 // OR:
 var foo = 32
+
+// many in one line
+var one, two int = 1, 2
+```
+
+If a variable is not initialized at the time of declaration, it will receive its zero value. Each type has its own zero value: for int it’s `0`, for string it’s an empty string `""`, and for bool it’s `false`.
+
+```go
+var num int
+var str string
+var ok bool
+
+fmt.Printf("%#v %#v %#v\n", num, str, ok)
+// 0 "" false
 ```
 
 ### goroutine
@@ -137,6 +163,25 @@ func say(id int, phrase string) {
         time.Sleep(dur)
     }
 }
+```
+
+## Packages
+
+### fmt
+
+It inserts variables into a string based on a template
+
+- `%v` is the default format
+- `%T` represents the type of the variable.
+
+```go
+fmt.Print("Hello")  // Output: Hello
+fmt.Println("World") // Output: World (with a newline)\
+
+// templating
+var sunny = true
+fmt.Printf("%v is %T\n", sunny, sunny)
+// true is bool
 ```
 
 ## Commands

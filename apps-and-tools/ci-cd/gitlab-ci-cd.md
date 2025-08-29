@@ -134,7 +134,10 @@ run_bruno_tests:
 
 ## Variables
 
+Dynamic key-value pairs defined at different levels within GitLab environment (project, group, or instance).
+
 - [doc](https://docs.gitlab.com/ci/variables)
+- [predefined vars](https://docs.gitlab.com/ci/variables/predefined_variables/)
 
 ```yaml
 build_image:

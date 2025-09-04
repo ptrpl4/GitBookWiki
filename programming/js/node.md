@@ -48,14 +48,23 @@ nvm install-latest-npm
 nvm ls
 nvm use 20
 
-# choose installed
-nvm use 18
-
 # uninstall
 nvm uninstall 12
 
 # create project .nvmrc
 node -v > .nvmrc
+```
+
+upgradig
+
+```shell
+which node | npm ls -g # check current node and global packages
+
+OLD_NODE=$(nvm current) | nvm install --lts
+
+nvm reinstall-packages $OLD_NODE
+
+nvm uninstall $OLD_NODE
 ```
 
 #### .nvmrc

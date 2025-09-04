@@ -66,15 +66,15 @@ Docker requires a Linux kernel to work, and on macOS using a lightweight virtual
 
 ## Commands
 
-#### links:
+#### links
 
 - https://docs.docker.com/reference/cli/docker/
-
-`open -a Docker` for Docker Desktop on macOS
 
 ### Basics and examples
 
 ```bash
+open -a Docker for Docker Desktop on macOS
+
 # start/stop container
 docker stop <the-container-id>
 docker start <the-container-id>

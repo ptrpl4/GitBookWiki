@@ -9,6 +9,19 @@ links
 
 Moved to [linux](../../apps-and-tools/cli/linux.md)
 
+### system
+
+```shell
+# system info
+uname -a
+
+# debian info
+cat /etc/debian_version
+
+cat /etc/os-release
+
+```
+
 ### Pi
 
 ```bash

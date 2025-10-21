@@ -1,6 +1,10 @@
 # Hotkeys
 
-*Keyboard shortcuts, Quick keys, Key combinations* 
+*Keyboard shortcuts, Quick keys, Key combinations*
+
+#### links
+
+- [good collection](https://saurabhs.org/macos-tips)
 
 ## Browser
 
@@ -64,4 +68,4 @@ Screenshot tool - CMD + Shift + S
 
 ### Text
 
-**Command-Shift-Стрелка вниз/верх** - перемещение выбранной сторки
+- **Command-Shift-Стрелка вниз/верх** - перемещение выбранной сторки

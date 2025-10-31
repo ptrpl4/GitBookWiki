@@ -14,6 +14,15 @@ zsh & bash -  programs that runs in Terminal, interprets Unix commands, and inte
 
 ## Syntax
 
+### Backslash
+
+continue command in next line
+
+```bash
+long_cmnd="mkdir -p ~/Library/Application Support/Rectangle && \
+cp settings/RectangleConfig.json ~/Library/Application Support/Rectangle/RectangleConfig.json"
+```
+
 ### comments '# '
 
 ```bash
@@ -558,13 +567,24 @@ echo 'my as' xxd -p
 - **touch**: Change file timestamps or create empty files.
 - **ln**: Create links between files.
 
+#### mkdir
+
+```shell
+# only one final folder
+mkdir my-dir
+
+# creates full path if not exist
+mkdir -p not-my-dir/still-not/and-this/finally
+```
+
 #### symlink
 
 ```shell
 # symlink (source) (destination)
-ln -s ~/dotfiles/settings/obsidian/project/.obsidian ~/project/.obsidian 
+ln -s ~/dotfiles/settings/obsidian/project/.obsidian ~/project/.obsidian
 ```
 
+If file already in the folder - error "File exists"
 #### rm
 
 ```bash

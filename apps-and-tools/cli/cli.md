@@ -966,6 +966,38 @@ echo $SHELL
 chsh -s /bin/bash
 ```
 
+### who
+
+shows who is in system now
+### tty
+
+**tty** – return user's terminal name
+
+When you run the tty command:
+    - It prints the **device node** of the **PTY slave** (e.g., /dev/ttys000).
+    - The shell sees it as its “terminal device,” even though it’s fully virtual.
+
+`/dev/ttys000` - 
+
+```shell
+tty
+
+# /dev/ttys000
+
+echo "who are you?\n" > /dev/ttys001
+```
+
+#### tty-pty context
+
+- **TTY** stands for **Teletype / Terminal**, historically a physical device for text input/output.
+- On macOS  there is no physical TTY; instead, the terminal uses a **pseudo-terminal (PTY)**.
+- **PTY** is a **software emulation** of a TTY that allows the shell to interact with the terminal as if it were a real TTY.
+	- **Master** end → used by the terminal emulator (GUI)
+    - **Slave** end → used by the shell
+#### tty driver
+
+![](../../aaa-assets/cli-5.png)
+
 ## Shortcuts
 
 good to read - https://jvns.ca/blog/2024/07/08/readline/

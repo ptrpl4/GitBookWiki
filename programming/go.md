@@ -1,4 +1,4 @@
-# 🏃 Go
+# 🏃 Golang
 
 #### links
 
@@ -120,8 +120,7 @@ fmt.Println(f)
 Examples:
 
 ```go
-foo := 32 // is short form of
-
+// global
 var foo int
 foo = 32
 
@@ -133,6 +132,11 @@ var foo = 32
 
 // many in one line
 var one, two int = 1, 2
+
+// within scope
+func main() {
+    foo := 32 
+}
 ```
 
 If a variable is not initialized at the time of declaration, it will receive its zero value. Each type has its own zero value: for int it’s `0`, for string it’s an empty string `""`, and for bool it’s `false`.
@@ -144,6 +148,14 @@ var ok bool
 
 fmt.Printf("%#v %#v %#v\n", num, str, ok)
 // 0 "" false
+```
+
+### error handling
+
+`_`  blank identifier. ignores second return value (error) . Code won't handle any potential errors
+
+```go
+d, _ := time.ParseDuration(s)
 ```
 
 ### goroutine
@@ -169,19 +181,46 @@ func say(id int, phrase string) {
 
 ### fmt
 
-It inserts variables into a string based on a template
-
-- `%v` is the default format
-- `%T` represents the type of the variable.
+#### Print
 
 ```go
+// Syntax: fmt.Print(values...)
 fmt.Print("Hello")  // Output: Hello
 fmt.Println("World") // Output: World (with a newline)\
+```
+
+#### Printf
+
+inserts variables into a string based on a template
+
+| Specifier | Description                  | Example Output        |
+| --------- | ---------------------------- | --------------------- |
+| `%d`      | Integer (base 10)            | `42`                  |
+| `%s`      | String                       | `"Hello"`             |
+| `%f`      | Floating point               | `3.141593`            |
+| `%t`      | Boolean                      | `true` or `false`     |
+| `%v`      | Default format for any Value | `123`, `"abc"`, etc.  |
+| `%T`      | Type of the value            | `int`, `string`, etc. |
+
+ `%#v`  - prints the value in a Go-syntax representation
+
+```go
+// fmt.Printf(format string, args ...interface{}) (n int, err error)
 
 // templating
 var sunny = true
 fmt.Printf("%v is %T\n", sunny, sunny)
 // true is bool
+
+num := 42
+    str := "Hello, Go!"
+    arr := []int{1, 2, 3}
+    m := map[string]int{"one": 1, "two": 2}
+
+    fmt.Printf("%#v\n", num)  // Outputs: 42
+    fmt.Printf("%#v\n", str)   // Outputs: "Hello, Go!"
+    fmt.Printf("%#v\n", arr)   // Outputs: []int{1, 2, 3}
+    fmt.Printf("%#v\n", m)     // Outputs: map[string]int{"one": 1, "two": 2}
 ```
 
 ## Commands

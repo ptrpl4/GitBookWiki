@@ -150,6 +150,76 @@ fmt.Printf("%#v %#v %#v\n", num, str, ok)
 // 0 "" false
 ```
 
+### const
+
+```go
+const s string = "constant"
+fmt.Println(s)
+// constant
+
+const n = 500000000
+fmt.Println(n)
+// 500000000
+
+const ch = 'a'
+fmt.Println(ch) // fmt.Printf("%c", ch) - to print as character
+// 97 ('a' in ASCII)
+```
+
+### for
+
+```go
+// "while" example
+i := 1
+for i <= 3 {
+    fmt.Println(i)
+    i = i + 1
+}
+// 1
+// 2
+// 3
+
+// "classic" for loop
+for j := 7; j <= 9; j++ {
+    fmt.Println(j)
+}
+// 7
+// 8
+// 9
+
+// loop until n-1
+const n = 10
+for i := range n {
+    fmt.Print(i, " ")
+}
+// 0 1 2 3 4 5 6 7 8 9
+
+// not keeping counter during loop
+const n = 10
+for range n {
+    fmt.Print(".")
+}
+// ..........
+
+// untill break
+for {
+    fmt.Println("loop")
+    break
+}
+// loop
+
+// with internal conditions
+for n := 0; n <= 5; n++ {
+    if n%2 == 0 {
+        continue
+    }
+    fmt.Println(n)
+}
+// 1
+// 3
+// 5
+```
+
 ### error handling
 
 `_`  blank identifier. ignores second return value (error) . Code won't handle any potential errors
@@ -180,6 +250,8 @@ func say(id int, phrase string) {
 ## Packages
 
 ### fmt
+
+- [link](https://pkg.go.dev/fmt)
 
 #### Print
 
@@ -223,6 +295,16 @@ num := 42
     fmt.Printf("%#v\n", m)     // Outputs: map[string]int{"one": 1, "two": 2}
 ```
 
+#### Scan
+
+scan input
+
+```go
+func main() {
+	var source string
+	var times int
+	fmt.Scan(&source, &times)
+```
 ## Commands
 
 ### run
@@ -237,6 +319,9 @@ go run .
 go run -work main.go
 # stdout > WORK=/var/folders/zv/yjxk1129awwqwe/T/go-build4283242323
 # stdout > program output
+
+# send data to program
+echo "1 1 4 5" | go run distance.go
 ```
 
 ### build

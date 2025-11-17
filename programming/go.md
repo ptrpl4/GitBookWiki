@@ -330,6 +330,24 @@ num := 42
     fmt.Printf("%#v\n", m)     // Outputs: map[string]int{"one": 1, "two": 2}
 ```
 
+#### defer
+
+keyword that delays the execution of a statement until the surrounding function returns
+
+```go
+func TestMain(m *testing.M) {
+  fmt.Println("1. Start")
+  defer fmt.Println("3. End (deferred)")
+  fmt.Println("2. Middle")
+  os.Exit(0)
+}
+
+// Output:
+// 1. Start
+// 2. Middle
+// 3. End (deferred)
+```
+
 #### Scan
 
 scan input

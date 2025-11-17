@@ -255,6 +255,110 @@ if num := 9; num < 0 {
 // 9 has 1 digit
 ```
 
+### switch
+
+works without `brake`
+
+```go
+i := 2
+fmt.Print("Write ", i, " as ")
+switch i {
+case 1:
+    fmt.Println("one")
+case 2:
+    fmt.Println("two")
+case 3:
+    fmt.Println("three")
+}
+// Write 2 as two
+```
+
+`fallthrough` - switches to next case if current case uses it
+
+```go
+day := 3
+switch day {
+case 1, 2, 3:
+	fmt.Println("It's early in the week.")
+	fallthrough
+case 4, 5:
+	fmt.Println("Midweek workdays.")
+	fallthrough
+case 6, 7:
+	fmt.Println("Weekend!")
+default:
+	fmt.Println("Invalid day.")
+}
+// It's early in the week.
+// Midweek workdays.
+// Weekend!
+```
+
+`default` and creating var inside switch
+
+```go
+switch day := time.Now().Weekday(); day {
+case time.Saturday, time.Sunday:
+    fmt.Println(day, "is a weekend")
+default:
+    fmt.Println(day, "is a weekday")
+}
+// Tuesday is a weekday
+```
+
+can work as if with dynamic checks
+
+```go
+t := time.Now()
+switch {
+case t.Hour() < 12: // dynamic check
+    fmt.Println("It's before noon")
+default:
+    fmt.Println("It's after noon")
+}
+// It's before noon
+```
+
+```go
+func main() {
+	var code string
+	fmt.Scan(&code)
+
+	var lang string
+	switch code {
+	case "en":
+		lang = "English"
+	case "fr":
+		lang = "French"
+	case "ru", "rus":
+		lang = "Russian"
+	default:
+		lang = "Unknown"
+	}
+	
+	fmt.Println(lang)
+}
+
+// or skip default by lang init
+func main() {
+	var code string
+	fmt.Scan(&code)
+
+	lang := "Unknown"
+
+	switch code {
+	case "en":
+		lang = "English"
+	case "fr":
+		lang = "French"
+	case "ru", "rus":
+		lang = "Russian"
+	}
+
+	fmt.Println(lang)
+}
+```
+
 ### error handling
 
 `_`  blank identifier. ignores second return value (error) . Code won't handle any potential errors

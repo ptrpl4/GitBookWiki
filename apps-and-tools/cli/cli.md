@@ -546,7 +546,7 @@ echo 'my as' xxd -p
 
 * `pwd` - **p**rint **w**orking **d**irectory
 * `stat` - display file or file system status
-* `hier` or `man hier` - layout of filesystems
+* `man hier` - layout of filesystems (hierarchy)
 * `cat` - concatenate and print files
 * `touch` - file creating (not main function, but typical)
 * `env` - current shell env vars

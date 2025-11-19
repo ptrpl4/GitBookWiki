@@ -359,6 +359,46 @@ func main() {
 }
 ```
 
+### arr
+
+By default, the array elements take zero values — in this case, 0.
+
+```go
+var arr [5]int // type and number of elements - part of the array definition
+fmt.Println("empty:", arr)
+// empty: [0 0 0 0 0]
+
+arr[4] = 100 // element access
+fmt.Println("set:", arr)
+// set: [0 0 0 0 100]
+fmt.Println("get:", arr[4])
+// get: 100
+
+fmt.Println("len:", len(arr)) // length
+// len: 5
+```
+
+init on creation
+
+```go
+arr := [5]int{1, 2, 3, 4, 5}
+fmt.Println("init:", arr)
+// init: [1 2 3 4 5]
+```
+
+Arrays are one-dimensional, but they can be combined to create the required dimensionality.
+
+```go
+var arr [2][3]int
+for i := 0; i < 2; i++ {
+    for j := 0; j < 3; j++ {
+        arr[i][j] = i + j
+    }
+}
+fmt.Println("2d:", arr)
+// 2d: [[0 1 2] [1 2 3]]
+```
+
 ### error handling
 
 `_`  blank identifier. ignores second return value (error) . Code won't handle any potential errors

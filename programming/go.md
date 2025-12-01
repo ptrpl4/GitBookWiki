@@ -399,6 +399,84 @@ fmt.Println("2d:", arr)
 // 2d: [[0 1 2] [1 2 3]]
 ```
 
+### slice
+
+Key data structure in Go. Variable-length array, similar to a list in Python or an Array in JS.
+A slice is defined by the type. 
+
+Create a slice with a non-zero length `make()`
+
+```go
+// slice with empty strings
+s := make([]string, 3)
+fmt.Printf("empty: %#v\n", s) // print in Go-syntax
+// empty: []string{"", "", ""}
+
+s[0] = "a"
+s[1] = "b"
+s[2] = "c"
+
+fmt.Println("set:", s)
+// set: [a b c]
+
+fmt.Println("get:", s[2])
+// get: c
+
+fmt.Println("len:", len(s))
+// len: 3
+```
+
+init and create
+
+```go
+s := []string{"a", "b", "c"}
+fmt.Println("init:", s)
+// init: [a b c]
+```
+
+append
+
+```go
+s := []string{"a", "b", "c"}
+
+fmt.Println("src:", s)
+// src: [a b c]
+
+s = append(s, "d")
+s = append(s, "e", "f")
+fmt.Println("upd:", s)
+// upd: [a b c d e f]
+```
+
+copy
+
+```go
+src := []string{"a", "b", "c", "d", "e", "f"}
+dst := make([]string, len(src))
+
+copy(dst, src)
+fmt.Println("copy:", dst)
+// copy: [a b c d e f]
+```
+
+"slice" itself
+
+```go
+s := []string{"a", "b", "c", "d", "e", "f"}
+
+sl1 := s[2:5]
+fmt.Println("sl1:", sl1)
+// sl1: [c d e]
+
+sl2 := s[:5]
+fmt.Println("sl2:", sl2)
+// sl2: [a b c d e]
+
+sl3 := s[2:]
+fmt.Println("sl3:", sl3)
+// sl3: [c d e f]
+```
+
 ### error handling
 
 `_`  blank identifier. ignores second return value (error) . Code won't handle any potential errors

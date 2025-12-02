@@ -477,6 +477,75 @@ fmt.Println("sl3:", sl3)
 // sl3: [c d e f]
 ```
 
+### byte & rune
+
+```go
+str := "го!"
+
+bytes := []byte(str)
+
+fmt.Println(bytes)
+// [208 179 208 190 33]
+
+fmt.Println(str == string(bytes))
+// true
+
+runes := []rune(str)
+
+fmt.Println(runes)
+// [1075 1086 33]
+
+fmt.Println(str == string(runes))
+// true
+
+str := "го!"
+
+bytes := []byte(str)
+fmt.Println(bytes[1])
+// 179 - second byte
+
+runes := []rune(str)
+fmt.Println(runes[1])
+// 1086 - second rune
+
+fmt.Println(str[1])
+// 179, not 1086
+```
+
+### map
+
+map (also known as a dict, hash table) is an unordered set of key-value pairs
+
+```go
+m := make(map[string]int) // empty map
+
+m["key"] = 7
+m["other"] = 13
+
+fmt.Println("map:", m)
+// map: map[key:7 other:13]
+
+val := m["key"]
+fmt.Println("val:", val)
+// val: 7
+
+fmt.Println("len:", len(m))
+// len: 2 (Returns the number of entries (key-value pairs))
+
+delete(m, "other")
+fmt.Println("map:", m)
+// map: map[key:7]
+
+_, ok := m["other"]
+fmt.Println("has other:", ok)
+// has other: false
+
+n := map[string]int{"foo": 1, "bar": 2}
+fmt.Println("map:", n)
+// map: map[bar:2 foo:1]
+```
+
+
 ### error handling
 
 `_`  blank identifier. ignores second return value (error) . Code won't handle any potential errors

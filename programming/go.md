@@ -12,7 +12,7 @@
 
 ### Installation
 
-- https://go.dev/dl/
+- https://go.dev/dl/ (manual installation is recommended)
 
 ```bash
 which go
@@ -21,6 +21,16 @@ which go
 go version
 >> go version go1.24.0 darwin/arm64
 ```
+
+gopls
+
+```shell
+go install golang.org/x/tools/gopls@latest
+
+which gopls | gopls version
+```
+
+implements the Language Server Protocol (LSP) — a standard JSON-RPC interface between an editor and a language engine
 
 ### New project init
 

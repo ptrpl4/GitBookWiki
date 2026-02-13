@@ -53,6 +53,7 @@ nvm uninstall 12
 
 # create project .nvmrc
 node -v > .nvmrc
+nvm install # will use .nvmrc version
 ```
 
 upgradig

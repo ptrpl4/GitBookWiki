@@ -26,14 +26,14 @@ flow:
 
 How identity is verified on each request — mechanism and delivery method.
 
-### delivery methods
+**Delivery methods**
 
 - Common delivery methods: 
 	- Cookie header — carries session ID, JWT, or any token
 	- Authorization header — carries Basic credentials, Bearer token, API key
 	- Query parameter — carries API key, token (less secure, visible in logs/URLs)
 
-### mechanisms
+**Mechanisms**
 
 - Basic auth - part of http spec. (RFC 7617) (stateless)
 	- base64 `username:password` in Authorization header (encoding, not encryption!)
@@ -46,7 +46,7 @@ How identity is verified on each request — mechanism and delivery method.
 	- Server issues a token after successful login 
 	- Client includes token in subsequent requests (typically in Authorization header)
 		- stateless - server only checking that token is valid (signature)
-	- JWT [jwt](jwt.md) (JSON Web Token - Self-contained, encoded JSON with signature)
+	- [JWT](jwt.md) (JSON Web Token - Self-contained, encoded JSON with signature)
 - API Keys
 	- Static key sent with each request (header or query param)
 	- Identifies application/service, not a user
@@ -91,8 +91,6 @@ Common but optional:
 - PKCE parameters (code_challenge, code_verifier)
 
 #### OpenID Connect (OIDC)
-
-who is exactly IdP?
 
 - **Type**: Authentication protocol **Built on** OAuth 2.0 (adds authentication layer on top)
 - **Purpose**: User identity verification and authentication
@@ -157,8 +155,6 @@ Common but optional:
 - **Pros**: 
   - Better user experience (single login)
   - Centralized user management
-  - Reduced password fatigue
-  - Simplified auditing
 - **Cons**: 
   - Single point of failure
   - Session management complexity
@@ -178,9 +174,10 @@ Common but optional:
 **Solutions**:
 - **FedCM**: Browser-native API that doesn't need cookies
 - **First-party cookies**: Backend proxy pattern
-- **Token-based flows**: Store tokens in localStorage/sessionStorage (with security considerations)
+- **Token-based flows**: Store tokens in localStorage/sessionStorage (with security considerations "XSS")
 
 ## Access control Types
 
-- ABAC: Attribute-Based Access Control
-- PBAC: Permission-Based Access Control
+- ABAC: Attribute-Based
+- PBAC: Permission-Based
+- RBAC: Role-Based

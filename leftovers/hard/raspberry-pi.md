@@ -19,6 +19,9 @@ uname -a
 cat /etc/debian_version
 
 cat /etc/os-release
+
+# model
+cat /proc/cpuinfo | grep Model
 ```
 
 ### Pi
@@ -28,7 +31,7 @@ cat /etc/os-release
 sudo raspi-config
 
 # memory allocation
-vcgencmd get_mem
+vcgencmd get_mem 
 
 # temperature check
 vcgencmd measure_temp

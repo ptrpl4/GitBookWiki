@@ -9,7 +9,8 @@
 ### Structure
 
 ```bash
-tree /Users/$USER/.ssh
+tree ~/.ssh
+
 .
 ├── one_more_key
 ├── one_more_key.pub
@@ -35,7 +36,7 @@ ssh-keygen -t rsa -b 4096 -C "your_corporate_email@example.com" -f ~/.ssh/work_k
 nano ~/.ssh/config
 ```
 
-example config
+example config (autoload and multiuser)
 
 ```bash
 cat ~/.ssh/config
@@ -55,12 +56,29 @@ Host bitbucket-corporate
   IdentityFile ~/.ssh/work_key
   UseKeychain yes
   IdentitiesOnly yes
+  
+Host pi-local
+  HostName 192.168.1.138
+  User remote
+  IdentityFile ~/.ssh/dev_key
+```
+
+for one user
+
+```sh
+cat ~/.ssh/config
+
+Host gitlab
+  HostName github.com
+  AddKeysToAgent yes
+  UseKeychain yes
+  IdentityFile ~/.ssh/dev_key
 ```
 
 ### Add to ssh-agent
 
 ```bash
-# save passphrases to keychain
+# manual save passphrases to keychain
 ssh-add --apple-use-keychain ~/.ssh/dev_key
 ssh-add --apple-use-keychain ~/.ssh/work_key
 

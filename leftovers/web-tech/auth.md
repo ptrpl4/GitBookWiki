@@ -58,6 +58,10 @@ How identity is verified on each request — mechanism and delivery method.
 
 OAuth 2.0 — authorization framework ([RFC 6749](https://datatracker.ietf.org/doc/html/rfc6749)) that standardizes how third-party applications obtain limited access to user resources through token-based delegation, without exposing user credentials.
 
+links:
+
+- [Auth flow](https://medium.com/@phil_3582/oauth-2-0-authorization-code-grant-type-fully-visualized-398a839e357a) explained
+
 - **Type**: Authorization framework (NOT authentication)
 - **Purpose**: Delegated access - allows applications to access user **resources** without sharing passwords
 - **What it provides**: Access tokens for API authorization
@@ -89,6 +93,47 @@ Common but optional:
 - expires_in in response
 - client_secret in token request (not for public clients)
 - PKCE parameters (code_challenge, code_verifier)
+
+#### data exchange
+
+`/auth`
+
+Required:
+- response_type=code — server expects an authorization code
+- client_id — application identifier issued on registration
+- redirect_uri — where to return user after authorization
+- scope — what access is being requested
+- state — random string for CSRF protection
+
+PKCE (required for public clients):
+- code_challenge — SHA256 hash of code_verifier
+- code_challenge_method — "S256" (or "plain")
+
+Optional:
+- access_type=offline — request refresh_token (Google-specific)
+- prompt — none | consent | login (control UI behavior)
+- display — page | popup | touch | wap (how to render auth page)
+
+`/token`
+
+Required:
+- grant_type=authorization_code
+- code — the authorization code from step 2
+- client_id
+- redirect_uri — must match step 1
+
+Confidential clients:
+- client_secret
+
+PKCE:
+- code_verifier — original random string (server verifies against code_challenge)
+
+`/token` (refresh)
+
+- grant_type=refresh_token
+- refresh_token
+- client_id
+- client_secret (confidential clients)
 
 #### OpenID Connect (OIDC)
 

@@ -33,10 +33,6 @@ setBody(data)
 
 ## Structure
 
-### Example 1
-
-#### From bottom to top
-
 `.env`
 
 stores all environmental vars. For env-specific vars name should have `_ENV` on the end like `_STAGE`
@@ -94,10 +90,6 @@ example:
 - should be ready for environment switch
 - should be ready for request-specific data switch
 
-### notes
-
-- better to avoid manual sorting if it not necessary - all item in folder will update `seq` info if you insert new item in top of the list
-
 ## assert
 
 can be used with [[#response data]]
@@ -149,9 +141,9 @@ npm install -g @usebruno/cli
 ### run
 
 ```shell
-bru run
+npx bru run
 
-bru run foldername/testFolderName -r --env stage --reporter-html --insecure
+npx bru run foldername/testFolderName -r --env stage --reporter-html --insecure
 
 # --env-var expects lovercase 
 # --env-var  urlstage=https://$${CI_PROJECT_NAME}-$${CI_COMMIT_REF_SLUG}.$${k8s_base_domain}
@@ -165,7 +157,7 @@ bru run foldername/testFolderName -r --env stage --reporter-html --insecure
 ##### one job
 
 ```yml
-image: node:22-alpine
+image: node:24-alpine
 
 stages:
   - test
@@ -174,9 +166,9 @@ run_bruno_tests:
   stage: test
   before_script:
     - apk add --no-cache make
-    - cd api-collection
+    - corepack use pnpm@latest-10
     - npm ci # expect you to have @usebruno/cli in package.json
-    - echo "node $(node -v) npm $(npm -v) bru $(npx bru --version)"
+    `- echo "node $(node -v) bru $(npx bru --version)"`
   variables:
     URL_STAGE: "api.stage.srv.local"
   script:
@@ -203,7 +195,7 @@ run_bruno_tests:
 ```yaml
 # Templates
 .bruno_template:
-  image: node:22-alpine
+  image: node:24-alpine
   before_script:
     - apk add --no-cache make
     - cd testCollection
@@ -269,4 +261,158 @@ run_stage:
 		--reporter-html bruno-report/report.html \
 		--reporter-junit bruno-report/report.xml \
 		--insecure
+```
+
+```makefile
+TIMESTAMP := $(shell date +%Y%m%d-%H%M%S)
+SUITE_NAME = $(shell basename $(SUITE_PATH))
+REPORT_DIR = brunoReport/$(ENV)/$(SUITE_NAME)
+REPEAT = 1
+
+run_suite:
+	@mkdir -p $(REPORT_DIR)
+	npx bru run $(SUITE_PATH) \
+		-r \
+		--env $(ENV) \
+		--reporter-html $(REPORT_DIR)/$(TIMESTAMP)-report.html \
+		--reporter-junit $(REPORT_DIR)/$(TIMESTAMP)-report.xml \
+		--iteration-count $(REPEAT)\
+		--insecure
+
+run_suite_ci:
+	@mkdir -p brunoReport
+	npx bru run $(SUITE_PATH) \
+		-r \
+		--env $(ENV) \
+		--reporter-html brunoReport/report.html \
+		--reporter-junit brunoReport/report.xml \
+		--iteration-count $(REPEAT)\
+		--insecure
+
+run_dev_userFlows_auth:
+	@$(MAKE) run_suite SUITE_PATH=userFlows/auth ENV=dev
+
+run_stage_userFlows_auth:
+	@$(MAKE) run_suite SUITE_PATH=userFlows/auth ENV=stage
+
+run_dev_requests:
+	@$(MAKE) run_suite SUITE_PATH=requests ENV=dev
+
+run_dev_ci:
+	@$(MAKE) --no-print-directory run_suite_ci SUITE_PATH=requests/iamService/api-iam-health.bru ENV=dev
+
+run_flow_auth_loginExistUsr:
+	@$(MAKE) --no-print-directory run_suite_ci SUITE_PATH=userFlows/auth/email/loginExistUsr ENV=dev
+	@$(MAKE) --no-print-directory run_suite_ci SUITE_PATH=userFlows/auth/email/loginExistUsr ENV=stage
+
+run_flow_migrationPlugin_nonexistentLoginUser:
+	@$(MAKE) --no-print-directory run_suite SUITE_PATH=userFlows/migrationPlugin/email/nonexistentLoginUser ENV=stage REPEAT=5
+```
+
+## example readme
+
+```
+# API — Bruno Collection
+
+## deps
+
+### App
+
+- bruno v3.1.4
+
+### CLI-Tool
+
+- bruno-cli v3.1.3
+- pnpm v10
+
+## How to use UI
+
+- install [Bruno](https://github.com/usebruno/bruno/releases) (use version from deps section)
+- open collection via Bruno app
+- set up secret environment variables
+
+```sh
+cp .env.example .env
+# add your variables based on .env.example
+```
+```
+## How to use CLI
+
+### Deps
+
+- Node (nvm + pnpm)
+- Make
+
+### Steps
+
+```sh
+# install Node
+nvm install
+
+# install pnpm via corepack
+corepack use pnpm@latest-10
+
+# set up env variables
+cp .env.example .env
+
+# run test/folder
+npx bru run foldername/testFolderName -r --env stage --reporter-html --insecure
+```
+```
+### Make
+
+- shortcut to run default tests
+
+```sh
+# run default collection
+make run_dev_requests
+```
+```
+## Project
+
+### Structure
+
+#### Original requests
+
+- requests
+
+#### Tests
+
+- tests
+  - testName
+    - deps (if any)
+    - testName
+
+- userFlows
+  - flowName
+    - deps (if any)
+    - flowName
+
+#### Bruno folders
+
+- environments
+
+#### Custum Folders
+
+- brunoReport
+
+#### Sensitive data
+
+- .env
+
+#### Deps
+
+- `package.json`, `.nvmrc` - Node tooling config
+
+### Rules
+
+CodeStyle - camelCase
+
+examples
+
+- `urlInternalApi`
+- `userId`
+- `postLoginOtpConfirm.bru`
+- `getUserData.bru`
+
 ```

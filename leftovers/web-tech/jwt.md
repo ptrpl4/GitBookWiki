@@ -53,3 +53,14 @@ SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
 ![](../../aaa-assets/jwt-1.jpeg)
 
 - ref https://twitter.com/kamrify/status/1683128191550930946
+
+## JWKS
+
+JSON Web Key Set is a set of cryptographic public keys used to verify JWT tokens.
+
+### Key Components:
+- **`kid`** (Key ID): Unique identifier (like "key-2024-01")
+- **`kty`** (Key Type): Usually "RSA" for most systems
+- **`use`**: "sig" for signature verification, "enc" for encryption
+- **`alg`**: Algorithm like "RS256" (RSA + SHA-256)
+- **`n` & `e`**: The actual RSA public key (modulus and exponent in Base64)

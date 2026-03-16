@@ -678,6 +678,26 @@ go run -work main.go
 echo "1 1 4 5" | go run distance.go
 ```
 
+### bash run for golang
+
+-  how it works -  https://lorentz.app/blog-item.html?id=go-shebang
+
+````sh
+chmod +x script.go
+./script.go
+````
+
+```go
+/*usr/local/go/bin/go run "$0" "$@"; exit; */
+package main
+
+import "fmt"
+
+func main() {
+	fmt.Println("Hello world")
+}
+```
+
 ### build
 
 By default, Go builds for your current platform

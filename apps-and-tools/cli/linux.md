@@ -237,7 +237,19 @@ tailscale status
 Commands
 
 ```sh
-sudo /opt/AdGuardHome/AdGuardHome -s status # stop restart uninstall
+# check (if it system service)
+systemctl status AdGuardHome
+
+# disable + startup
+sudo systemctl stop AdGuardHome
+sudo systemctl disable AdGuardHome
+
+# re-enable
+sudo systemctl enable AdGuardHome
+sudo systemctl start AdGuardHome
+
+# usage if its not system service
+sudo ./AdGuardHome/AdGuardHome -s status # stop restart uninstall
 ```
 
 ### docker
@@ -247,5 +259,4 @@ sudo /opt/AdGuardHome/AdGuardHome -s status # stop restart uninstall
 sudo systemctl stop docker
 
 sudo apt-get purge docker-ce docker-ce-cli containerd.io
-
 ```

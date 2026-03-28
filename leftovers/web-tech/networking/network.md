@@ -138,7 +138,7 @@ An apex domain, also known as a root domain or bare domain, is the highest level
  
 `example.com → 2001:db8::1`
  
-- CNAME (Canonicalexample.com → 192.0.2.1 Name) record: Maps an alias or subdomain to the canonical name of a server or another domain
+- CNAME (Canonical example.com → 192.0.2.1 Name) record: Maps an alias or subdomain to the canonical name of a server or another domain
   
 - MX (Mail Exchanger) record: Directs email to a mail server
 - NS (Name Server) record: Specifies the name servers for a domain
@@ -150,6 +150,8 @@ An apex domain, also known as a root domain or bare domain, is the highest level
 - SPF (Sender Policy Framework) record: Specifies which mail servers are authorized to send email on behalf of a domain
 - SRV (Service) record: Specifies the location of a service, such as a VoIP server
 - TXT (Text) record: Stores arbitrary text data, often used for verification or authentication purposes
+- SVCB (Service Binding) is a DNS resource record (Type 64) defined in RFC 9460. It provides clients with complete instructions for connecting to a network service in a single DNS query.
+	- `_dns.resolver.arpa` is a special-use domain name dedicated to the Discovery of Designated Resolvers (DDR). It allows a device to automatically discover and upgrade to encrypted DNS services (DNS-over-HTTPS, DNS-over-TLS, or DNS-over-QUIC) provided by the local network's resolver.
 
 ![](../../../aaa-assets/network-4.png)
 

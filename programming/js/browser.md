@@ -183,3 +183,10 @@ With the `querySelector()` method it is possible to return the first document el
   let elements = document.querySelectorAll("p"); // get elements by selector
 </script>
 ```
+
+## chrome
+
+```
+# dns settings
+[browser](chrome://net-internals/#dns)
+```

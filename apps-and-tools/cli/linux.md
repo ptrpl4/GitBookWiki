@@ -188,10 +188,14 @@ sudo service pihole-FTL status # check status and logs
 sudo service pihole-FTL restart
 sudo service pihole-FTL stop
 
-# autostart
+# autostart /stop
+
+sudo systemctl stop pihole-FTL
 sudo systemctl disable pihole-FTL
-systemctl is-enabled pihole-FTL
-sudo systemctl enable pihole-FTL
+  
+systemctl is-enabled pihole-FTL # check
+
+sudo systemctl enable pihole-FTL # enable
 ```
 
 ### Home Assistant Core

@@ -27,6 +27,9 @@ tree ~/.ssh
 ```bash
 cd ~/.ssh
 
+# default one
+ssh-keygen -t rsa -b 4096 -C "ptrpl4@icloud.com" -f ~/.ssh/id_rsa
+
 # create key with rsa type, 4096 bits, with email in comment
 ssh-keygen -t rsa -b 4096 -C "your_dev_email@example.com" -f ~/.ssh/dev_key
 

@@ -26,3 +26,8 @@ defaults write com.apple.iphonesimulator "ScreenShotSaveLocation" -string "~/Pic
 # reset
 defaults delete com.apple.iphonesimulator "ScreenShotSaveLocation"
 ```
+
+### hotkeys
+
+- Product → Clean Build Folder (Cmd+Shift+K)
+- Run (Cmd+R)

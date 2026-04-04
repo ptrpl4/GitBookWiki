@@ -122,3 +122,23 @@ sudo mdutil -i off /
 # status
 mdutil -s /
 ```
+
+## commands
+
+links
+
+- https://lucas.love/til/test-universal-link-handling-macos
+
+---
+
+- Accepting the Path to Your App
+
+```sh
+open -a /Users/xxx/yyy/zzz.app "https://buuu.pu"
+```
+
+- Accepting the Bundle Id of Your App
+
+```sh
+open -b com.developer.Appka "https://buuu.pu"
+```

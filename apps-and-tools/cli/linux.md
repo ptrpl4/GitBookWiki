@@ -10,8 +10,8 @@ ls /usr/bin
 ls /usr/share/applications
 
 # user apps, tools
-ls /usr/local/bin
-ls /opt
+ls /usr/local # typically if built on machine
+ls /opt # typically if installed as non-system package
 ```
 
 ## proceses
@@ -252,8 +252,8 @@ sudo systemctl disable AdGuardHome
 sudo systemctl enable AdGuardHome
 sudo systemctl start AdGuardHome
 
-# usage if its not system service
-sudo ./AdGuardHome/AdGuardHome -s status # stop restart uninstall
+# usage if its not system service (opt - default folder)
+sudo /opt/AdGuardHome/AdGuardHome -s status # start|stop|restart|status|install|uninstall
 ```
 
 ### docker

@@ -1347,6 +1347,8 @@ done < "$filename"
 
 ### PATH
 
+![](../../aaa-assets/cli-5-path.png)
+
 - `$PATH` env var, contains dirs that shell searches for executable files
 - `/bin` - default system executable files
 - `/usr/bin`  - default user executable files
@@ -1364,6 +1366,9 @@ export PATH
 
 # pretty print
 printenv PATH | tr ':' '\n'
+
+which node # find first one
+which -a node # find all
 ```
 
 ### alias

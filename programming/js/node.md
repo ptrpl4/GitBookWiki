@@ -32,7 +32,7 @@ mkdir nvm
 NVM_DIR="${HOME}/nvm"
 
 # install/update nvm (check latest https://github.com/nvm-sh/nvm/releases)
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.2/install.sh | bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.5/install.sh | bash
 
 # instal node
 nvm install 18

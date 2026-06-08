@@ -15,7 +15,7 @@ Asynchronous event-driven JavaScript runtime.
 
 ```bash
 # with node
-npm install -g n
+sudo npm install -g n && sudo n 24 # sudo - for macos
 
 n lts 
 # !on macOS you probably should change app directory to avoid r/w restrictions

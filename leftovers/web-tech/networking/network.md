@@ -11,12 +11,12 @@
 
 ### Термины
 
-TLS - Transport Layer Security\
-SSL - Secure Socket Layer\
-TCP - Transmission Control Protocol\
-UDP - User Datagram Protocol\
-Hub - концентратор\
-SSID - ServiceSetID - имя сети (WiFi)
+- TLS - Transport Layer Security
+- SSL - Secure Socket Layer
+- TCP - Transmission Control Protocol
+- UDP - User Datagram Protocol
+- Hub - концентратор
+- SSID - ServiceSetID - имя сети (WiFi)
 
 ### Стандарты
 
@@ -40,7 +40,7 @@ Devices will receive IPs in the range of _172.19.0.2-172.19.255.254._
 
 ## OSI Model
 
-**OSI** stands for **Open Systems Interconnection**. The OSI model provides a visual representation of how each communication layer is built on top of another
+**OSI** stands for **Open Systems Interconnection** reference model (1983). The OSI model provides a visual representation of how each communication layer is built on top of another
 
 ### Layers
 
@@ -54,11 +54,11 @@ Devices will receive IPs in the range of _172.19.0.2-172.19.255.254._
 
 ![](../../../aaa-assets/network-10.jpeg)
 
-1. **Physical** — exchange of physical signals between physical devices using cables
-2. **Data Link** — solves the problem of addressing when transmitting the information, establishes a connection between two physical devices
-3. **Network** — provides package routing by discovering the best path across the network
-4. **Transport** — responsible for data transport over the network built by the router on the previous layer
-5. **Session** — manages the interaction between applications and opens up the possibility of task synchronization, session termination, and information exchange
+1. **Physical** (bit)— exchange of physical signals between physical devices using cables
+2. **Data Link** (MAC) — solves the problem of addressing when transmitting the information, establishes a connection between two physical devices
+3. **Network** (IP) — provides package routing by discovering the best path across the network
+4. **Transport** (TCP) — responsible for data transport over the network built by the router on the previous layer
+5. **Session** (HTTP) — manages the interaction between applications and opens up the possibility of task synchronization, session termination, and information exchange
 6. **Presentation** — defines how data will be represented in the application. At this level, processes such as encoding, encryption, and decryption occur, according to the system requirements
 7. **Application** — interactions with the end user occur through applications. At this layer, the transmitted data is presented, and user input and output take place.
 

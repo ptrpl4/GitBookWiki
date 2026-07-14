@@ -25,15 +25,10 @@ tree ~/.ssh
 ### Create Keys
 
 ```bash
-cd ~/.ssh
-
-# default one
+# create key with rsa type, 4096 bits, with email in comment
 ssh-keygen -t rsa -b 4096 -C "ptrpl4@icloud.com" -f ~/.ssh/id_rsa
 
-# create key with rsa type, 4096 bits, with email in comment
-ssh-keygen -t rsa -b 4096 -C "your_dev_email@example.com" -f ~/.ssh/dev_key
-
-ssh-keygen -t rsa -b 4096 -C "your_corporate_email@example.com" -f ~/.ssh/work_key
+ssh-keygen -t rsa -b 4096 -C "your_corporate_email@example.com" -f ~/.ssh/id_rsa_work
 
 # edit config file
 nano ~/.ssh/config
@@ -93,7 +88,6 @@ ssh-add -l
 
 # del active keys
 ssh-add -D
-
 
 ## Others
 # change passphrase (if needed)

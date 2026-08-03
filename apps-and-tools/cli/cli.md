@@ -436,7 +436,7 @@ echo "^delete if using in docker" >> ~/todo.txt
 echo "My new everlasting love is ..." > secret.txt
 ```
 
-#### stdout, stderr redirections
+### stdout, stderr redirections
 
 ```bash
 # program.sh
@@ -454,6 +454,19 @@ echo "one last error" >&2
 # 2> redirects all stderr output to file
 bash program.sh 1> log.txt 2> errors.txt
 ```
+
+#### dev/null
+
+send output to null device (do not store)
+
+```shell
+./your_script.sh > /dev/null        # discard stdout (1> is the same)
+./your_script.sh 2> /dev/null       # discard stderr, keep stdout
+./your_script.sh &> /dev/null       # discard both (bash/zsh only)
+./your_script.sh > /dev/null 2>&1   # discard both (POSIX)
+```
+
+
 
 ## File Permissions
 
@@ -935,7 +948,7 @@ Open a file for interactive reading, allowing scrolling and search
 ```bash
 set | less
 
-ps aux | lessn
+ps aux | less
 
 # shortcuts - Forward search for a string (press `n`/`N` to go tonext/previous match):
 	# /something

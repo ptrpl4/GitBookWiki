@@ -6,11 +6,9 @@ Implementation that holds requests and responses for reusing in subsequent reque
 
 #### links
 
-rfc - [https://httpwg.org/specs/rfc9111.html](https://httpwg.org/specs/rfc9111.html)
-
-youtube - [https://www.youtube.com/watch?v=HiBDZgTNpXY](https://www.youtube.com/watch?v=HiBDZgTNpXY)
-
-mdn - [https://developer.mozilla.org/en-US/docs/Web/HTTP/Caching](https://developer.mozilla.org/en-US/docs/Web/HTTP/Caching)
+- rfc - [https://httpwg.org/specs/rfc9111.html](https://httpwg.org/specs/rfc9111.html)
+- youtube - [https://www.youtube.com/watch?v=HiBDZgTNpXY](https://www.youtube.com/watch?v=HiBDZgTNpXY)
+- mdn - [https://developer.mozilla.org/en-US/docs/Web/HTTP/Caching](https://developer.mozilla.org/en-US/docs/Web/HTTP/Caching)
 
 ### Terms
 

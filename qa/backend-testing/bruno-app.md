@@ -150,7 +150,7 @@ npx bru run foldername/testFolderName -r --env stage --reporter-html --insecure
 
 ```
 
-### CI
+## CI
 
 #### gitlab
 

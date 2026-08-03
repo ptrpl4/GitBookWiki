@@ -31,3 +31,17 @@ defaults delete com.apple.iphonesimulator "ScreenShotSaveLocation"
 
 - Product → Clean Build Folder (Cmd+Shift+K)
 - Run (Cmd+R)
+
+## xcodebuild
+
+```shell
+xcodebuild archive -project $(PROJ) -scheme $(SCHEME) -configuration Release \
+		-destination 'generic/platform=iOS' -archivePath build/appios.xcarchive $(VERSIONING)
+```
+
+## swift
+
+```shell
+swift test --package-path 
+swift build --package-path
+```

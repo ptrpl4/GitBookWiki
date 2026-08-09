@@ -219,6 +219,24 @@ cmd [param 1|param 2]
 
 [how-to-read-and-set-vars](https://www.digitalocean.com/community/tutorials/how-to-read-and-set-environmental-and-shell-variables-on-linux)
 
+#### Supported environments
+
+- **Environment variables** are inherited by child processes and affect system-wide behavior
+
+```shell
+# echo path var
+echo $PATH
+```
+
+- **Shell variables** are local to the current shell session
+
+```shell
+# set shell var
+MY_TASK="project-1984"
+```
+
+#### Environment variables
+
 persistent environment variables:
 - `PATH` — A list of directories separated by colons
 - `TEMP` — The location where processes can store temporary files
@@ -233,31 +251,32 @@ system files:
 - `/etc/profile` is a startup script file. Commands in this file are executed after user login.
 - `~/.bashrc` is a user-specific startup script file that contains configurations specific to the terminal. Commands in this file are executed when you run a new bash terminal.
 
-```bash
+```shell
 # set shell var
 MY_TASK="project-1955"
 TOKEN="bblablatoken64"
 
 # check value
-echo $TASK
+echo $MY_TASK
 
 # usage
-open https://main-url-$MY_TASK.nl-k8s-stage.srv.local\?token=$TOKEN
-
-# unset
-unset MY_TASK
+open "https://main-url-$MY_TASK.stage.local?token=$TOKEN"
 
 # check shell vars
 set | less
 
-# convert existing shell var to env var
-export TASK
+# allow access for sub shells
+export MY_TASK
 
-# create env var
+# unset
+unset MY_TASK
+
+# create var accessible for sub shells
 export NEWVAR="wow i am"
 
 # check env vars
-printenv | less
+printenv | less # all env info
+compgen -v # only var names (shell and exported)
 ```
 
 ### Glob patterns (Globbing)
@@ -1011,12 +1030,12 @@ echo "who are you?\n" > /dev/ttys001
 
 ![](../../aaa-assets/cli-5.png)
 
-## Shortcuts
+## Terminal Apps
+
+### Shortcuts
 
 good to read - https://jvns.ca/blog/2024/07/08/readline/
 good to know - https://www.man7.org/linux/man-pages/man3/readline.3.html#EDITING_COMMANDS
-
-### basics
 
 ```bash
 # list of all the ctrl codes that your terminal supports
@@ -1045,7 +1064,7 @@ process:
 * Ctrl+Z → Put process in bg.
 * Ctrl+K → Exit shell
 
-### Nano
+#### Nano
 
 - Ctrl+K → delete a line
 
@@ -1358,6 +1377,44 @@ done < "$filename"
 
 ![](../../aaa-assets/cli-1.png)
 
+### Shell types
+
+```shell
+# check current shell type
+[[ -o login ]] && echo login          # zsh
+shopt -q login_shell && echo login    # bash
+[[ $- == *i* ]] && echo interactive   # both
+```
+
+Non-interactive shells see `.zshenv` only. Anything a script, cron job, or agent needs must be reachable from there or from the profile — never `.zshrc`. Keep `.zshenv` fast and silent; output there breaks `scp` and `rsync`.
+
+#### Login shell
+
+- Interactive shell - typical terminal app session - new session in: iTerm, ghostty, etc
+	- zsh: `.zshenv` → `.zprofile` → `.zshrc` → `.zlogin` 
+	- bash: `.bash_profile` (falls back to `.profile`)
+- Non-interactive shell - `bash -lc 'make deploy'`; `zsh -l script.zsh`
+	- zsh: `.zshenv` → `.zprofile` → `.zlogin`, **skips `.zshrc`** 
+	- bash: `.bash_profile`
+
+#### Non-login shell
+
+- Interactive shell  - typing `bash` or `zsh` inside a session; new tmux/screen panes
+	- zsh: `.zshenv` → `.zshrc` 
+	- bash: `.bashrc`
+- Non-interactive shell - `./script.sh`, cron, git hooks, `ssh host 'cmd'`, Claude Code bash tool
+	- zsh: `.zshenv` **only** 
+	- bash: nothing, unless `$BASH_ENV` names a file
+
+#### /etc config loads
+
+```
+/etc/zshenv   → ~/.zshenv     always, every shell
+/etc/zprofile → ~/.zprofile   login only
+/etc/zshrc    → ~/.zshrc      interactive only
+/etc/zlogin   → ~/.zlogin     login only
+```
+
 ### PATH
 
 ![](../../aaa-assets/cli-5-path.png)
@@ -1414,48 +1471,7 @@ compinit - loads completion definitions from $fpath
 echo $fpath
 ```
 
-## OS programs
-
-### Processes
-
-Signals
-
-|              |                                                                                                                                                                                        |
-| ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| SIGTERM (15) | Terminate signal. The default signal sent by the kernel to a process requesting it to terminate. It is a safe method of terminating processes since it allows the process to clean up. |
-| SIGINT (2)   | Interrupt signal. This signal performs the same function as pressing Ctrl+C on a terminal. It usually terminates the program.                                                          |
-| SIGKILL (9)  | Kill signal. Signal is not sent to the target process, the kernel directly terminates the process and so this signal cannot be ignored by the process.                                 |
-| SIGSTOP (19) | Stop signal. It causes a process to pause without terminating it. Similar to SIGKILL, this signal isn't directly sent to the target process and hence cannot be ignored.               |
-| SIGHUP (1)   | Hang up signal. It's used to reload a process.                                                                                                                                         |
-
-```bash
-# report a snapshot of the current processes
-ps
-
-# get list of signals
-kill -l
-
-# turn off proccess
-kill 5642 5789 6754
-
-# Using the full name of the signal
-kill -SIGINT 5642
-
-# Using the short name of the signal
-kill -INT 5642
-
-# Using the signal number
-kill -2 5642
-
-# Sends SIGTERM signal to all the Firefox processes
-pkill firefox
-
-# Sends SIGKILL (9) signal to all the Firefox processes
-pkill -9 firefox
-
-# Sends SIGKILL signal to all the Chrome processes belonging to the user "jane":
-pkill -SIGKILL -u jane chrome
-```
+## macOS programs
 
 ### MacOS - softwareupdate
 
@@ -1551,7 +1567,48 @@ command-line JSON processor
 brew install jq
 ```
 
-## exit codes
+## Processes
+
+### Signals
+
+|              |                                                                                                                                                                                        |
+| ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| SIGTERM (15) | Terminate signal. The default signal sent by the kernel to a process requesting it to terminate. It is a safe method of terminating processes since it allows the process to clean up. |
+| SIGINT (2)   | Interrupt signal. This signal performs the same function as pressing Ctrl+C on a terminal. It usually terminates the program.                                                          |
+| SIGKILL (9)  | Kill signal. Signal is not sent to the target process, the kernel directly terminates the process and so this signal cannot be ignored by the process.                                 |
+| SIGSTOP (19) | Stop signal. It causes a process to pause without terminating it. Similar to SIGKILL, this signal isn't directly sent to the target process and hence cannot be ignored.               |
+| SIGHUP (1)   | Hang up signal. It's used to reload a process.                                                                                                                                         |
+
+```bash
+# report a snapshot of the current processes
+ps
+
+# get list of signals
+kill -l
+
+# turn off proccess
+kill 5642 5789 6754
+
+# Using the full name of the signal
+kill -SIGINT 5642
+
+# Using the short name of the signal
+kill -INT 5642
+
+# Using the signal number
+kill -2 5642
+
+# Sends SIGTERM signal to all the Firefox processes
+pkill firefox
+
+# Sends SIGKILL (9) signal to all the Firefox processes
+pkill -9 firefox
+
+# Sends SIGKILL signal to all the Chrome processes belonging to the user "jane":
+pkill -SIGKILL -u jane chrome
+```
+
+### exit codes
 
 | Exit code     | Description                                                                                                                                             |
 | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |

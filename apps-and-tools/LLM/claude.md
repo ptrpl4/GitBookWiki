@@ -253,7 +253,7 @@ Everything up to the breakpoint gets cached. Works best for: long system prompts
 
 ### Claude Web vs API — key differences
 
-||Claude Web|API|
+|-|Claude Web|API|
 |---|---|---|
 |Model|Set by Anthropic|You choose|
 |Temperature|Set by Anthropic|You control|
@@ -261,3 +261,4 @@ Everything up to the breakpoint gets cached. Works best for: long system prompts
 |History|Managed by UI|You manage|
 |Cost|Subscription|Per token|
 |Use case|Human interaction|Building products|
+ 

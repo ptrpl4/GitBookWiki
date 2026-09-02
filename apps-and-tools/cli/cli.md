@@ -1493,6 +1493,9 @@ codesign -vvvv -R="anchor apple" /usr/libexec/rapportd
 
 # DNS lookup utility
 dig ptrpl4.page +nostats +nocomments +nocmd TXT
+
+security add-generic-password -s password-name -a admin -w -U # add
+security find-generic-password -s password-name -a admin -w # read
 ```
 
 ## Third-party programs
